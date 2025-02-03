@@ -102,6 +102,25 @@ Week 9: Implement the last features as necessary. Finalize and test the game, an
 
 Week 10: Prepare the final presentation demonstrating the work we completed with the app. 
 
+Software Design:
+Front-End
+- UI Package: The map view displays the map and user movement. The leaderboard renders the current leaderboard.
+- Networking package: Manages REST API requests and handles fetching user locations and game data.
+- Game Logic package: Handles displaying claimed land and processes user GPS movement.
+
+Back-End
+- API Handlers: Manages core game logic such as update position and claim territory.
+- Game Logic: Computes areas enclosed by a completed run and checks if a user's route overlaps another's.
+- Database Handlers: Handles user data and stores running route data.
+
+Database
+- The backbone for storing and managing game data.
+- The schema includes key tables such as users, which stoes gameplay statistics, routes, which logs completed running circuts with timestamps and GPS coordinates, and territories, which tracks claimed land areas for each user.
+
+Location Tracking API:
+- Uses Google Maps API to fetch and process real-time location data.
+- Ensures routes are valid before allowing a claim.
+
 Git Repo Link: 
 Organization: https://github.com/SoftwareEng2-Team 
 Repository: https://github.com/SoftwareEng2-Team/runio 
