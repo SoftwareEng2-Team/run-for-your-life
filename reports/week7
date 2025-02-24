@@ -1,0 +1,257 @@
+# Weekly Status Report -- 20250129
+
+## 1. Team Report
+
+### 1.1 Exact Copy of the Third Section from Last Week
+
+- Allocate tasks and side-tasks (ongoing weekly, so 1 week every week)
+- Finish setting up database and create connections between the backend database and frontend (1 week)
+- Create login page for players to fill out to create a account on the database (1 week)
+- Begin working on location tracking storage and developing the visual line that the player will use to track their run completion (2 weeks)
+- Build leaderboard frontend and architect it to be able to integrate a database (1 week)
+- Ask TA if using a database is the correct way to go about implementing our leaderboard (1 week)
+    - Act on the information (1 weeks)
+
+### 1.2 Progress and Issues
+
+**What we've finished:** 
+- Completed leaderboard frontend, allowing users to see rankings. Top 3 players are colored accordingly (gold, silver, bronze).
+- Began researching a potential switch to AWS for security reasons instead of OSU’s public HTML server.
+- Completed User Documentation, including:
+    - High-level description of the project.
+    - Installation guide with prerequisites and setup instructions.
+    - How to run the software for both users and developers.
+    - Usage instructions for gameplay and account creation.
+    - Bug reporting guidelines with clear submission steps.
+    - Known issues and limitations documented in the bug tracker.
+- Completed Developer Documentation, including:
+    - How to obtain the source code from the repository.
+    - Directory structure layout and explanations of key files.
+    - How to build the software and resolve dependencies.
+    - How to test the software using automated and manual testing.
+    - How to add new tests to improve reliability.
+    - How to package and release the software for deployment.
+
+**What we learned:**  
+- AWS offers better security options but requires additional setup for database and hosting.
+- Writing clear user documentation helps improve team understanding and ensures usability.
+- Developer documentation needs to be structured well for easy onboarding and contributions.
+- Database setup is more complex than expected, requiring adjustments for integration.
+- Real-time location tracking needs a scalable backend to ensure smooth updates.
+- Leaderboard updates must be optimized to handle multiple simultaneous players.
+
+**Where we had trouble/stuck:**  
+- Login page has not been implemented yet, as we are still working on user authentication.
+- Backend connection between leaderboard and database is incomplete, requiring further development.
+
+### 1.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
+
+- Allocate tasks and side-tasks (ongoing weekly, so 1 week every week)
+- Complete database setup and ensure backend can communicate with the frontend (1 week)
+- Create and implement login page with user authentication (1 week)
+- Begin working on location tracking storage and developing the visual line that the player will use to track their run completion (2 weeks)
+- Fix leaderboard update inconsistencies and ensure accurate ranking system (1 week)
+- Optimize database queries for faster read/write operations and leaderboard updates (1 week)
+- Build Profile page frontend and architect it to be able to integrate a database (1 week)
+
+## 2. Contributions of Individual Team Members
+
+### James Nichols
+
+#### 2.1 Exact Copy of the Third Section from Last Week
+- Return to Corvallis to be abel to work with my group in-person again.
+- Work on creating a backend that will hold user profile information.
+- Begin creating test plans and bug testing to ensure no problems make it far into development.
+
+#### 2.2 Progress and Issues
+
+**What we've finished:** 
+- Create login page for players to fill out to create a account on the database (1 week)
+- Begin working on location tracking storage and developing the visual line that the player will use to track their run completion (2 weeks) 
+- Work on scoring weights to determine how much a given area show score for the player (2 weeks)
+
+
+**What we learned:**  
+- The backend may not be able to be accessed on the school servers which needs more testing to determine.
+- The Google API may have trouble providing managing multiple players at once.
+
+**Where we had trouble/stuck:** 
+- Struggle to properly devide work out for each member of the group.
+- Each member of our group were busy with different assignments in other classes so progress was minimal this week
+
+
+#### 2.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
+- Create login page for players to fill out to create a account on the database (1 week)
+- Begin working on location tracking storage and developing the visual line that the player will use to track their run completion (2 weeks) 
+- Work on scoring weights to determine how much a given area show score for the player (2 weeks)
+
+### Calvin Chen
+
+#### 2.1 Exact Copy of the Third Section from Last Week
+- Address server permission restrictions for better frontend-to-database communication (3 hrs)
+- Finalize profile page UI integration with backend data and ensure smooth stat retrieval and display (5 hrs)
+- Develop user authentication system to allow account creation and secure login (4 hrs)
+
+#### 2.2 Progress and Issues
+
+**What we've finished:**  
+- Began researching a potential switch to AWS for security and database management.
+- Wrote user documentation, covering a high-level description of the game, installation steps and how to run the software, usage instructions for new users, and how to report bugs and known limitations.
+- Completed developer documentation, covering how to obtain the source code and directory structure, and how to build, test, and release the software.
+- Completed the leaderboard frontend, displaying player rankings.
+
+**What we learned:**  
+- Database permissions on OSU's public server are limited, making integration more challenging than expected.
+- AWS offers better security but no one in our group has experience with it and it requires a complicated setup.
+- Detailed user documentation helps improve usability and ensures easy onboarding for testers.
+
+**Where we had trouble/stuck:**  
+- Database setup remains incomplete, as we are determining whether to continue with OSU's server or migrate to AWS.
+- Login page has not been created yet, due to ongoing schedule challenges.
+
+#### 2.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
+- Implement and test user authentication system to allow account creation, secure login, and session management (7 hrs)
+- Improve frontend-to-database communication by resolving server permission issues or migrating to AWS (5 hrs)
+- Complete profile page integration with user stats and display recent run history (5 hrs)
+- Continue testing and refining GPS tracking logic to improve accuracy in movement detection (4 hrs)
+- Optimize leaderboard update process to handle multiple players updating scores simultaneously (3 hrs)
+- Research and integrate anti-cheating measures such as speed thresholds and activity validation (5 hrs)
+
+### Brian Munger
+
+#### 2.1 Exact Copy of the Third Section from Last Week
+- Implement database in code
+- Have the website display the leaderboard, sign-in, and profile pages correctly
+- Have the code correctly read/write from database
+
+#### 2.2 Progress and Issues
+
+**What we've finished:** 
+- Updated the Trello board to fit our current project tasks
+- Designed and implemented the frontend for the leaderboard page, added sorting and ranking
+- Designed the login page, will implement the frontend today
+- Further our progress on the database, will be integrated soon 
+
+**What we learned:**
+- We will need to spend a lot of time this weekend and the following week getting work done
+- Public_HTML might pose an issue with backend properties, may use AWS as a backup
+
+**Where we had trouble/stuck:**
+- This was a busy week for our group: multiple midterms, large projects in other classes, etc
+- Did not make a lot of progress this week
+
+#### 2.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
+- Implement database in code (~ 5 hours)
+- Have all frontend done (~3 hours)
+- Have all backend mostly done (the week)
+- Integrate interactions with players
+
+### Shi-Ru Huang
+
+#### 2.1 Exact Copy of the Third Section from Last Week
+- Finished implementing the login authentication (3 days).
+- Meet with our TA on Thursday (15 mins).
+- Further dicuss with team member fo the next step on Monday (2hr).
+
+#### 2.2 Progress and Issues
+
+**What we've finished:** 
+- Meet with our TA on Thursday (15 mins).
+- Further dicuss with team member fo the next step on Monday (2hr).
+
+**What we learned:** 
+- What I've learn is that in order to make the login authentication work, it must go through the database to retrieve that user's authentication and send it back to log that player in jis own aacount.
+
+**Where we had trouble/stuck:**
+- What I encounter is that, it really hard to catch up and communicate for the past week, since everyone's schedule did not work well at the same time
+
+#### 2.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
+- Finished implementing the login authentication (3 days).
+- Meet with our TA on Thursday (15 mins).
+- Further dicuss with team member fo the next step on Monday (2hr).
+- Meet we team member to work on the project on Thursday (2hr).
+
+### Evan Albert
+
+#### 2.1 Exact Copy of the Third Section from Last Week
+- Finished implementing the login authentication (3 days).
+- Meet with our TA on Thursday (15 mins).
+- Further dicuss with team member fo the next step on Monday (2hr).
+
+#### 2.2 Progress and Issues
+
+**What we've finished:** 
+- Finished the leaderboard basic implementation. 
+- Sorting function and proper CSS is working with more refinements on the way. 
+- Game design has been ironed out a lot but specifics are hard to talk about in a simple paragraph.
+
+
+**What we learned:**  
+- We learned how to make the login authentication work and how it must go through the database to retrieve that user's authentication and send it back to log that player in its own account.
+
+**Where we had trouble/stuck:**
+- Still figuring out testing on a public server.
+
+#### 2.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
+- Start the manipulation of the database from the backend (4 hours)
+- Meet with the team on Wednesday and Thursday (1 hour)
+- Begin to work on the front-end in the sense it needs to make sure it is properly displaying all the data (2 hours)
+
+### Keona Abad
+
+#### 2.1 Exact Copy of the Third Section from Last Week
+- Setup up endpoints so we can connect our database to our backend (1 hour)
+- Meet with the team on Wednesday and Thursday (1 hour)
+- Start working on the backend to manipulate the data we have (2 hours)
+- We need to do research on the best and most optimal ways to make sure our data is being used correctly (1 hour)
+
+#### 2.2 Progress and Issues
+
+**What we've finished:** 
+- Completed a frontend for our program. Of course we will have to adjust small dynamic changes.
+- Fully implementing our database to be functional
+- Creating endpoints to our backend system to connect with our database
+
+**What we learned:**  
+I have learned that in postgreSQL's JSONB data type lets you store a query JSON with full indexing meaning that it's almost like a hybrid between a relational and NOSQL databases.
+
+**Where we had trouble/stuck:**
+I struggled with the strict type enforcement and it kept throwing errors at me because it wanted me to manually cast values more often than I expected.
+
+#### 2.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
+
+- Start the manipulation of the database from the backend (4 hours)
+- Meet with the team on Wednesday and Thursday (1 hour)
+- Begin to work on the front-end in the sense it needs to make sure it is properly displaying all the data (2 hours)
+
+### Connor Sun
+
+#### 2.1 Exact Copy of the Third Section from Last Week 
+
+- Finalize the point system (1 weeks)
+- Research viability of desired monitezation systems (1 weeks)
+
+- Figure out how to retain players who have lost their lives (1 weeks)
+
+- Decide where spawning would cause the least amount of frustration for all parties (2 weeks)
+
+- Figure out if public_html is a viable way to host our website (1 week)
+
+#### 2.2 Progress and Issues
+
+**What we've finished:** 
+Finished the leaderboard basic implementation. Sorting function and proper CSS is working with more refinements on the way. Game design has been ironed out a lot but specifics are hard to talk about in a simple paragraph.
+
+**What we learned:**  
+I learned how to delegate work for my own tasks to others. I'm not proud of the fact I had to rely on my groupmates for my own work, but being able to efficiently communicate and empathize with your teammates is extremely important to cohesion. Furthermore, my understanding of CSS and template-able HTML elements improved by a lot. I learned not to underestimate game design in genres and areas I'm not particularly versed in, as well as being limited by real-world locational constraints. 
+
+**Where we had trouble/stuck:**
+A lot of the game design work has been difficult to think about without players actually being able to interact with the game. I have had  a lot on my plate preparing for my algorithm midterm so I had to make sure my responsibilities were either handled by other teammates or done in advance to clear my head for it. 
+
+#### 2.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
+
+- Decide where spawning would cause the least amount of frustration for all parties (1 week)
+
+- Figure out if public_html is a viable way to host our website (pushed off because of midterm and other work) (1 week)
+
+- Work on designing backend API specifications given new design expectations (2 weeks)

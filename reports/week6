@@ -1,0 +1,250 @@
+# Weekly Status Report -- 20250129
+
+## 1. Team Report
+
+### 1.1 Exact Copy of the Third Section from Last Week
+
+-- Allocate tasks and side-tasks (ongoing weekly, so 1 week every week)
+- Solidify design of gameplay loop (1 weeks)
+- Build leaderboard frontend and architect it to be able to integrate a database (2 week)
+- Update living document to meet the expectations of the Project Architecture and Design specifications (<1 week)
+- Implement Run For Your Life (RFYL) on the school servers so we can test it on a non-localhost server (? weeks)
+- Ask TA if using a database is the correct way to go about implementing our leaderboard (1 week)
+    - Research alternatives to the suggested solution (1 week)
+    - Act on the information (2 weeks)
+
+### 1.2 Progress and Issues
+
+**What we've finished:** 
+Webapp navigation between leaderboard, map, and profile has been implemented. 
+Successfully set up database to store player data and keep track of account information: score, territory and login information.
+Present our project and updated living document to meet requirements with the rubric.
+Began planning test cases and what software will be used for testing our project. 
+Successfully set up the project to run on the school servers so it can be running constantly
+
+**What we learned:**  
+We learned how the school public server works and how we can run our site on that server for players to be able to access our game at all times.
+Furthermore, we now also have developed an understanding of what is required for setting up the database to hold all the players information. 
+
+**Where we had trouble/stuck:**  
+We had trouble understanding requirements for the presentation and other assignments in the class since some of the instructions can be difficult to understand.
+However, through discussing as a group and asking questions in class we were able to understand what requirements were necessary for the midterm presentation.
+
+### 1.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
+
+- Allocate tasks and side-tasks (ongoing weekly, so 1 week every week)
+- Finish setting up database and create connections between the backend database and frontend (1 week)
+- Create login page for players to fill out to create a account on the database (1 week)
+- Begin working on location tracking storage and developing the visual line that the player will use to track their run completion (2 weeks)
+- Build leaderboard frontend and architect it to be able to integrate a database (1 week)
+- Ask TA if using a database is the correct way to go about implementing our leaderboard (1 week)
+    - Act on the information (1 weeks)
+
+## 2. Contributions of Individual Team Members
+
+### James Nichols
+
+#### 2.1 Exact Copy of the Third Section from Last Week
+- Return to Corvallis to be abel to work with my group in-person again.
+- Work on creating a backend that will hold user profile information.
+- Begin creating test plans and bug testing to ensure no problems make it far into development.
+
+#### 2.2 Progress and Issues
+
+**What we've finished:** 
+- Created database to store player information and begin frontend connection to this database
+- Put game onto the school servers so the game will have a permanent uptime.
+- Finished and presented midterm presentation.
+
+**What we learned:**  
+- The school servers provide free deticated servers which can be used to run our project.
+- The backend database software can only be edited on a stronger PC so will have to edited on a desktop.
+
+**Where we had trouble/stuck:** 
+- Struggle to properly devide work out for each member of the group.
+_ As the project takes more shape there will be more things for each member to work on.
+
+
+#### 2.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
+- Create login page for players to fill out to create a account on the database (1 week)
+- Begin working on location tracking storage and developing the visual line that the player will use to track their run completion (2 weeks) 
+- Work on scoring weights to determine how much a given area show score for the player (2 weeks)
+
+### Calvin Chen
+
+#### 2.1 Exact Copy of the Third Section from Last Week
+- Improve real-time player movement updates on the map (2 hrs)
+- Integrate basic leaderboard functionality (3 hrs)
+- Test and refine player movement mechanics (2 hrs)
+- Meet up with the team to create a detailed presentation (2 hrs)
+
+#### 2.2 Progress and Issues
+
+**What we've finished:**  
+- Hosted our game on Oregon State University’s public HTML server.
+- Updated and revised our living document (added workflows of software architecture and database schema and revised our test cases along with a more detailed timeline).
+- Set up the database on a PostgreSQL server.
+- Completed the profile page design outline.
+- Finished and presented the midterm presentation to the class.
+
+**What we learned:**  
+- PostgreSQL query optimization is critical for leaderboard and profile updates to prevent performance holdup.
+- The OSU public HTML server offers free hosting, but some access restrictions exist, requiring alternative solutions for database connections.
+- Midterm presentation feedback emphasized scalability concerns, meaning we need to refine our server architecture to handle more players.
+
+**Where we had trouble/stuck:**  
+- Difficulty integrating the PostgreSQL database with the school-hosted frontend, as direct queries were restricted by server permissions.
+- Allocating work to members who were online.
+
+#### 2.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
+- Address server permission restrictions for better frontend-to-database communication (3 hrs)
+- Finalize profile page UI integration with backend data and ensure smooth stat retrieval and display (5 hrs)
+- Develop user authentication system to allow account creation and secure login (4 hrs)
+
+### Brian Munger
+
+#### 2.1 Exact Copy of the Third Section from Last Week
+- Implement leaderboard (~3 hours)
+- Run web application on the OSU public.html server (~1 hour)
+- Start creating the profile section (~2 hours)
+- Work on presentation (~2 hours)
+
+#### 2.2 Progress and Issues
+
+**What we've finished:** 
+- Finished and presented our presentation
+- Implemented the website on the public.html server
+- Designed the leaderboard and profile sections
+- Got the database to work
+
+**What we learned:**
+- We will need more time than needed to find out how the database works
+- Learned we don't need to use Node.JS if using public.html
+
+**Where we had trouble/stuck:**
+- Finding what database to use
+- Agreeing on the presentation/what slides to include
+- Finding how to incorporate a database in the code
+
+#### 2.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
+- Implement database in code
+- Have the website display the leaderboard, sign-in, and profile pages correctly
+- Have the code correctly read/write from database
+
+### Shi-Ru Huang
+
+#### 2.1 Exact Copy of the Third Section from Last Week
+- Meet Thursday after TA group meeting to discuss for the next step (2 hr).
+- Finished implementing one of the part of this project, which we will talk about what exactly when we meet on Thursday (12 hr).
+- Meet with our TA on Thursday (15 mins).
+
+#### 2.2 Progress and Issues
+
+**What we've finished:** 
+- Finished the slides for the presentation and update the living document
+- Further discuss into small group on what we gonna do for each of us for the following week
+- start the proccess of implementing the login authentication for each user
+
+**What we learned:** 
+- What I've learn is that in order to make the login authentication work, it must go through the database to retrieve that user's authentication and send it back to log that player in jis own aacount.
+
+**Where we had trouble/stuck:**
+- I got trouble to connect tight with my teammate this week due to the injury I've suffer,so it kind of hard to update and know if my current direction is going on well. 
+
+#### 2.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
+- Finished implementing the login authentication (3 days).
+- Meet with our TA on Thursday (15 mins).
+- Further dicuss with team member fo the next step on Monday (2hr).
+
+### Evan Albert
+
+#### 2.1 Exact Copy of the Third Section from Last Week
+- Add marker to Google Maps (30 mins)
+- Add navigational capabilities to the application (2 hours)
+- Delegate work (begin frontend, backend, etc) (10 mins)
+- Begin individual tasks (2 hours)
+- Meet to discuss progress later in the week (30 mins)
+
+#### 2.2 Progress and Issues
+
+**What we've finished:** 
+- Finished and presented our presentation
+- Implemented the website on the public.html server
+- Designed the leaderboard and profile sections
+- Got the database to work
+
+**What we learned:**  
+- We learned how to make the login authentication work and how it must go through the database to retrieve that user's authentication and send it back to log that player in its own account.
+
+**Where we had trouble/stuck:**
+- Figure out how we are going to host this on a public server.
+
+#### 2.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
+- Finalize the point system (1 weeks)
+- Research viability of desired monitezation systems (1 weeks)
+- Figure out how to retain players who have lost their lives (1 weeks)
+- Decide where spawning would cause the least amount of frustration for all parties (2 weeks)
+- Figure out if public_html is a viable way to host our website (1 week)
+
+### Keona Abad
+
+#### 2.1 Exact Copy of the Third Section from Last Week
+- Create a UX design for the marker (player 2 hours at most)
+- Meet with the team on Wednesday and Thursday (1 hour)
+- We should get exact coordinates for the border of Oregon State University to have precise on our map (30 mins)
+- Still decide where spawning would cause the least amount of frustration for all parties (? weeks)
+
+#### 2.2 Progress and Issues
+
+**What we've finished:** 
+- Connecting our postgre database
+- Implementing example data to see on our frontend
+
+**What we learned:**  
+We've learned that we are going to be able to connect our local data storage with  our school server hosted html frontend.
+
+**Where we had trouble/stuck:**
+A problem we might have is figuring out how we are going to make test cases to ensure that our database is running realtime and updating properly and accordingly.
+
+#### 2.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
+
+- Setup up endpoints so we can connect our database to our backend (1 hour)
+- Meet with the team on Wednesday and Thursday (1 hour)
+- Start working on the backend to manipulate the data we have (2 hours)
+- We need to do research on the best and most optimal ways to make sure our data is being used correctly (1 hour)
+
+### Connor Sun
+
+#### 2.1 Exact Copy of the Third Section from Last Week 
+
+- Finalize the point system (1-2 weeks)
+    - Decide the criteria for weighing an area more heavily for points (1 week)
+- Research viability of desired monitezation systems (1-2 weeks)
+    - Business collaboration viability (1 week)
+    - Microtransaction viability (1 week)
+    - Privacy-compliant data selling
+
+- Figure out how to retain players who have lost their lives (3 weeks+)
+- Decide where spawning would cause the least amount of frustration for all parties (? weeks)
+
+#### 2.2 Progress and Issues
+
+**What we've finished:** 
+I've finished the prototype leaderboard and designed it such that we can simply read off player data and insert div "cards" for each leaderboard. Since we are just now interacting with our database, it is good to have a stable platform we can read it off of for display debugging.
+
+**What we learned:**  
+I learned how to use JS to mass-produce a templated HTML element. In my webdev class, I had difficulty doing this because of the lack of direction and I ended up using a different method to what I have now. We also learned that OSU's public_html may be difficult to interact with, but free hosting is free hosting. 
+
+**Where we had trouble/stuck:**
+Figuring out how we can implement a backend on the OSU servers is difficult. In general, I've designed databases before but have never implemented them or worked with them. It was hard to coordinate what exactly we needed to store and how we'd retrieve that in a timely manner.
+
+#### 2.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
+
+- Finalize the point system (1 weeks)
+- Research viability of desired monitezation systems (1 weeks)
+
+- Figure out how to retain players who have lost their lives (1 weeks)
+
+- Decide where spawning would cause the least amount of frustration for all parties (2 weeks)
+
+- Figure out if public_html is a viable way to host our website (1 week)

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="loginpage.css">
+    <title>RFYL Login</title>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Create Account</h1>
+        <form action="#" method="POST">
+            <label for="username_ca">Username:</label>
+            <input type="text" id="username_ca" name="username_ca" required>
+            <br>
+            <label for="password_ca">Password:</label>
+            <input type="password" id="password_ca" name="password_ca" required>
+            <br>
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+            <br>
+            <button type="submit">Create Account</button>
+        </form>
+        <p></p>
+        <a href="loginpage.html">Already have an account? Login!</a>
+        <div class="error-message" id="error-message">
+            <p>Passwords do not match. Please enter again. </p>
+            <p>An account with that username already exists. </p>
+        </div>
+    </div>
+</body>
+</html>

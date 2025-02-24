@@ -1,0 +1,33 @@
+High-level Description: 
+Competitive running game that simulates territory acquisition via a completed running route. 
+Players compete by claiming the most space on a shared real-world map each week.
+To claim space one must create and complete a running circuit of any length.
+Upon completion of said circuit, players are rewarded with all map space within that circuit being claimed as their territory regardless of whether it is already claimed. 
+The map displays currently existing territories and all in-progress routes by players. A leaderboard will also display the current square miles each player has claimed for that week.
+All scores and territories are reset weekly, and the top player is given a flair for the following week.
+
+How to Install the Software: 
+Our game requires no installation since it is a live service game hosted on a web server.
+To play our game a player will simply have to go to this URL: https://web.engr.oregonstate.edu/~mungerbr/RFYL/public_html/.
+Then they will have to make an account which will allow them to connect to our backend and play the game.
+
+How to Use the Software:
+
+Starting a Run
+- Authenticate by logging in or creating an account.
+- Open the Map screen.
+- Select a preset route.
+- Press "Start Run" to begin tracking your movement.
+- Run in a closed loop to form a valid claimable territory.
+- Press "Finish Run" to finalize and claim your territory.
+
+Checking Your Progress:
+- View live territory updates on the Map screen.
+- Check the Leaderboard to compare rankings.
+- Navigate to the Profile page to see total distance, land claimed, ranking, and recent activity.
+
+Competitive Features
+- User Authentication: Every player must log in before playing.
+- Territory Claiming: Any closed circuit grants all land within as your territory.
+- Cutting Off Opponents: Run through another player’s path and complete a circuit before them to remove their territory.
+- Weekly Reset: All scores reset every week; the top player earns a flair for recognition.
