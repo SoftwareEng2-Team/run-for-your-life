@@ -19,8 +19,8 @@ let score = 0;
 let outsidePath = [];
 // Array to store the user's location every second
 let locationHistory = [];
-// Info window for the territory name
-let territoryInfoWindow = null;
+// Label for the territory name
+let territoryLabel = null;
 
 async function initMap() {
   // Bounding Box for the OSU Campus
@@ -205,15 +205,11 @@ function claimTerritory() {
     claimedTerritory.setMap(map);
     console.log("Territory claimed around:", userPosition);
 
-    // Add an info window to display the territory name
-    if (territoryInfoWindow) {
-      territoryInfoWindow.close();
+    // Add a static label to display the territory name
+    if (territoryLabel) {
+      territoryLabel.setMap(null);
     }
-    territoryInfoWindow = new google.maps.InfoWindow({
-      content: "Your Territory",
-      position: userPosition,
-    });
-    territoryInfoWindow.open(map);
+    territoryLabel = new TerritoryLabel(userPosition, map, "Your Territory");
   } else {
     console.error("User position is not available.");
   }
@@ -245,23 +241,58 @@ function expandTerritory() {
     console.log("Territory expanded around:", userPosition);
     console.log("Current score:", score);
 
-    // Update the info window position to the center of the new territory
+    // Update the label position to the center of the new territory
     const bounds = new google.maps.LatLngBounds();
     newCoords.forEach(coord => bounds.extend(coord));
     const center = bounds.getCenter();
-    if (territoryInfoWindow) {
-      territoryInfoWindow.setPosition(center);
-    } else {
-      territoryInfoWindow = new google.maps.InfoWindow({
-        content: "Your Territory",
-        position: center,
-      });
+    if (territoryLabel) {
+      territoryLabel.setMap(null);
     }
-    territoryInfoWindow.open(map);
+    territoryLabel = new TerritoryLabel(center, map, "Your Territory");
   } else {
     console.error("User position or outside path is not available.");
   }
 }
+
+// Custom OverlayView for the static label
+function TerritoryLabel(position, map, text) {
+  this.position = position;
+  this.text = text;
+  this.div = null;
+  this.setMap(map);
+}
+
+TerritoryLabel.prototype = new google.maps.OverlayView();
+
+TerritoryLabel.prototype.onAdd = function() {
+  const div = document.createElement('div');
+  div.style.position = 'absolute';
+  div.style.backgroundColor = 'white';
+  div.style.border = '1px solid black';
+  div.style.padding = '2px';
+  div.style.fontSize = '12px';
+  div.innerHTML = this.text;
+  this.div = div;
+
+  const panes = this.getPanes();
+  panes.overlayLayer.appendChild(div);
+};
+
+TerritoryLabel.prototype.draw = function() {
+  const overlayProjection = this.getProjection();
+  const position = overlayProjection.fromLatLngToDivPixel(this.position);
+
+  const div = this.div;
+  div.style.left = position.x + 'px';
+  div.style.top = position.y + 'px';
+};
+
+TerritoryLabel.prototype.onRemove = function() {
+  if (this.div) {
+    this.div.parentNode.removeChild(this.div);
+    this.div = null;
+  }
+};
 
 // Error handling for geolocation
 function handleLocationError(browserHasGeolocation, current_location_window, pos) {
