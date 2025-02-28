@@ -23,23 +23,25 @@ let locationHistory = [];
 let territoryLabel = null;
 
 async function initMap() {
-  // Bounding Box for the OSU Campus
-  const osuBounds = {
-    // Coordinates for the map boundary
-    north: 44.56788,
-    south: 44.55726,
-    east: -123.27163,
-    west: -123.28965
-  };
+  //Removed feature for beta release
+    // Bounding Box for the OSU Campus
+    // const osuBounds = {
+    //   // Coordinates for the map boundary
+    //   north: 44.56788,
+    //   south: 44.55726,
+    //   east: -123.27163,
+    //   west: -123.28965
+    // };
 
   // Initialize the map with the boundary
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 44.5646, lng: -123.2620 },
     zoom: 16,
-    restriction: {
-      latLngBounds: osuBounds,
-      strictBounds: true,
-    },
+    //Removed feature for beta release
+      // restriction: {
+      //   latLngBounds: osuBounds,
+      //   strictBounds: true,
+      // },
   });
 
   // Static Marker on Corvallis
@@ -106,7 +108,7 @@ async function initMap() {
           // For debugging purposes, update the console periodically with the user's position
           console.log("User position:", pos);
 
-          //Removed Feature due to scope minimization
+          //Removed feature for beta release
             // // If the user is currently outside of the OSU campus bounds, notify them
             // if (pos.lat < osuBounds.south || pos.lat > osuBounds.north ||
             //   pos.lng < osuBounds.west || pos.lng > osuBounds.east) {
