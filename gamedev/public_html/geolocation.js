@@ -203,8 +203,8 @@ function claimTerritory() {
     const squareCoords = [
       { lat: userPosition.lat + squareSize, lng: userPosition.lng - squareSize },
       { lat: userPosition.lat + squareSize, lng: userPosition.lng + squareSize },
-      { lat: userPosition.lat - squareSize, lng: userPosition.lng - squareSize },
-      { lat: userPosition.lat - squareSize, lng: userPosition.lng + squareSize } // Closing the square
+      { lat: userPosition.lat - squareSize, lng: userPosition.lng + squareSize },
+      { lat: userPosition.lat - squareSize, lng: userPosition.lng - squareSize } // Closing the square
     ];
 
     claimedTerritory = new google.maps.Polygon({
