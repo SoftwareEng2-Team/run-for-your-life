@@ -19,6 +19,8 @@ let score = 0;
 let outsidePath = [];
 // Array to store the user's location every second
 let locationHistory = [];
+// Info window for the territory name
+let territoryInfoWindow = null;
 
 async function initMap() {
   // Bounding Box for the OSU Campus
@@ -202,6 +204,16 @@ function claimTerritory() {
 
     claimedTerritory.setMap(map);
     console.log("Territory claimed around:", userPosition);
+
+    // Add an info window to display the territory name
+    if (territoryInfoWindow) {
+      territoryInfoWindow.close();
+    }
+    territoryInfoWindow = new google.maps.InfoWindow({
+      content: "Your Territory",
+      position: userPosition,
+    });
+    territoryInfoWindow.open(map);
   } else {
     console.error("User position is not available.");
   }
@@ -232,6 +244,20 @@ function expandTerritory() {
     score += expansionWidth;
     console.log("Territory expanded around:", userPosition);
     console.log("Current score:", score);
+
+    // Update the info window position to the center of the new territory
+    const bounds = new google.maps.LatLngBounds();
+    newCoords.forEach(coord => bounds.extend(coord));
+    const center = bounds.getCenter();
+    if (territoryInfoWindow) {
+      territoryInfoWindow.setPosition(center);
+    } else {
+      territoryInfoWindow = new google.maps.InfoWindow({
+        content: "Your Territory",
+        position: center,
+      });
+    }
+    territoryInfoWindow.open(map);
   } else {
     console.error("User position or outside path is not available.");
   }
