@@ -106,12 +106,13 @@ async function initMap() {
           // For debugging purposes, update the console periodically with the user's position
           console.log("User position:", pos);
 
-          // If the user is currently outside of the OSU campus bounds, notify them
-          if (pos.lat < osuBounds.south || pos.lat > osuBounds.north ||
-            pos.lng < osuBounds.west || pos.lng > osuBounds.east) {
-            console.log("Location is outside OSU campus. Stay within the boundary.");
-            return;
-          }
+          //Removed Feature due to scope minimization
+            // // If the user is currently outside of the OSU campus bounds, notify them
+            // if (pos.lat < osuBounds.south || pos.lat > osuBounds.north ||
+            //   pos.lng < osuBounds.west || pos.lng > osuBounds.east) {
+            //   console.log("Location is outside OSU campus. Stay within the boundary.");
+            //   return;
+            // }
 
           previousPosition = pos;
 
