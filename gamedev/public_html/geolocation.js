@@ -84,7 +84,7 @@ async function initMap() {
   userPathPolyline = new google.maps.Polyline({
     path: [],
     geodesic: true,
-    strokeColor: '#00FF00',
+    strokeColor: '#FF0000',
     strokeOpacity: 1.0,
     strokeWeight: 2,
   });
@@ -125,10 +125,6 @@ async function initMap() {
             locationHistory = []; // Clear the array
           }
 
-          // Update the polyline path with the new position
-          const path = userPathPolyline.getPath();
-          path.push(new google.maps.LatLng(pos.lat, pos.lng));
-
           map.setCenter(pos);
 
           // Claim territory if not already claimed
@@ -140,14 +136,19 @@ async function initMap() {
               console.log("User is outside the territory.");
               // Track the user's path outside the territory
               outsidePath.push(pos);
+
+              // Update the polyline path with the new position
+              const path = userPathPolyline.getPath();
+              path.push(new google.maps.LatLng(pos.lat, pos.lng));
             } else {
               // User re-enters the territory
               if (outsidePath.length > 0) {
                 console.log("User re-entered the territory.");
                 // Expand the territory to include the path
                 expandTerritory();
-                // Clear the outside path
+                // Clear the outside path and reset the polyline
                 outsidePath = [];
+                userPathPolyline.setPath([]);
               }
             }
           }
