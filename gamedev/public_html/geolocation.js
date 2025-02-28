@@ -5,8 +5,8 @@ let draggableMarker;
 let openlocationwindow = null;
 // Marker for the user's current location
 let userLocationMarker;
-// Array to store trail markers
-let trailMarkers = [];
+// Polyline to represent the user's path
+let userPathPolyline;
 // Previous position
 let previousPosition = null;
 // User's current position
@@ -80,6 +80,16 @@ async function initMap() {
 
   const current_location_window = new google.maps.InfoWindow();
 
+  // Initialize the polyline for the user's path
+  userPathPolyline = new google.maps.Polyline({
+    path: [],
+    geodesic: true,
+    strokeColor: '#00FF00',
+    strokeOpacity: 1.0,
+    strokeWeight: 2,
+  });
+  userPathPolyline.setMap(map);
+
   // Function to update the user's location
   function updateLocation() {
     if (navigator.geolocation) {
@@ -114,6 +124,10 @@ async function initMap() {
             placeAverageLocationMarker(avgLocation);
             locationHistory = []; // Clear the array
           }
+
+          // Update the polyline path with the new position
+          const path = userPathPolyline.getPath();
+          path.push(new google.maps.LatLng(pos.lat, pos.lng));
 
           map.setCenter(pos);
 
@@ -189,8 +203,8 @@ function claimTerritory() {
     const squareCoords = [
       { lat: userPosition.lat + squareSize, lng: userPosition.lng - squareSize },
       { lat: userPosition.lat + squareSize, lng: userPosition.lng + squareSize },
-      { lat: userPosition.lat - squareSize, lng: userPosition.lng + squareSize },
-      { lat: userPosition.lat - squareSize, lng: userPosition.lng - squareSize } // Closing the square
+      { lat: userPosition.lat - squareSize, lng: userPosition.lng - squareSize },
+      { lat: userPosition.lat - squareSize, lng: userPosition.lng + squareSize } // Closing the square
     ];
 
     claimedTerritory = new google.maps.Polygon({
