@@ -31,11 +31,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     const data = await response.json();
-    console.log(data);
+    console.log("username: ", data.username);
+    console.log("username: ", data.rank);
+    console.log("username: ", data.totalDistance);
 
     // Update the profile info section.
     document.getElementById("username").textContent = data.username || "";
-    document.getElementById("name").textContent = data.name || "";
     document.getElementById("rank").textContent = data.rank ? "#" + data.rank : "";
 
     // Update the stats section.
