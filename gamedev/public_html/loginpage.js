@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (response.ok) {
                 console.log("Successful login! Redirecting...");
                 localStorage.setItem('user_id', data.user_id);
-                window.location.href = "https://run-for-your-life.onrender.com/map.html";
+                window.location.href = "https://run-for-your-life.onrender.com/profile.html";
             // If login is not successful, display an error message to the user via HTML
             } else {
                 errorMessage.style.visibility = "visible";

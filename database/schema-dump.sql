@@ -28,6 +28,7 @@ SET default_table_access_method = heap;
 CREATE TABLE public.leaderboards (
     leaderboard_id integer NOT NULL,
     user_id integer,
+    rank_num integer, 
     week_start date NOT NULL,
     total_territory double precision NOT NULL
 );

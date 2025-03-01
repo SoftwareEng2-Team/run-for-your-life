@@ -1,4 +1,3 @@
-// Map variable
 let map;
 // The player's draggable marker
 let draggableMarker;
@@ -6,29 +5,43 @@ let draggableMarker;
 let openlocationwindow = null;
 // Marker for the user's current location
 let userLocationMarker;
-// Array to store trail markers
-let trailMarkers = [];
+// Polyline to represent the user's path
+let userPathPolyline;
 // Previous position
 let previousPosition = null;
+// User's current position
+let userPosition = null;
+// Variable to store the claimed territory
+let claimedTerritory = null;
+// Variable to keep track of the score (expansion width)
+let score = 0;
+// Variable to track the user's path outside the territory
+let outsidePath = [];
+// Array to store the user's location every second
+let locationHistory = [];
+// Label for the territory name
+let territoryLabel = null;
 
 async function initMap() {
-  // Bounding Box for the OSU Campus
-  const osuBounds = {
-    // Coordinates for the map boundary
-    north: 44.56788,
-    south: 44.55726,
-    east: -123.27163,
-    west: -123.28965
-  };
+  //Removed feature for beta release
+    // Bounding Box for the OSU Campus
+    // const osuBounds = {
+    //   // Coordinates for the map boundary
+    //   north: 44.56788,
+    //   south: 44.55726,
+    //   east: -123.27163,
+    //   west: -123.28965
+    // };
 
   // Initialize the map with the boundary
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 44.5646, lng: -123.2620 },
     zoom: 16,
-    restriction: {
-      latLngBounds: osuBounds,
-      strictBounds: true,
-    },
+    //Removed feature for beta release
+      // restriction: {
+      //   latLngBounds: osuBounds,
+      //   strictBounds: true,
+      // },
   });
 
   // Static Marker on Corvallis
@@ -69,6 +82,16 @@ async function initMap() {
 
   const current_location_window = new google.maps.InfoWindow();
 
+  // Initialize the polyline for the user's path
+  userPathPolyline = new google.maps.Polyline({
+    path: [],
+    geodesic: true,
+    strokeColor: '#FF0000',
+    strokeOpacity: 1.0,
+    strokeWeight: 2,
+  });
+  userPathPolyline.setMap(map);
+
   // Function to update the user's location
   function updateLocation() {
     if (navigator.geolocation) {
@@ -80,63 +103,58 @@ async function initMap() {
             lng: position.coords.longitude,
           };
 
+          userPosition = pos; // Store the user's current position
+
           // For debugging purposes, update the console periodically with the user's position
           console.log("User position:", pos);
 
-          // If the user is currently outside of the OSU campus bounds, notify them
-          if (pos.lat < osuBounds.south || pos.lat > osuBounds.north ||
-            pos.lng < osuBounds.west || pos.lng > osuBounds.east) {
-            console.log("Location is outside OSU campus. Stay within the boundary.");
-            return;
-          }
+          //Removed feature for beta release
+            // // If the user is currently outside of the OSU campus bounds, notify them
+            // if (pos.lat < osuBounds.south || pos.lat > osuBounds.north ||
+            //   pos.lng < osuBounds.west || pos.lng > osuBounds.east) {
+            //   console.log("Location is outside OSU campus. Stay within the boundary.");
+            //   return;
+            // }
 
-          // Check if the position has changed significantly
-          if (previousPosition) {
-            const latDiff = Math.abs(pos.lat - previousPosition.lat);
-            const lngDiff = Math.abs(pos.lng - previousPosition.lng);
-            if (latDiff < 0.0001 && lngDiff < 0.0001) {
-              console.log("Position change is too small, not updating.");
-              return;
-            }
-          }
-
-          // Update the previous position
           previousPosition = pos;
 
-          // Create a new marker for the trail
-          const trailMarker = new google.maps.Marker({
-            position: pos,
-            map: map,
-            title: "Trail Marker",
-            // Set the icon to the green dot icon provided by Google
-            icon: {
-              url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
-            }
-          });
-          trailMarkers.push(trailMarker);
+          // Store the user's location in the array
+          locationHistory.push(pos);
 
-          // If a location marker does not exist, create one
-          if (!userLocationMarker) {
-            console.log("Creating user location marker");
-            userLocationMarker = new google.maps.Marker({
-              position: pos,
-              map: map,
-              title: "Your Location",
-              // Set the icon to the blue dot icon provided by Google
-              icon: {
-                url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
-              }
-            });
-          } else {
-            console.log("Updating user location marker position");
-            userLocationMarker.setPosition(pos);
+          // If the array length is 5 (5 seconds), calculate the average location and place a marker
+          if (locationHistory.length === 5) {
+            const avgLocation = calculateAverageLocation(locationHistory);
+            placeAverageLocationMarker(avgLocation);
+            locationHistory = []; // Clear the array
           }
 
-          current_location_window.setPosition(pos);
-          current_location_window.setContent("Current Location");
-          current_location_window.open(map);
-          openlocationwindow = current_location_window;
           map.setCenter(pos);
+
+          // Claim territory if not already claimed
+          if (!claimedTerritory) {
+            claimTerritory();
+          } else {
+            // Check if the user is outside the territory
+            if (!google.maps.geometry.poly.containsLocation(new google.maps.LatLng(pos), claimedTerritory)) {
+              console.log("User is outside the territory.");
+              // Track the user's path outside the territory
+              outsidePath.push(pos);
+
+              // Update the polyline path with the new position
+              const path = userPathPolyline.getPath();
+              path.push(new google.maps.LatLng(pos.lat, pos.lng));
+            } else {
+              // User re-enters the territory
+              if (outsidePath.length > 0) {
+                console.log("User re-entered the territory.");
+                // Expand the territory to include the path
+                expandTerritory();
+                // Clear the outside path and reset the polyline
+                outsidePath = [];
+                userPathPolyline.setPath([]);
+              }
+            }
+          }
         },
         (error) => {
           console.error("Error getting position:", error);
@@ -144,18 +162,155 @@ async function initMap() {
         {
           enableHighAccuracy: true,
           maximumAge: 0,
-          timeout: 5000,
+          timeout: 500,
         }
       );
-      // An error with the browser occured - it does not support geolocation
     } else {
       console.error("Browser doesn't support Geolocation");
     }
   }
 
-  // Update the user's location every 5-10 seconds
-  setInterval(updateLocation, 5000);
+  // Update the user's location every second
+  setInterval(updateLocation, 500);
 }
+
+// Function to calculate the average location
+function calculateAverageLocation(locations) {
+  const sum = locations.reduce((acc, loc) => {
+    acc.lat += loc.lat;
+    acc.lng += loc.lng;
+    return acc;
+  }, { lat: 0, lng: 0 });
+
+  return {
+    lat: sum.lat / locations.length,
+    lng: sum.lng / locations.length,
+  };
+}
+
+// Function to place a marker at the average location
+function placeAverageLocationMarker(location) {
+  const avgLocationMarker = new google.maps.Marker({
+    position: location,
+    map: map,
+    title: "Average Location",
+    icon: {
+      url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+    }
+  });
+  trailMarkers.push(avgLocationMarker);
+}
+
+function claimTerritory() {
+  if (userPosition) {
+    const squareSize = 0.0002; // Size of the square in degrees (approx. 50 meters)
+    const squareCoords = [
+      { lat: userPosition.lat + squareSize, lng: userPosition.lng - squareSize },
+      { lat: userPosition.lat + squareSize, lng: userPosition.lng + squareSize },
+      { lat: userPosition.lat - squareSize, lng: userPosition.lng + squareSize },
+      { lat: userPosition.lat - squareSize, lng: userPosition.lng - squareSize } // Closing the square
+    ];
+
+    claimedTerritory = new google.maps.Polygon({
+      paths: squareCoords,
+      strokeColor: "#FF0000",
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: "#FF0000",
+      fillOpacity: 0.35,
+    });
+
+    claimedTerritory.setMap(map);
+    console.log("Territory claimed around:", userPosition);
+
+    // Add a static label to display the territory name
+    if (territoryLabel) {
+      territoryLabel.setMap(null);
+    }
+    territoryLabel = new TerritoryLabel(userPosition, map, "Your Territory");
+  } else {
+    console.error("User position is not available.");
+  }
+}
+
+function expandTerritory() {
+  if (userPosition && outsidePath.length > 0) {
+    // Get the current territory coordinates
+    const currentCoords = claimedTerritory.getPath().getArray();
+    // Add the outside path to the current territory
+    const newCoords = currentCoords.concat(outsidePath);
+
+    // Create a new polygon with the expanded territory
+    claimedTerritory.setMap(null); // Remove the previous territory
+    claimedTerritory = new google.maps.Polygon({
+      paths: newCoords,
+      strokeColor: "#FF0000",
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: "#FF0000",
+      fillOpacity: 0.35,
+    });
+
+    claimedTerritory.setMap(map);
+
+    // Calculate the expansion width and update the score
+    const expansionWidth = google.maps.geometry.spherical.computeLength(outsidePath);
+    score += expansionWidth;
+    console.log("Territory expanded around:", userPosition);
+    console.log("Current score:", score);
+
+    // Update the label position to the center of the new territory
+    const bounds = new google.maps.LatLngBounds();
+    newCoords.forEach(coord => bounds.extend(coord));
+    const center = bounds.getCenter();
+    if (territoryLabel) {
+      territoryLabel.setMap(null);
+    }
+    territoryLabel = new TerritoryLabel(center, map, "Your Territory");
+  } else {
+    console.error("User position or outside path is not available.");
+  }
+}
+
+// Custom OverlayView for the static label
+function TerritoryLabel(position, map, text) {
+  this.position = position;
+  this.text = text;
+  this.div = null;
+  this.setMap(map);
+}
+
+TerritoryLabel.prototype = new google.maps.OverlayView();
+
+TerritoryLabel.prototype.onAdd = function() {
+  const div = document.createElement('div');
+  div.style.position = 'absolute';
+  div.style.backgroundColor = 'white';
+  div.style.border = '1px solid black';
+  div.style.padding = '2px';
+  div.style.fontSize = '12px';
+  div.innerHTML = this.text;
+  this.div = div;
+
+  const panes = this.getPanes();
+  panes.overlayLayer.appendChild(div);
+};
+
+TerritoryLabel.prototype.draw = function() {
+  const overlayProjection = this.getProjection();
+  const position = overlayProjection.fromLatLngToDivPixel(this.position);
+
+  const div = this.div;
+  div.style.left = position.x + 'px';
+  div.style.top = position.y + 'px';
+};
+
+TerritoryLabel.prototype.onRemove = function() {
+  if (this.div) {
+    this.div.parentNode.removeChild(this.div);
+    this.div = null;
+  }
+};
 
 // Error handling for geolocation
 function handleLocationError(browserHasGeolocation, current_location_window, pos) {

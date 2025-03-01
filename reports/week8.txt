@@ -221,30 +221,29 @@ There was some confusion on why, when a user successfully logs in, it kept on ro
 
 #### 2.1 Exact Copy of the Third Section from Last Week 
 
-- Finalize the point system (1 weeks)
-- Research viability of desired monitezation systems (1 weeks)
-
-- Figure out how to retain players who have lost their lives (1 weeks)
-
-- Decide where spawning would cause the least amount of frustration for all parties (2 weeks)
-
-- Figure out if public_html is a viable way to host our website (1 week)
-
-#### 2.2 Progress and Issues
-
-**What we've finished:** 
-Finished the leaderboard basic implementation. Sorting function and proper CSS is working with more refinements on the way. Game design has been ironed out a lot but specifics are hard to talk about in a simple paragraph.
-
-**What we learned:**  
-I learned how to delegate work for my own tasks to others. I'm not proud of the fact I had to rely on my groupmates for my own work, but being able to efficiently communicate and empathize with your teammates is extremely important to cohesion. Furthermore, my understanding of CSS and template-able HTML elements improved by a lot. I learned not to underestimate game design in genres and areas I'm not particularly versed in, as well as being limited by real-world locational constraints. 
-
-**Where we had trouble/stuck:**
-A lot of the game design work has been difficult to think about without players actually being able to interact with the game. I have had  a lot on my plate preparing for my algorithm midterm so I had to make sure my responsibilities were either handled by other teammates or done in advance to clear my head for it. 
-
-#### 2.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
-
 - Decide where spawning would cause the least amount of frustration for all parties (1 week)
 
 - Figure out if public_html is a viable way to host our website (pushed off because of midterm and other work) (1 week)
 
 - Work on designing backend API specifications given new design expectations (2 weeks)
+
+#### 2.2 Progress and Issues
+
+**What we've finished:** 
+I've not finished much personally since I've had some roadblocks in my life. For the game implementation, live tracking is implemented and what's needed is to implement pathing and spawn territory
+
+**What we learned:**  
+I learned the basics of how to draw polygons and am learning how to integrate it with real-time tracking given the constraint of limited API calls per hour
+
+**Where we had trouble/stuck:**
+I have had some personal struggles that I'm dealing with that interferes with my ability to work. Furthermore, real-time integration has been a struggle due to the scope of our project progress. 
+
+#### 2.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
+
+- Work on designing backend API specifications given that our game is single player for the beta test (1 weeks)
+
+- Implement player spawn territory (1 week)
+
+- Implement player path reaction (1 week)
+
+- Create test cases for path running (1 week)
