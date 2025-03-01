@@ -8,7 +8,7 @@ CREATE TABLE users (
     weekly_flair BOOLEAN DEFAULT FALSE
 );
 
--- Runs Table
+-- Runs Table (Fixed Syntax Error)
 CREATE TABLE runs (
     run_id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(user_id) ON DELETE CASCADE,
@@ -27,11 +27,13 @@ CREATE TABLE territories (
     claimed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Leaderboard Table
+-- Leaderboard Table (Added rank_num)
 CREATE TABLE leaderboards (
     leaderboard_id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(user_id) ON DELETE CASCADE,
     rank_num INT NOT NULL,
     week_start DATE NOT NULL,
-    total_territory FLOAT NOT NULL
+    total_territory FLOAT NOT NULL,
+    rank_num INT DEFAULT NULL 
 );
+
