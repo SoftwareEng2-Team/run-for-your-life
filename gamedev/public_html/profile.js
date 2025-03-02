@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  // Fetch the profile data from your API endpoint.
-
   // Clear all text fields 
   document.getElementById("username").textContent = "";
   document.getElementById("rank").textContent = "";
@@ -18,19 +16,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     return; // Stop execution if user_id is missing
   }
 
-
-  console.log("user_id: ", user_id);
   try {
-    // Send the above entered data to the database function to create a new user
+    // DB request to get profile information for the current user
     const response = await fetch(`${API_URL}/api/profile`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      // Send the username, email, passowr
+      // Send the user ID
       body: JSON.stringify({ user_id })
     });
 
+    // Get the result of the database query
     const data = await response.json();
     // Debugging statements
+    console.log("user_id: ", user_id);
     console.log("username: ", data.username);
     console.log("rank: ", data.rank);
     console.log("totalDistance: ", data.totalDistance);

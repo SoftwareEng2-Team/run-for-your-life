@@ -33,6 +33,6 @@ export const getProfile = async (req, res) => {
     // An error occurred while fetching the user information, display to the user
     } catch (error) {
         console.error("Error fetching user information for profile page:", error);
-        res.status(500).json({ error: "Database error during profile fetch" });
+        res.status(500).json({ error: error.message });
     }
 };
