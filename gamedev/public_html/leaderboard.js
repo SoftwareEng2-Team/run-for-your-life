@@ -1,19 +1,45 @@
+import { getLeaderboard } from "../controllers/leaderboardController";
+
 document.addEventListener("DOMContentLoaded", async () => {
+    // API URL for the backend
+    const API_URL = 'https://run-for-your-life-api.onrender.com';
+
+    // Clear any existing leaderboard data
     const leaderboardContainer = document.querySelector(".leaderboard-container");
+    leaderboardContainer.innerHTML = "";
 
-    try {
-        // Fetch leaderboard data from the backend
-        const response = await fetch("https://run-for-your-life-api.onrender.com/api/leaderboard");
-        const players = await response.json();
+    async function setRank(user_id, rank) {
+        /* Set the rank to the database */
+        try {
+            // DB request to set the rank of the current user
+            const response = await fetch(`${API_URL}/api/leaderboard/rank`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                // Send the user ID and rank number
+                body: JSON.stringify({ user_id, rank })
+            });
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    }
+    
+    async function createLeaderboard() {
+        /* Fetch leaderboard data from the backend */
+        try {
+            // DB request to get player information to set the leaderboard
+            const response = await fetch(`${API_URL}/api/leaderboard`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+            });
 
-        // Sort players by score in descending order
-        players.sort((a, b) => b.total_distance - a.total_distance);
-
-        // Clear any existing leaderboard data
-        leaderboardContainer.innerHTML = "";
+            // Get the result of the database query
+            const data = await response.json();
+        } catch (error) {
+            console.error("Error:", error);
+        }
 
         // Generate leaderboard cards dynamically
-        players.forEach((player, index) => {
+        players.forEach((data, index) => {
             const card = document.createElement("div");
             card.classList.add("card");
 
@@ -23,29 +49,31 @@ document.addEventListener("DOMContentLoaded", async () => {
                 card.classList.add("first-place-div");
                 rank = "Rank 1";
                 rank_id = "rank_1";
+                setRank(data[index].user_id, 1);
             } else if (index === 1) {
                 card.classList.add("second-place-div");
                 rank = "Rank 2";
                 rank_id = "rank_2";
+                setRank(data[index].user_id, 2);
             } else if (index === 2) {
                 card.classList.add("third-place-div");
                 rank = "Rank 3";
                 rank_id = "rank_3";
+                setRank(data[index].user_id, 3);
             }
 
             // Populate each card with player's data
             card.innerHTML = `
-                <div class="top-row">
-                    <p class="name">${player.username}</p>
-                    <p class="score">${player.total_distance} mi.</p>
-                </div>
-                <p class="rank" id=${rank_id}>${rank}</p>
+            <div class="top-row">
+                <p class="name">${player.username}</p>
+                <p class="score">${player.total_distance} mi.</p>
+            </div>
+            <p class="rank" id=${rank_id}>${rank}</p>
             `;
 
             leaderboardContainer.appendChild(card);
         });
-
-    } catch (error) {
-        console.error("Error fetching leaderboard:", error);
     }
+
+    createLeaderboard();
 });
