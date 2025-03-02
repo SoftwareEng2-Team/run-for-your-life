@@ -1,5 +1,3 @@
-import { getLeaderboard } from "../controllers/leaderboardController";
-
 document.addEventListener("DOMContentLoaded", async () => {
     // API URL for the backend
     const API_URL = 'https://run-for-your-life-api.onrender.com';
