@@ -1,13 +1,12 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    // API URL for the backend
-    const API_URL = 'https://run-for-your-life-api.onrender.com';
-
     // Clear any existing leaderboard data
     const leaderboardContainer = document.querySelector(".leaderboard-container");
     leaderboardContainer.innerHTML = "";
 
     async function setRank(user_id, rank) {
         /* Set the rank to the database */
+        // API URL for the backend
+        const API_URL = 'https://run-for-your-life-api.onrender.com';
         try {
             // DB request to set the rank of the current user
             const response = await fetch(`${API_URL}/api/leaderboard/rank`, {
@@ -23,10 +22,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     async function createLeaderboard() {
         /* Fetch leaderboard data from the backend */
+        // API URL for the backend
+        const API_URL = 'https://run-for-your-life-api.onrender.com';
         try {
             // DB request to get player information to set the leaderboard
-            const response = await fetch(`${API_URL}/api/leaderboard/`, {
-                method: 'POST',
+            const response = await fetch(`${API_URL}/api/leaderboard`, {
+                method: 'GET',
                 headers: { 'Content-Type': 'application/json' },
             });
 
