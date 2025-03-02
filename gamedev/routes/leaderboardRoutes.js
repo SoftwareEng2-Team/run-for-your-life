@@ -4,6 +4,6 @@ import { getLeaderboard, setRank } from '../controllers/leaderboardController.js
 const router = express.Router();
 
 router.get('/', getLeaderboard);
-router.get('/rank', setRank);
+router.post('/rank', setRank);
 
 export default router;
