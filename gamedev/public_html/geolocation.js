@@ -6,7 +6,7 @@ let openlocationwindow = null;
 // Marker for the user's current location
 let userLocationMarker;
 // Polyline to represent the user's path
-let userPathPolyline;
+let playerPathPolyline;
 // Previous position
 let previousPosition = null;
 // User's current position
@@ -229,7 +229,7 @@ async function initMap() {
               outsidePath.push(pos);
 
               // Update the polyline path with the new position
-              const path = userPathPolyline.getPath();
+              const path = playerPathPolyline.getPath();
               path.push(new google.maps.LatLng(pos.lat, pos.lng));
             } else {
               // User re-enters the territory
@@ -239,7 +239,7 @@ async function initMap() {
                 expandTerritory();
                 // Clear the outside path and reset the polyline
                 outsidePath = [];
-                userPathPolyline.setPath([]);
+                playerPathPolyline.setPath([]);
               }
             }
           }
