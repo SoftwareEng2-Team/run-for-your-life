@@ -3,6 +3,8 @@ import pool from '../../database/connection_pool.mjs';
 // Set the user's rank
 export const setRank = async (req, res) => {
     try {
+        console.log("user_id: ", user_id, " rank_num: ", rank_num);
+
         // Create the query
         const query = `
             UPDATE leaderboards
@@ -12,8 +14,6 @@ export const setRank = async (req, res) => {
 
         // Perform the query on the database
         const result = await pool.query(query, [user_id, rank_num]);
-        // An error occurred while setting the user rank, display to the user
-        console.log("set rank");
     } catch (error) {
         console.error("Database error setting the rank:", error);
         res.status(500).json({ error: error.message });

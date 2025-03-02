@@ -36,8 +36,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             // Generate leaderboard cards dynamically
             data.forEach((player, index) => {
-                console.log(player.total_territory);
-
                 const card = document.createElement("div");
                 card.classList.add("card");
 
@@ -64,7 +62,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 card.innerHTML = `
                     <div class="top-row">
                     <p class="name">${player.username}</p>
-                    <p class="score">${player.total_distance} mi.</p>
+                    <p class="score">${player.total_territory} mi.</p>
                     </div>
                     <p class="rank" id=${rank_id}>${rank}</p>
                 `;
