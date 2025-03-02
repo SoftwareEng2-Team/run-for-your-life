@@ -2,9 +2,10 @@ import pool from '../../database/connection_pool.mjs';
 
 // Set the user's rank
 export const setRank = async (req, res) => {
-    try {
-        console.log("user_id: ", user_id, " rank_num: ", rank_num);
+    // Get the user_id from the request body
+    const { user_id, rank_num } = req.body;
 
+    try {
         // Create the query
         const query = `
             UPDATE leaderboards
