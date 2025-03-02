@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         /* Fetch leaderboard data from the backend */
         try {
             // DB request to get player information to set the leaderboard
-            const response = await fetch(`${API_URL}/api/leaderboard`, {
+            const response = await fetch(`${API_URL}/api/leaderboard/`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
             });
