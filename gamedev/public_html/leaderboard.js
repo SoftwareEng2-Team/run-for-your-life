@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         // Generate leaderboard cards dynamically
-        players.forEach((data, index) => {
+        data.forEach((player, index) => {
             const card = document.createElement("div");
             card.classList.add("card");
 
@@ -47,18 +47,18 @@ document.addEventListener("DOMContentLoaded", async () => {
                 card.classList.add("first-place-div");
                 rank = "Rank 1";
                 rank_id = "rank_1";
-                setRank(data[index].user_id, 1);
             } else if (index === 1) {
                 card.classList.add("second-place-div");
                 rank = "Rank 2";
                 rank_id = "rank_2";
-                setRank(data[index].user_id, 2);
             } else if (index === 2) {
                 card.classList.add("third-place-div");
                 rank = "Rank 3";
                 rank_id = "rank_3";
-                setRank(data[index].user_id, 3);
             }
+
+            // Set rank for the user in the database
+            setRank(player.user_id, index + 1);
 
             // Populate each card with player's data
             card.innerHTML = `
