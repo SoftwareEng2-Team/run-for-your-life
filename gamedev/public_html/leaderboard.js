@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         try {
             // DB request to get player information to set the leaderboard
             const response = await fetch(`${API_URL}/api/leaderboard`, {
-                method: 'GET',
+                method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
             });
 
