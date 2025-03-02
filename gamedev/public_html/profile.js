@@ -31,17 +31,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     const data = await response.json();
+    // Debugging statements
     console.log("username: ", data.username);
-    console.log("username: ", data.rank);
-    console.log("username: ", data.totalDistance);
+    console.log("rank: ", data.rank);
+    console.log("totalDistance: ", data.totalDistance);
 
     // Update the profile info section.
     document.getElementById("username").textContent = data.username || "";
-    document.getElementById("rank").textContent = data.rank ? "#" + data.rank : "";
+    document.getElementById("rank").textContent = data.rank ? "#" + data.rank : "0";
 
     // Update the stats section.
-    document.getElementById("totalDistance").textContent = data.totalDistance ? data.totalDistance + " miles" : "";
-    document.getElementById("totalClaimed").textContent = data.totalClaimed ? data.totalClaimed + " sqft" : "";
+    document.getElementById("totalDistance").textContent = data.totalDistance ? data.totalDistance + " miles" : "0";
+    document.getElementById("totalClaimed").textContent = data.totalClaimed ? data.totalClaimed + " sqft" : "0";
     //document.getElementById("knockouts").textContent = data.knockouts || "";
 
   } catch (error) {
