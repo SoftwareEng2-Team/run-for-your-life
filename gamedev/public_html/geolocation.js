@@ -44,6 +44,9 @@ async function initMap() {
       // },
   });
 
+
+
+
   // Static Marker on Corvallis
   draggableMarker = new google.maps.Marker({
     position: { lat: 44.56495296308599, lng: -123.27630649064899 },
@@ -82,15 +85,98 @@ async function initMap() {
 
   const current_location_window = new google.maps.InfoWindow();
 
-  // Initialize the polyline for the user's path
-  userPathPolyline = new google.maps.Polyline({
+
+
+  // Initialize the polyline for the player's path
+  playerPathPolyline = new google.maps.Polyline({
     path: [],
     geodesic: true,
     strokeColor: '#FF0000',
     strokeOpacity: 1.0,
     strokeWeight: 2,
   });
-  userPathPolyline.setMap(map);
+  playerPathPolyline.setMap(map);
+
+  let checkpoints = [];
+  let plannedRoutePolyline;
+  let route_started = false;
+
+  //Player makes new marker to be used in their route
+  function addCheckpoint() {
+    try {
+      const checkpointMarker = new google.maps.Marker({
+        position: location,
+        map: map,
+        title: "Checkpoint",
+        draggable: true
+      });
+      
+      checkpoints.push(checkpointMarker);
+      updatePlannedRoute();
+    } 
+    catch (error) {
+      console.error("Error adding checkpoint:", error);
+    }
+  }
+
+  function startRoute() {
+    //Player must have at least three checkpoints to make a full route
+    if (checkpoints.length < 3) {
+      alert("You need at least three checkpoints to start!");
+      return;
+    }
+    
+    //Start the route
+    route_started = true;
+    for (checkpoint in checkpoints) {
+      checkpoints[checkpoint].setDraggable(false);
+    }
+    alert("Route started! Follow your designated path.");
+  
+    //Start tracking player's movement
+    trackPlayerProgress();
+  }
+
+  //Watch player's movement 
+  function trackPlayerProgress() {
+    if (navigator.geolocation) {
+      navigator.geolocation.watchPosition(
+        (position) => {
+          const userPos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+  
+          //Check if user is near a checkpoint
+          if (checkpoints.length > 0) {
+            const nextCheckpoint = checkpoints[0];
+            const distance = google.maps.geometry.spherical.computeDistanceBetween(userPos, nextCheckpoint);
+            //Consider the checkpoint reached if within 5 meters
+            if (distance < 5) { 
+              //Remove the reached checkpoint
+              checkpoints.shift(); 
+              //Update polyline to reflect the remaining path
+              plannedRoutePolyline.setPath(checkpoints);
+  
+              if (checkpoints.length === 0) {
+                alert("Route completed! You have claimed the area.");
+                route_started = false;
+              }
+            }
+          }
+        },
+
+        (error) => {
+          console.error("Error getting position:", error);
+        },
+
+        {
+          enableHighAccuracy: true,
+          maximumAge: 0,
+          timeout: 500,
+        }
+      );
+    } else {
+      console.error("Browser doesn't support Geolocation");
+    }
+  }
 
   // Function to update the user's location
   function updateLocation() {
@@ -103,7 +189,8 @@ async function initMap() {
             lng: position.coords.longitude,
           };
 
-          userPosition = pos; // Store the user's current position
+          // Store the user's current position
+          userPosition = pos; 
 
           // For debugging purposes, update the console periodically with the user's position
           console.log("User position:", pos);
@@ -116,6 +203,7 @@ async function initMap() {
             //   return;
             // }
 
+          
           previousPosition = pos;
 
           // Store the user's location in the array
