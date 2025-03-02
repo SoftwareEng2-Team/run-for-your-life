@@ -36,6 +36,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             // Generate leaderboard cards dynamically
             data.forEach((player, index) => {
+                console.log(player.total_territory);
+
                 const card = document.createElement("div");
                 card.classList.add("card");
 

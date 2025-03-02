@@ -13,6 +13,7 @@ export const setRank = async (req, res) => {
         // Perform the query on the database
         const result = await pool.query(query, [user_id, rank_num]);
         // An error occurred while setting the user rank, display to the user
+        console.log("set rank");
     } catch (error) {
         console.error("Database error setting the rank:", error);
         res.status(500).json({ error: error.message });
@@ -44,7 +45,7 @@ export const getLeaderboard = async (req, res) => {
 
         // Return user leaderboard data
         res.json(rows);
-        // An error occurred while getting leaderboard information, display to the user
+    // An error occurred while getting leaderboard information, display to the user
     } catch (error) {
         console.error("Database error fetching leaderboard:", error);
         res.status(500).json({ error: error.message });
