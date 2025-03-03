@@ -207,7 +207,7 @@ async function initMap() {
           locationHistory.push(pos);
 
           // If the array length is 5 (5 seconds), calculate the average location and place a marker
-          if (locationHistory.length === 5) {
+          if (locationHistory.length >= 2) {
             const avgLocation = calculateAverageLocation(locationHistory);
             //placeAverageLocationMarker(avgLocation);
             locationHistory = []; // Clear the array
@@ -296,6 +296,7 @@ async function claimTerritory() {
       { lat: userPosition.lat - squareSize, lng: userPosition.lng + squareSize },
       { lat: userPosition.lat - squareSize, lng: userPosition.lng - squareSize } // Closing the square
     ];
+    //SPAWN COORDINATES ORDER: BOTTOM RIGHT, TOP RIGHT, TOP LEFT, BOTTOM LEFT
 
     claimedTerritory = new google.maps.Polygon({
       paths: squareCoords,
@@ -345,6 +346,7 @@ async function expandTerritory() {
     // Get the current territory coordinates
     const currentCoords = claimedTerritory.getPath().getArray();
     // Add the outside path to the current territory
+    outsidePath.push(outsidePath[0]);
     const newCoords = currentCoords.concat(outsidePath);
 
     // Create a new polygon with the expanded territory
@@ -365,7 +367,6 @@ async function expandTerritory() {
     score += expansionWidth;
     console.log("Territory expanded around:", userPosition);
     console.log("DEBUG EXPANDTERRITORY SCORE:", score);
-
 
     // Update the database with the territory claimed section
     // API URL for the backend
@@ -389,57 +390,57 @@ async function expandTerritory() {
     }
 
     // Update the label position to the center of the new territory
-    const bounds = new google.maps.LatLngBounds();
-    newCoords.forEach(coord => bounds.extend(coord));
-    const center = bounds.getCenter();
-    if (territoryLabel) {
-      territoryLabel.setMap(null);
-    }
-    territoryLabel = new TerritoryLabel(center, map, "Your Territory");
+    // const bounds = new google.maps.LatLngBounds();
+    // newCoords.forEach(coord => bounds.extend(coord));
+    // const center = bounds.getCenter();
+    // if (territoryLabel) {
+    //   territoryLabel.setMap(null);
+    // }
+    // territoryLabel = new TerritoryLabel(center, map, "Your Territory");
   } else {
     console.error("User position or outside path is not available.");
   }
 }
 
 // Custom OverlayView for the static label
-async function TerritoryLabel(position, map, text) {
-  this.position = position;
-  this.text = text;
-  this.div = null;
-  this.setMap(map);
-}
+// async function TerritoryLabel(position, map, text) {
+//   this.position = position;
+//   this.text = text;
+//   this.div = null;
+//   this.setMap(map);
+// }
 
-TerritoryLabel.prototype = new google.maps.OverlayView();
+// TerritoryLabel.prototype = new google.maps.OverlayView();
 
-TerritoryLabel.prototype.onAdd = async function () {
-  const div = document.createElement('div');
-  div.style.position = 'absolute';
-  div.style.backgroundColor = 'white';
-  div.style.border = '1px solid black';
-  div.style.padding = '2px';
-  div.style.fontSize = '12px';
-  div.innerHTML = this.text;
-  this.div = div;
+// TerritoryLabel.prototype.onAdd = async function () {
+//   const div = document.createElement('div');
+//   div.style.position = 'absolute';
+//   div.style.backgroundColor = 'white';
+//   div.style.border = '1px solid black';
+//   div.style.padding = '2px';
+//   div.style.fontSize = '12px';
+//   div.innerHTML = this.text;
+//   this.div = div;
 
-  const panes = this.getPanes();
-  panes.overlayLayer.appendChild(div);
-};
+//   const panes = this.getPanes();
+//   panes.overlayLayer.appendChild(div);
+// };
 
-TerritoryLabel.prototype.draw = async function () {
-  const overlayProjection = this.getProjection();
-  const position = overlayProjection.fromLatLngToDivPixel(this.position);
+// TerritoryLabel.prototype.draw = async function () {
+//   const overlayProjection = this.getProjection();
+//   const position = overlayProjection.fromLatLngToDivPixel(this.position);
 
-  const div = this.div;
-  div.style.left = position.x + 'px';
-  div.style.top = position.y + 'px';
-};
+//   const div = this.div;
+//   div.style.left = position.x + 'px';
+//   div.style.top = position.y + 'px';
+// };
 
-TerritoryLabel.prototype.onRemove = async function () {
-  if (this.div) {
-    this.div.parentNode.removeChild(this.div);
-    this.div = null;
-  }
-};
+// TerritoryLabel.prototype.onRemove = async function () {
+//   if (this.div) {
+//     this.div.parentNode.removeChild(this.div);
+//     this.div = null;
+//   }
+// };
 
 // Error handling for geolocation
 async function handleLocationError(browserHasGeolocation, current_location_window, pos) {

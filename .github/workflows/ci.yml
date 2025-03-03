@@ -10,16 +10,6 @@ jobs:
   test:
     runs-on: ubuntu-latest 
 
-    services:
-      postgres:
-        image: postgres:latest
-        env:
-          POSTGRES_USER: run_for_your_life_user
-          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}  
-          POSTGRES_DB: run_for_your_life
-        ports:
-          - 5432:5432  
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3  
@@ -41,9 +31,10 @@ jobs:
         
       - name: Initialize Database Schema
         env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}  
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: |
-          PGPASSWORD=${{ secrets.POSTGRES_PASSWORD }} psql -h dpg-cusf9fl6l47c7386ejjg-a.oregon-postgres.render.com -U run_for_your_life_user -d run_for_your_life -f database/query.sql 
+          export PGPASSWORD=${{ secrets.POSTGRES_PASSWORD }}  # ✅ Ensure password is passed
+          psql "$DATABASE_URL" --set=sslmode=require -f database/query.sql  # ✅ Use DATABASE_URL with SSL
 
       - name: Run Tests
         env:
