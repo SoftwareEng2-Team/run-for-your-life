@@ -58,6 +58,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 // Set rank for the user in the database
                 setRank(player.user_id, index + 1);
 
+                // Console statements for debugging: attaches name and link to each other
                 currindex = index + 1;
                 console.log("name: ", player.username, " rank: ", currindex);
 

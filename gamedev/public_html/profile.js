@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Debugging statements
     console.log("user_id: ", user_id);
     console.log("username: ", data.username);
-    console.log("rank: ", data.rank);
+    console.log("rank: ", data.rank_num);
     console.log("totalDistance: ", data.totalDistance);
 
     // Update the profile info section.
