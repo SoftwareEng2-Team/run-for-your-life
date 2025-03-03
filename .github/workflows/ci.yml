@@ -31,16 +31,14 @@ jobs:
         
       - name: Initialize Database Schema
         env:
-          PGPASSWORD: ${{ secrets.POSTGRES_PASSWORD }}  
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}  
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: |
           export PGPASSWORD=${{ secrets.POSTGRES_PASSWORD }}  # ✅ Ensure password is passed
-          psql -h dpg-cusf9fl6l47c7386ejjg-a.oregon-postgres.render.com -U run_for_your_life_user -d run_for_your_life -f database/query.sql 
+          psql "$DATABASE_URL" --set=sslmode=require -f database/query.sql  # ✅ Use DATABASE_URL with SSL
 
       - name: Run Tests
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          PGPASSWORD: ${{ secrets.POSTGRES_PASSWORD }}  
         run: |
           cd gamedev
           npm test  
