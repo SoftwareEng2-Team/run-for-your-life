@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">96.42% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>24/24</span>
+                <span class='fraction'>27/28</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">96.29% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>23/23</span>
+                <span class='fraction'>26/27</span>
             </div>
         
             
@@ -113,26 +113,25 @@
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
 <a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
@@ -159,59 +158,63 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// Once the website's content has loaded...
-document.addEventListener("DOMContentLoaded", () =&gt; {
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">document.addEventListener("DOMContentLoaded", async () =&gt; {
     const leaderboardContainer = document.querySelector(".leaderboard-container");
 &nbsp;
-    // Placeholder/example players
-    const players = [
-        { name: "John Running", score: 120 },
-        { name: "Unemployed Friend", score: 20 },
-        { name: "Hacker", score: 50 },
-        { name: "I am in third place", score: 40 }
-    ];
+    try {
+        // Fetch leaderboard data from the backend
+        const response = await fetch("https://run-for-your-life-api.onrender.com/api/leaderboard");
+        const players = await response.json();
 &nbsp;
-    // Sort players by score in descending order
-    players.sort((a, b) =&gt; b.score - a.score);
- 
-    // For each player, create a leaderboard card for them
-    players.forEach((player, index) =&gt; {
-        const card = document.createElement("div");
-        card.classList.add("card");
+        // Sort players by score in descending order
+        players.sort((a, b) =&gt; b.total_distance - a.total_distance);
 &nbsp;
-        // Assign a class and rank for first, second, or third place
-        let rank = "";
-        let rank_id = "";
-        if (index === 0) {
-            card.classList.add("first-place-div");
-            rank = "Rank 1";
-            rank_id = "rank_1";
-        } else if (index === 1) {
-            card.classList.add("second-place-div");
-            rank = "Rank 2";
-            rank_id = "rank_2";
-        } else if (index === 2) {
-            card.classList.add("third-place-div");
-            rank = "Rank 3";
-            rank_id = "rank_3";
-        }
+        // Clear any existing leaderboard data
+        leaderboardContainer.innerHTML = "";
 &nbsp;
-        // Inner HTML of each card, including the player's name/score/and rank
-        card.innerHTML = `
-            &lt;div class="top-row"&gt;
-                &lt;p class="name"&gt;${player.name}&lt;/p&gt;
-                &lt;p class="score"&gt;${player.score} mi.&lt;/p&gt;
-            &lt;/div&gt;
-            &lt;p class="rank" id=${rank_id}&gt;${rank}&lt;/p&gt;
-        `;
+        // Generate leaderboard cards dynamically
+        players.forEach((player, index) =&gt; {
+            const card = document.createElement("div");
+            card.classList.add("card");
 &nbsp;
-        // Add the div card to the leaderboard container
-        leaderboardContainer.appendChild(card);
-    });
+            let rank = "";
+            let rank_id = "";
+            if (index === 0) {
+                card.classList.add("first-place-div");
+                rank = "Rank 1";
+                rank_id = "rank_1";
+            } else if (index === 1) {
+                card.classList.add("second-place-div");
+                rank = "Rank 2";
+                rank_id = "rank_2";
+            } else if (index === 2) {
+                card.classList.add("third-place-div");
+                rank = "Rank 3";
+                rank_id = "rank_3";
+            }
+&nbsp;
+            // Populate each card with player's data
+            card.innerHTML = `
+                &lt;div class="top-row"&gt;
+                    &lt;p class="name"&gt;${player.username}&lt;/p&gt;
+                    &lt;p class="score"&gt;${player.total_distance} mi.&lt;/p&gt;
+                &lt;/div&gt;
+                &lt;p class="rank" id=${rank_id}&gt;${rank}&lt;/p&gt;
+            `;
+&nbsp;
+            leaderboardContainer.appendChild(card);
+        });
+&nbsp;
+    } catch (error) {
+<span class="cstat-no" title="statement not covered" >        console.error("Error fetching leaderboard:", error);</span>
+    }
 });
 &nbsp;</pre></td></tr></table></pre>
 
@@ -220,7 +223,7 @@ document.addEventListener("DOMContentLoaded", () =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-02-27T01:32:14.499Z
+                at 2025-03-03T00:51:57.471Z
             </div>
         <script src="prettify.js"></script>
         <script>
