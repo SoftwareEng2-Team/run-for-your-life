@@ -309,6 +309,10 @@ async function claimTerritory() {
     claimedTerritory.setMap(map);
     console.log("Territory claimed around:", userPosition);
 
+    score += google.maps.geometry.spherical.computeLength(outsidePath);
+    console.log("Territory expanded around:", userPosition);
+    console.log("Current score:", score);
+
     // Update the database with the territory claimed section
     // API URL for the backend
     const API_URL = 'https://run-for-your-life-api.onrender.com';
