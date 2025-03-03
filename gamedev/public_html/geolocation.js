@@ -22,7 +22,7 @@ let locationHistory = [];
 // Label for the territory name
 let territoryLabel = null;
 
-async async function initMap() {
+async function initMap() {
   //Removed feature for beta release
   // Bounding Box for the OSU Campus
   // const osuBounds = {
