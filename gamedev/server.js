@@ -5,6 +5,7 @@ import userRoutes from './routes/userRoutes.js';
 import runRoutes from './routes/runRoutes.js';
 import leaderboardRoutes from './routes/leaderboardRoutes.js';
 import profileRoutes from './routes/profileRoutes.js';
+import mapRoutes from './routes/mapRoutes.js';
 
 dotenv.config();
 
@@ -41,6 +42,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/runs', runRoutes);
 app.use('/api/leaderboard', leaderboardRoutes);
 app.use('/api/profile', profileRoutes);
+app.use('/api/map', mapRoutes);
 
 // Start server
 app.listen(PORT, () => {
