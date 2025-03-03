@@ -22,7 +22,7 @@ let locationHistory = [];
 // Label for the territory name
 let territoryLabel = null;
 
-async function initMap() {
+async async function initMap() {
   //Removed feature for beta release
   // Bounding Box for the OSU Campus
   // const osuBounds = {
@@ -99,7 +99,7 @@ async function initMap() {
   let route_started = false;
 
   //Player makes new marker to be used in their route
-  function addCheckpoint() {
+  async function addCheckpoint() {
     try {
       const checkpointMarker = new google.maps.Marker({
         position: location,
@@ -116,7 +116,7 @@ async function initMap() {
     }
   }
 
-  function startRoute() {
+  async function startRoute() {
     //Player must have at least three checkpoints to make a full route
     if (checkpoints.length < 3) {
       alert("You need at least three checkpoints to start!");
@@ -135,7 +135,7 @@ async function initMap() {
   }
 
   //Watch player's movement 
-  function trackPlayerProgress() {
+  async function trackPlayerProgress() {
     if (navigator.geolocation) {
       navigator.geolocation.watchPosition(
         (position) => {
@@ -175,8 +175,8 @@ async function initMap() {
     }
   }
 
-  // Function to update the user's location
-  function updateLocation() {
+  // async function to update the user's location
+  async function updateLocation() {
     if (navigator.geolocation) {
       // Use the Geolocation API to get the user's current position
       navigator.geolocation.getCurrentPosition(
@@ -259,8 +259,8 @@ async function initMap() {
   setInterval(updateLocation, 500);
 }
 
-// Function to calculate the average location
-function calculateAverageLocation(locations) {
+// async function to calculate the average location
+async function calculateAverageLocation(locations) {
   const sum = locations.reduce((acc, loc) => {
     acc.lat += loc.lat;
     acc.lng += loc.lng;
@@ -273,8 +273,8 @@ function calculateAverageLocation(locations) {
   };
 }
 
-// Function to place a marker at the average location
-function placeAverageLocationMarker(location) {
+// async function to place a marker at the average location
+async function placeAverageLocationMarker(location) {
   const avgLocationMarker = new google.maps.Marker({
     position: location,
     map: map,
@@ -287,7 +287,7 @@ function placeAverageLocationMarker(location) {
 }
 
 // 
-function claimTerritory() {
+async function claimTerritory() {
   if (userPosition) {
     const squareSize = 0.0002; // Size of the square in degrees (approx. 50 meters)
     const squareCoords = [
@@ -380,7 +380,7 @@ async function expandTerritory() {
 }
 
 // Custom OverlayView for the static label
-function TerritoryLabel(position, map, text) {
+async function TerritoryLabel(position, map, text) {
   this.position = position;
   this.text = text;
   this.div = null;
@@ -389,7 +389,7 @@ function TerritoryLabel(position, map, text) {
 
 TerritoryLabel.prototype = new google.maps.OverlayView();
 
-TerritoryLabel.prototype.onAdd = function () {
+TerritoryLabel.prototype.onAdd = async function () {
   const div = document.createElement('div');
   div.style.position = 'absolute';
   div.style.backgroundColor = 'white';
@@ -403,7 +403,7 @@ TerritoryLabel.prototype.onAdd = function () {
   panes.overlayLayer.appendChild(div);
 };
 
-TerritoryLabel.prototype.draw = function () {
+TerritoryLabel.prototype.draw = async function () {
   const overlayProjection = this.getProjection();
   const position = overlayProjection.fromLatLngToDivPixel(this.position);
 
@@ -412,7 +412,7 @@ TerritoryLabel.prototype.draw = function () {
   div.style.top = position.y + 'px';
 };
 
-TerritoryLabel.prototype.onRemove = function () {
+TerritoryLabel.prototype.onRemove = async function () {
   if (this.div) {
     this.div.parentNode.removeChild(this.div);
     this.div = null;
@@ -420,7 +420,7 @@ TerritoryLabel.prototype.onRemove = function () {
 };
 
 // Error handling for geolocation
-function handleLocationError(browserHasGeolocation, current_location_window, pos) {
+async function handleLocationError(browserHasGeolocation, current_location_window, pos) {
   current_location_window.setPosition(pos);
   current_location_window.setContent(
     browserHasGeolocation
