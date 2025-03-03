@@ -309,10 +309,12 @@ async function claimTerritory() {
     claimedTerritory.setMap(map);
     console.log("Territory claimed around:", userPosition);
 
+    const area = google.maps.geometry.spherical.computeArea(claimedTerritory.getPath().getArray());
     console.log("DEBUG TESTING SCORE: ", score);
-    console.log("DBEUG TESTING SCORE CALCULATION: ", google.maps.geometry.spherical.computeLength(claimedTerritory));
+    console.log("DBEUG TESTING SCORE CALCULATION: ", area);
 
-    score += google.maps.geometry.spherical.computeLength(claimedTerritory);
+    score += area;
+
     console.log("Territory expanded around:", userPosition);
     console.log("Current score:", score);
 
@@ -362,7 +364,7 @@ async function expandTerritory() {
     claimedTerritory.setMap(map);
 
     // Calculate the expansion width and update the score
-    const expansionWidth = google.maps.geometry.spherical.computeLength(outsidePath);
+    const expansionWidth = google.maps.geometry.spherical.computeArea(outsidePath.getPath().getArray());
     score += expansionWidth;
     console.log("Territory expanded around:", userPosition);
     console.log("Current score:", score);
