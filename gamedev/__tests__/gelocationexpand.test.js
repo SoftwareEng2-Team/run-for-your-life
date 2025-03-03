@@ -4,7 +4,7 @@ fetchMock.enableMocks();
 
 import '../public_html/geolocation.js';
 
-describe('[Team Member 7] geolocation.js Additional Tests', () => {
+describe('geolocation.js Additional Tests', () => {
   beforeEach(() => {
     // Provide partial DOM for geolocation usage
     document.body.innerHTML = `<div id="map"></div>`;
