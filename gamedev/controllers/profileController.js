@@ -12,7 +12,7 @@ export const getProfile = async (req, res) => {
                 u.username, 
                 l.rank_num AS rank, 
                 u.total_distance AS total_distance_ran, 
-                l.total_territory AS total_distance_claimed
+                u.total_territory AS total_distance_claimed
             FROM users u
             LEFT JOIN leaderboards l 
                 ON u.user_id = l.user_id 

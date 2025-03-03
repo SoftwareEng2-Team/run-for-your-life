@@ -15,6 +15,11 @@ export const setTerrClaimed = async (req, res) => {
 
         // Perform the query on the database
         const result = await pool.query(query, [user_id, total_territory]);
+
+        // Check if any rows were updated
+        if (result.rowCount === 0) {
+            return res.status(404).json({ error: 'Nothing updated' });
+        }
     } catch (error) {
         console.error("Database error setting the total_territory:", error);
         res.status(500).json({ error: error.message });
