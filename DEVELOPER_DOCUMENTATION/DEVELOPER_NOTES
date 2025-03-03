@@ -13,6 +13,7 @@ DIRECTORIES: This repository includes several directories to better categorize a
   - /controllers: contains controller files for our database, including queries.
   - /public_html: mostly frontend code, contains some backend connection. Main page HTML,CSS, and JS files are stored here.
   - /routes: database routes for routing database calls to the backend. 
+  - /run_local: a server.js file and README instructions for running the program locally
 - /living-doc-versions: older versions of our living document for this project are stored here.
 - /reports: our weekly report will developing this game is stored here.
 - /USER_DOCUMENTATION: stores any documentation that might be useful to any users/players. 
@@ -28,6 +29,7 @@ HOW TO BUILD SOFTWARE:
 - If the developer would like to host the game locally they have multiple ways they can do so. One way is to use node and npm to host the project locally: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
   - npm start will run the game locally on port 3000. You can then access the project here: 'http://localhost:3000/'
   - NOTE: you must change the server.js file to run locally. This file is stored in the /gamedev/run_local directory, along with a README explaining the process.
+  - WARNING: this server.js file is NOT connected to our database. When running locally, the game will not save progress/log you in correctly. Navigate to 'http://localhost:3000/map.html' to use the game with limited functionality.
 - Additionally, extensions on Visual Studio Code, such as 'Live Server' can also be used to host the webpages for the game locally. If desired, download the extensions, and press the "Go Live" button in the bottom right of the IDE. Follow the instructions to host the webpage. 
 
 - Otherwise, to access our application that is hosted and updated, access the link: https://run-for-your-life.onrender.com/. This will redirect you to our game's login page. 
