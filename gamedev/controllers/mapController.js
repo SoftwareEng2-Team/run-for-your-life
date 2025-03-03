@@ -10,7 +10,7 @@ export const setTerrClaimed = async (req, res) => {
         const query = `
             UPDATE users 
             SET total_territory = total_territory + $2 
-            WHERE ofhvgbadskjlgakj;vb user_id = $1;
+            WHERE user_id = $1;
         `;
         
         // Perform the query on the database
