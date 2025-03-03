@@ -314,7 +314,7 @@ async function claimTerritory() {
     console.log("DBEUG TESTING SCORE CALCULATION: ", area);
 
     score += area;
-    
+
     console.log("Territory expanded around:", userPosition);
     console.log("Current score:", score);
 
@@ -364,7 +364,7 @@ async function expandTerritory() {
     claimedTerritory.setMap(map);
 
     // Calculate the expansion width and update the score
-    const expansionWidth = google.maps.geometry.spherical.computeArea(outsidePath);
+    const expansionWidth = google.maps.geometry.spherical.computeArea(outsidePath.getPath().getArray());
     score += expansionWidth;
     console.log("Territory expanded around:", userPosition);
     console.log("Current score:", score);
