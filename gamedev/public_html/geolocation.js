@@ -44,9 +44,6 @@ async function initMap() {
       // },
   });
 
-
-
-
   // Static Marker on Corvallis
   draggableMarker = new google.maps.Marker({
     position: { lat: 44.56495296308599, lng: -123.27630649064899 },
