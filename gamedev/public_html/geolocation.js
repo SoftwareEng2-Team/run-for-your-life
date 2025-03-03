@@ -309,7 +309,7 @@ async function claimTerritory() {
     claimedTerritory.setMap(map);
     console.log("Territory claimed around:", userPosition);
 
-    score += google.maps.geometry.spherical.computeLength(outsidePath);
+    score += google.maps.geometry.spherical.computeLength(claimedTerritory);
     console.log("Territory expanded around:", userPosition);
     console.log("Current score:", score);
 
