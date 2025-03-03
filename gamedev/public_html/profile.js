@@ -38,8 +38,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("rank").textContent = data.rank_num ? "#" + data.rank_num : "No rank yet!";
 
     // Update the stats section.
-    document.getElementById("totalDistance").textContent = data.totalDistance ? data.totalDistance + " miles" : "0";
-    document.getElementById("totalClaimed").textContent = data.totalClaimed ? data.totalClaimed + " sqft" : "0";
+    document.getElementById("totalDistance").textContent = data.total_distance_ran ? data.total_distance_ran + " miles" : "0";
+    document.getElementById("totalClaimed").textContent = data.total_distance_claimed ? data.total_distance_claimed + " sqft" : "0";
     //document.getElementById("knockouts").textContent = data.knockouts || "";
 
   } catch (error) {
