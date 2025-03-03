@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 card.innerHTML = `
                     <div class="top-row">
                     <p class="name">${player.username}</p>
-                    <p class="score">${player.total_territory} mi.</p>
+                    <p class="score">${player.total_territory} sqft.</p>
                     </div>
                     <p class="rank" id=${rank_id}>${rank}</p>
                 `;

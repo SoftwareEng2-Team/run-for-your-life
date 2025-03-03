@@ -3,7 +3,7 @@ fetchMock.enableMocks();
 
 import '../public_html/leaderboard.js';
 
-describe('[Team Member 4] leaderboard.js Tests', () => {
+describe('leaderboard.js Tests', () => {
   beforeEach(() => {
     document.body.innerHTML = `
       <div class="leaderboard-container"></div>

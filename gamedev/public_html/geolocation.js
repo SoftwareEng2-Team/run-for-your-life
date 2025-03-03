@@ -311,18 +311,15 @@ async function claimTerritory() {
     console.log("Territory claimed around:", userPosition);
 
     const area = google.maps.geometry.spherical.computeArea(claimedTerritory.getPath().getArray());
-    console.log("DEBUG TESTING SCORE: ", score);
-    console.log("DBEUG TESTING SCORE CALCULATION: ", area);
-
     score += area;
 
+    const score_rounded = Number(score.toFixed(2)); 
     console.log("Territory expanded around:", userPosition);
-    console.log("DEBUG CLAIMTERRITORY SCORE:", score);
+    console.log("DEBUG CLAIMTERRITORY SCORE:", score_rounded);
 
     // Update the database with the territory claimed section
     // API URL for the backend
     const API_URL = 'https://run-for-your-life-api.onrender.com';
-    
     const user_id = localStorage.getItem('user_id');
     if (!user_id) {
       console.error("No user_id found in local storage!");
@@ -333,8 +330,8 @@ async function claimTerritory() {
       const response = await fetch(`${API_URL}/api/map`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        // Send the user ID and rank number
-        body: JSON.stringify({ user_id, score })
+        // Send the user ID and score
+        body: JSON.stringify({ user_id, score_rounded })
       });
     } catch (error) {
       console.error("Error:", error);

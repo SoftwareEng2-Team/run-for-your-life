@@ -4,7 +4,7 @@ fetchMock.enableMocks();
 
 import '../public_html/loginpage.js';
 
-describe('[Team Member 5] loginpage.js Tests', () => {
+describe('loginpage.js Tests', () => {
   beforeEach(() => {
     document.body.innerHTML = `
       <form>

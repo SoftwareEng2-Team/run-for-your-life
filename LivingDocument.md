@@ -222,6 +222,73 @@ Example test suites:
 2) Enter random weights for different map areas and make sure they are properly reflected in the point calculations.
 3) Have multiple users at once claim territory to make sure the functions can handle multiple inputs at once.
 
+Processes Description
+
+Test-Automation Infrastructure
+Tools Used:
+
+Jest: We used Jest as a test automation framework for unit, validation, and integration tests. We decided on Jest because it allows:
+- The support of modern JavaScript modules.
+- Offers a fast test execution and uses built-in code coverage reporting.
+- Has a large community and extensive eco-system
+- Works easily with our CI pipeline (Github Actions)
+
+Adding new test files
+Choose a test type:
+- Unit Test
+- Validation Test
+
+Create Test file:
+For test files using Jest place them inside the gamedev/__tests__/
+
+Writing Test Code:
+- Follow our coding conventions and structure similar to existing tests.
+- If using ESM, include necessary imports.
+
+Running Locally:
+- Run Jest with npm test to check for testing before committing.
+
+Commit and Push:
+- Once everything is verified and you have a new test with code changes, the CI processes will find it automatically.
+
+
+Continuous Integration:
+Service Used:
+GitHub Actions:
+- Our repository is integrated with GitHub Actions using a workflow file located inside the .github directory.
+- This workflow installs dependencies, runs our build, and uses test files for every push and pull request.
+
+Justification for GitHub Actions:
+- Seamless Integration: Developed inside GitHub it allows easy access and no additional tools needed.
+- Matrix Builds: Can test across multiple Node.js versions and different operating systems.
+- Cost: Free use for public projects.
+- Community: Provides lots of examples and support.
+
+Pros and Cons Matrix for CI Services Considered:
+- GitHub Actions:
+Pros: Integrated with GitHub, Supports matrix builds, free, community.
+Cons: Complex workflows need careful management.
+
+- Travis CI
+Pros: Simple configuration, and widely used.
+Cons: Limited free tier, and has slower build times.
+
+- CircleCI
+Pros: Offers fast and scalable builds, and allows for configurable environments.
+Cons: More complex pricing and configuration. It is also not tightly integrated with GitHub.
+
+Test Executed in a CI Build:
+- Unit Tests: Tests located in __tests__ folder
+- Validation Tests: Simulates user interactions contained inside __tests__ folder.
+- Integration Tests
+- Systems Test
+
+Development Actions that Trigger a CI Build:
+- Pushes to any Branch: Any commit that is pushed to a branch will trigger a build.
+- Pull Requests: Opening or updating a pull request automatically triggers a CI build.
+- Merges: Any code that is merged into the main branch will trigger a final build and test run.
+
+
 Timeline with milestones:
 Week 3: Project Planning.
 - Finalize project idea and scope, and present our project to the class.
