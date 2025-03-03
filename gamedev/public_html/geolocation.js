@@ -360,7 +360,7 @@ async function expandTerritory() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         // Send the user ID and rank number
-        body: JSON.stringify({ user_id, expansionWidth })
+        body: JSON.stringify({ user_id, score })
       });
     } catch (error) {
       console.error("Error:", error);
