@@ -1,7 +1,7 @@
 import { jest } from '@jest/globals';
 import { calculateAverageLocation } from '../public_html/geolocation.js';
 
-describe('[Team Member 3] geolocation.js Tests', () => {
+describe('geolocation.js Tests', () => {
   // UNIT test: calculateAverageLocation
   test('UNIT: calculateAverageLocation returns correct average', () => {
     const coords = [

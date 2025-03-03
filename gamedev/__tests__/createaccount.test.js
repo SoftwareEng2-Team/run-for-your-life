@@ -3,7 +3,7 @@ fetchMock.enableMocks();
 
 import '../public_html/createaccount.js';
 
-describe('[Team Member 2] createaccount.js Tests', () => {
+describe('createaccount.js Tests', () => {
   beforeEach(() => {
     document.body.innerHTML = `
       <form>

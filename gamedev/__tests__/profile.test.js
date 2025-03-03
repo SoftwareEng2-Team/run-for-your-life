@@ -4,7 +4,7 @@ fetchMock.enableMocks();
 
 import '../public_html/profile.js';
 
-describe('[Team Member 6] profile.js Tests', () => {
+describe('profile.js Tests', () => {
   beforeEach(() => {
     document.body.innerHTML = `
       <div id="username"></div>

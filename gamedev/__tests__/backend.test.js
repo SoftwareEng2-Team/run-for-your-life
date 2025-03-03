@@ -5,7 +5,7 @@ fetchMock.enableMocks();
 
 import '../public_html/backend.js';
 
-describe('[Team Member 1] backend.js Tests', () => {
+describe('backend.js Tests', () => {
   beforeEach(() => {
     // Set up DOM
     document.body.innerHTML = `
