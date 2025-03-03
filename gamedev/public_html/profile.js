@@ -31,8 +31,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log("user_id: ", user_id);
     console.log("username: ", data.username);
     console.log("rank: ", data.rank);
-    console.log("totalDistanceRan: ", data.total_distance_ran);
-    console.log("totalDistanceRan: ", data.total_distance_claimed);
+    console.log("total_distance_ran: ", data.total_distance_ran);
+    console.log("total_distance_claimed: ", data.total_distance_claimed);
 
     // Update the profile info section.
     document.getElementById("username").textContent = data.username || "No user - sign in!";
