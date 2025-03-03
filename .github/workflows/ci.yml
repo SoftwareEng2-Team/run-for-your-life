@@ -30,7 +30,7 @@ jobs:
           node-version: 20  
 
       - name: Install dependencies
-        run: 
+        run: |
           cd gamedev
           npm install  
 
@@ -43,6 +43,6 @@ jobs:
 
 
       - name: Run Tests
-        run: 
+        run: |
           cd gamedev
           npm test  
