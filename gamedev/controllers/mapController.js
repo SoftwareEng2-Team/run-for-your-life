@@ -8,8 +8,8 @@ export const setTerrClaimed = async (req, res) => {
     try {
         // Create the query
         const query = `
-            UPDATE leaderboards 
-            SET total_territory = $2 
+            UPDATE users 
+            SET total_territory = total_territory + $2 
             WHERE user_id = $1;
         `;
 

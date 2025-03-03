@@ -30,12 +30,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Debugging statements
     console.log("user_id: ", user_id);
     console.log("username: ", data.username);
-    console.log("rank: ", data.rank_num);
-    console.log("totalDistance: ", data.totalDistance);
+    console.log("rank: ", data.rank);
+    console.log("totalDistanceRan: ", data.total_distance_ran);
+    console.log("totalDistanceRan: ", data.total_distance_claimed);
 
     // Update the profile info section.
     document.getElementById("username").textContent = data.username || "No user - sign in!";
-    document.getElementById("rank").textContent = data.rank_num ? "#" + data.rank_num : "No rank yet!";
+    document.getElementById("rank").textContent = data.rank ? "#" + data.rank : "No rank yet!";
 
     // Update the stats section.
     document.getElementById("totalDistance").textContent = data.total_distance_ran ? data.total_distance_ran + " miles" : "0";
