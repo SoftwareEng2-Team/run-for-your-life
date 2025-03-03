@@ -16,10 +16,11 @@ How to Use the Software:
 Starting a Run
 - Authenticate by logging in or creating an account.
 - Open the Map screen.
-- Select a preset route.
-- Press "Start Run" to begin tracking your movement.
+- The game will automatically track your movement in real-time.
+- Begin running! Your trail will appear on the map as you move.
 - Run in a closed loop to form a valid claimable territory.
-- Press "Finish Run" to finalize and claim your territory.
+- Complete a loop or any route of your choice, the game tracks everything live.
+- When completed, your plot of land will display.
 
 Checking Your Progress:
 - View live territory updates on the Map screen.
@@ -29,5 +30,5 @@ Checking Your Progress:
 Competitive Features
 - User Authentication: Every player must log in before playing.
 - Territory Claiming: Any closed circuit grants all land within as your territory.
-- Cutting Off Opponents: Run through another player’s path and complete a circuit before them to remove their territory.
-- Weekly Reset: All scores reset every week; the top player earns a flair for recognition.
+- Leaderboard: Track weekly rankings based on distance covered.
+- Weekly Reset: All scores reset every week, the top player earns a flair for recognition.
