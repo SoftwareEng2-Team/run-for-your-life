@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Update the profile info section.
     document.getElementById("username").textContent = data.username || "";
-    document.getElementById("rank").textContent = data.rank ? "#" + data.rank : "0";
+    document.getElementById("rank").textContent = data.rank_num ? "#" + data.rank_num : "0";
 
     // Update the stats section.
     document.getElementById("totalDistance").textContent = data.totalDistance ? data.totalDistance + " miles" : "0";
