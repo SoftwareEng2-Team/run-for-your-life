@@ -15,7 +15,7 @@ jobs:
         image: postgres:latest
         env:
           POSTGRES_USER: run_for_your_life_user
-          POSTGRES_PASSWORD: password
+          POSTGRES_PASSWORD: 8fFWEwEBpMPdijfG10sYt8p0UfMsT9Yo
           POSTGRES_DB: run_for_your_life
         ports:
           - 5432:5432  
@@ -35,12 +35,13 @@ jobs:
           npm install  
 
       - name: Wait for PostgreSQL to be ready
-        run: sleep 10
+        run: |
+          echo "Waiting for PostgreSQL"
+          sleep 10
         
       - name: Initialize Database
         run: |
-          PGPASSWORD=8fFWEwEBpMPdijfG10sYt8p0UfMsT9Yo psql -U run_for_your_life_user -c "CREATE DATABASE run_for_your_life;"
-
+          PGPASSWORD=POSTGRES_PASSWORD psql -h localhost -U run_for_your_life_user -c "CREATE DATABASE run_for_your_life;"
 
       - name: Run Tests
         run: |
