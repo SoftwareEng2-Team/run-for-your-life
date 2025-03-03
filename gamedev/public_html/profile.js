@@ -34,8 +34,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log("totalDistance: ", data.totalDistance);
 
     // Update the profile info section.
-    document.getElementById("username").textContent = data.username || "";
-    document.getElementById("rank").textContent = data.rank_num ? "#" + data.rank_num : "0";
+    document.getElementById("username").textContent = data.username || "No user - sign in!";
+    document.getElementById("rank").textContent = "#" + data.rank_num;
 
     // Update the stats section.
     document.getElementById("totalDistance").textContent = data.totalDistance ? data.totalDistance + " miles" : "0";
