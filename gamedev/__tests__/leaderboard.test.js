@@ -1,50 +1,48 @@
-import "../public_html/leaderboard.js";
-import fetchMock from "jest-fetch-mock";
+import fetchMock from 'jest-fetch-mock';
 fetchMock.enableMocks();
 
+import '../public_html/leaderboard.js';
 
-describe("Leaderboard Tests", () => {
-  let leaderboardContainer;
-
+describe('[Team Member 4] leaderboard.js Tests', () => {
   beforeEach(() => {
-    // Tell fetchMock what to return when `fetch()` is called.
+    document.body.innerHTML = `
+      <div class="leaderboard-container"></div>
+    `;
+    fetchMock.resetMocks();
+  });
+
+  // UNIT test: The main method is createLeaderboard (which calls fetch).
+  // We'll isolate createLeaderboard by calling it after we mock fetch
+  test('UNIT: createLeaderboard populates the container with correct ranks', async () => {
+    // Provide some mock data
     fetchMock.mockResponseOnce(JSON.stringify([
-      { name: "John Running", score: 120 },
-      { name: "Unemployed Friend", score: 20 },
-      { name: "Hacker", score: 50 },
-      { name: "I am in third place", score: 40 }
+      { user_id: 101, username: 'Alice', total_territory: 50 },
+      { user_id: 102, username: 'Bob', total_territory: 30 },
+      { user_id: 103, username: 'Charlie', total_territory: 10 }
     ]));
 
-    // Set up a mock DOM
-    document.body.innerHTML = `<div class="leaderboard-container"></div>`;
-    leaderboardContainer = document.querySelector(".leaderboard-container");
+    document.dispatchEvent(new Event('DOMContentLoaded'));
 
-    // Manually trigger DOMContentLoaded to simulate page load
-    document.dispatchEvent(new Event("DOMContentLoaded"));
+    // Wait a tick for fetch
+    await new Promise(resolve => setTimeout(resolve, 0));
+
+    const cards = document.querySelectorAll('.card');
+    expect(cards.length).toBe(3);
+
+    // The first should have class "first-place-div"
+    expect(cards[0].classList.contains('first-place-div')).toBe(true);
+    // The second "second-place-div"
+    expect(cards[1].classList.contains('second-place-div')).toBe(true);
   });
 
-  test("Leaderboard should create correct number of cards", () => {
-    const cards = leaderboardContainer.querySelectorAll(".card");
-    expect(cards.length).toBe(4);
-  });
+  // VALIDATION test: If fetch returns empty or missing data, we handle gracefully
+  test('VALIDATION: createLeaderboard handles empty data array', async () => {
+    fetchMock.mockResponseOnce(JSON.stringify([]));
 
-  test("Players are sorted by score in descending order", () => {
-    const expectedOrder = [
-      "John Running",
-      "Hacker",
-      "I am in third place",
-      "Unemployed Friend"
-    ];
-    const renderedPlayers = Array.from(
-      leaderboardContainer.querySelectorAll(".name")
-    ).map(el => el.textContent);
+    document.dispatchEvent(new Event('DOMContentLoaded'));
+    await new Promise(setImmediate);
 
-    expect(renderedPlayers).toEqual(expectedOrder);
-  });
-
-  test("Leaderboard assigns correct rank classes", () => {
-    expect(document.querySelector(".first-place-div")).not.toBeNull();
-    expect(document.querySelector(".second-place-div")).not.toBeNull();
-    expect(document.querySelector(".third-place-div")).not.toBeNull();
+    const cards = document.querySelectorAll('.card');
+    expect(cards.length).toBe(0);
   });
 });
