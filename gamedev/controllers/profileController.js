@@ -16,10 +16,8 @@ export const getProfile = async (req, res) => {
             FROM users u
             LEFT JOIN leaderboards l 
                 ON u.user_id = l.user_id 
-                AND l.week_start = (SELECT MAX(week_start) FROM leaderboards WHERE user_id = u.user_id)
             WHERE u.user_id = $1;
         `;
-
 
         // Perform the query on the database
         const { rows } = await pool.query(query, [user_id]);

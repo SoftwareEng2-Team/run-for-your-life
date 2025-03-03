@@ -4,7 +4,6 @@ import pool from '../../database/connection_pool.mjs';
 export const setTerrClaimed = async (req, res) => {
     // Get the user_id and total territory from the request body
     const { user_id, total_territory } = req.body;
-    console.log("setting territory to: ", total_territory);
 
     try {
         // Create the query
