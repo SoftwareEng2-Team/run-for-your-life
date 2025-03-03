@@ -39,7 +39,7 @@ jobs:
         
       - name: Initialize Database
         run: |
-          PGPASSWORD=password psql -h localhost -U postgres -c "CREATE DATABASE run_for_your_life;"
+          PGPASSWORD=password psql -h localhost -U run_for_your_life_user -c "CREATE DATABASE run_for_your_life;"
 
 
       - name: Run Tests
