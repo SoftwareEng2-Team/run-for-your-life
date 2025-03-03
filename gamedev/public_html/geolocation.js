@@ -316,7 +316,7 @@ async function claimTerritory() {
     score += area;
 
     console.log("Territory expanded around:", userPosition);
-    console.log("Current score:", score);
+    console.log("DEBUG CLAIMTERRITORY SCORE:", score);
 
     // Update the database with the territory claimed section
     // API URL for the backend
@@ -367,7 +367,8 @@ async function expandTerritory() {
     const expansionWidth = google.maps.geometry.spherical.computeArea(outsidePath.getPath().getArray());
     score += expansionWidth;
     console.log("Territory expanded around:", userPosition);
-    console.log("Current score:", score);
+    console.log("DEBUG EXPANDTERRITORY SCORE:", score);
+
 
     // Update the database with the territory claimed section
     // API URL for the backend
