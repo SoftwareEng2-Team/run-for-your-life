@@ -209,7 +209,7 @@ async function initMap() {
           // If the array length is 5 (5 seconds), calculate the average location and place a marker
           if (locationHistory.length === 5) {
             const avgLocation = calculateAverageLocation(locationHistory);
-            placeAverageLocationMarker(avgLocation);
+            //placeAverageLocationMarker(avgLocation);
             locationHistory = []; // Clear the array
           }
 
