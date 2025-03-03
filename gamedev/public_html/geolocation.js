@@ -309,12 +309,6 @@ async function claimTerritory() {
     claimedTerritory.setMap(map);
     console.log("Territory claimed around:", userPosition);
 
-    // Add a static label to display the territory name
-    if (territoryLabel) {
-      territoryLabel.setMap(null);
-    }
-    territoryLabel = new TerritoryLabel(userPosition, map, "Your Territory");
-
     // Update the database with the territory claimed section
     // API URL for the backend
     const API_URL = 'https://run-for-your-life-api.onrender.com';
