@@ -1,7 +1,7 @@
+import "../public_html/leaderboard.js";
 import fetchMock from "jest-fetch-mock";
 fetchMock.enableMocks();
 
-import "../public_html/leaderboard.js";
 
 describe("Leaderboard Tests", () => {
   let leaderboardContainer;
