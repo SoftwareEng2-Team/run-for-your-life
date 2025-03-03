@@ -259,8 +259,8 @@ async function initMap() {
   setInterval(updateLocation, 500);
 }
 
-// async function to calculate the average location
-async function calculateAverageLocation(locations) {
+// Function to calculate the average location
+export function calculateAverageLocation(locations) {
   const sum = locations.reduce((acc, loc) => {
     acc.lat += loc.lat;
     acc.lng += loc.lng;
