@@ -8,9 +8,9 @@ export const setTerrClaimed = async (req, res) => {
     try {
         // Create the query
         const query = `
-            UPDATE users 
-            SET total_territory = total_territory + $2 
-            WHERE user_id = $1;
+            INSERT INTO users (user_id, total_territory)
+            VALUES ($1, $2)
+            ON CONFLICT (user_id) DO NOTHING;
         `;
         
         // Perform the query on the database
