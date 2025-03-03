@@ -314,6 +314,27 @@ async function claimTerritory() {
       territoryLabel.setMap(null);
     }
     territoryLabel = new TerritoryLabel(userPosition, map, "Your Territory");
+
+    // Update the database with the territory claimed section
+    // API URL for the backend
+    const API_URL = 'https://run-for-your-life-api.onrender.com';
+    
+    const user_id = localStorage.getItem('user_id');
+    if (!user_id) {
+      console.error("No user_id found in local storage!");
+      return; // Stop execution if user_id is missing
+    }
+    try {
+      // DB request to set the rank of the current user
+      const response = await fetch(`${API_URL}/api/map`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        // Send the user ID and rank number
+        body: JSON.stringify({ user_id, score })
+      });
+    } catch (error) {
+      console.error("Error:", error);
+    }
   } else {
     console.error("User position is not available.");
   }
