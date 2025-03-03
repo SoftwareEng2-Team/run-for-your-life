@@ -39,7 +39,7 @@ jobs:
         
       - name: Initialize Database
         run: |
-          PGPASSWORD=8fFWEwEBpMPdijfG10sYt8p0UfMsT9Yo psql -h localhost -U run_for_your_life_user -c "CREATE DATABASE run_for_your_life;"
+          PGPASSWORD=8fFWEwEBpMPdijfG10sYt8p0UfMsT9Yo psql -h https://run-for-your-life.onrender.com/ -U run_for_your_life_user -c "CREATE DATABASE run_for_your_life;"
 
 
       - name: Run Tests
