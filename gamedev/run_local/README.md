@@ -1,3 +1,4 @@
 - In order to run our game locally, replace the server.js file in the /gamedev directory with the server.js file in this directory!
 - This utilizes node.js, and runs locally on port 3000.
 - You can then use 'npm start' to run locally, and access the webpage via: http://localhost:3000/
+- WARNING: this server.js file is NOT connected to our database. When running locally, the game will not save progress/log you in correctly. Navigate to 'http://localhost:3000/map.html' to use the game with limited functionality.

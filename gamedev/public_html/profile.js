@@ -1,11 +1,10 @@
 document.addEventListener("DOMContentLoaded", async () => {
   // Clear all text fields 
   document.getElementById("username").textContent = "";
-  document.getElementById("name").textContent = "";
   document.getElementById("rank").textContent = "";
   document.getElementById("totalDistance").textContent = "";
   document.getElementById("totalClaimed").textContent = "";
-  document.getElementById("knockouts").textContent = "";
+  //document.getElementById("knockouts").textContent = "";
   document.getElementById("achievements").innerHTML = "";
 
   // API URL for the backend
@@ -32,21 +31,43 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log("user_id: ", user_id);
     console.log("username: ", data.username);
     console.log("rank: ", data.rank);
-    console.log("totalDistance: ", data.totalDistance);
+    console.log("total_distance_ran: ", data.total_distance_ran);
+    console.log("total_distance_claimed: ", data.total_distance_claimed);
 
     // Update the profile info section.
-    document.getElementById("username").textContent = data.username || "";
-    document.getElementById("rank").textContent = data.rank ? "#" + data.rank : "0";
+    document.getElementById("username").textContent = data.username || "No user - sign in!";
+    document.getElementById("rank").textContent = data.rank ? "#" + data.rank : "No rank yet!";
 
     // Update the stats section.
-    document.getElementById("totalDistance").textContent = data.totalDistance ? data.totalDistance + " miles" : "0";
-    document.getElementById("totalClaimed").textContent = data.totalClaimed ? data.totalClaimed + " sqft" : "0";
+    document.getElementById("totalDistance").textContent = data.total_distance_ran ? data.total_distance_ran + " miles" : "0";
+    document.getElementById("totalClaimed").textContent = data.total_distance_claimed ? data.total_distance_claimed + " sqft" : "0";
     //document.getElementById("knockouts").textContent = data.knockouts || "";
 
   } catch (error) {
     console.error("Error:", error);
   }
 
+  // Modal (User Guide) Logic
+  const guideButton = document.getElementById("guideButton");
+  const guideModal = document.getElementById("guideModal");
+  const closeButton = document.querySelector(".modal .close");
+
+  // Open modal when button is clicked
+  guideButton.addEventListener("click", () => {
+    guideModal.style.display = "block";
+  });
+
+  // Close modal when the close button (×) is clicked
+  closeButton.addEventListener("click", () => {
+    guideModal.style.display = "none";
+  });
+
+  // Close modal if user clicks outside the modal content
+  window.addEventListener("click", (event) => {
+    if (event.target === guideModal) {
+      guideModal.style.display = "none";
+    }
+  });
   // Update the achievements section.
   /*const achievementsContainer = document.getElementById("achievements");
   if (data.achievements && Array.isArray(data.achievements)) {
@@ -59,4 +80,4 @@ document.addEventListener("DOMContentLoaded", async () => {
   } else {
     achievementsContainer.innerHTML = ""; 
   } */
-})
+});

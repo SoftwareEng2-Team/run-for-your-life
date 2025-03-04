@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         try {
             // DB request to get player information to set the leaderboard
             const response = await fetch(`${API_URL}/api/leaderboard`, {
-                method: 'GET',
+                method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
             });
 
@@ -58,11 +58,15 @@ document.addEventListener("DOMContentLoaded", async () => {
                 // Set rank for the user in the database
                 setRank(player.user_id, index + 1);
 
+                // Console statements for debugging: attaches name and link to each other
+                currindex = index + 1;
+                console.log("name: ", player.username, " rank: ", currindex);
+
                 // Populate each card with player's data
                 card.innerHTML = `
                     <div class="top-row">
                     <p class="name">${player.username}</p>
-                    <p class="score">${player.total_distance} mi.</p>
+                    <p class="score">${player.total_territory} sqft.</p>
                     </div>
                     <p class="rank" id=${rank_id}>${rank}</p>
                 `;

@@ -7,17 +7,17 @@ export const getProfile = async (req, res) => {
 
     try {
         // Create the query
-        const query = 
-            `SELECT 
+        const query =  `
+            SELECT 
                 u.username, 
-                COALESCE(l.rank_num, NULL) AS rank, 
+                l.rank_num AS rank, 
                 u.total_distance AS total_distance_ran, 
-                COALESCE(l.total_territory, 0) AS total_distance_claimed
+                u.total_territory AS total_distance_claimed
             FROM users u
-            LEFT JOIN leaderboards l ON u.user_id = l.user_id
-            WHERE u.user_id = $1
-            ORDER BY l.week_start DESC
-            LIMIT 1;
+            LEFT JOIN leaderboards l 
+                ON u.user_id = l.user_id 
+                AND l.week_start = (SELECT MAX(week_start) FROM leaderboards WHERE user_id = u.user_id)
+            WHERE u.user_id = $1;
         `;
 
         // Perform the query on the database
@@ -29,8 +29,8 @@ export const getProfile = async (req, res) => {
         }
 
         // Return user profile data
-        res.json(rows[0]); 
-    // An error occurred while fetching the user information, display to the user
+        res.json(rows[0]);
+        // An error occurred while fetching the user information, display to the user
     } catch (error) {
         console.error("Error fetching user information for profile page:", error);
         res.status(500).json({ error: error.message });
