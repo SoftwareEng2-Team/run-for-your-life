@@ -42,5 +42,5 @@ The rightmost button leads to your profile page. This page displays your persona
 ### Where To Find Additional Information And Documentation
 Additional information and documentation regarding our game, such as how to play and how to host the application locally, can be found in the documentation directories. 
 
-#### Trello
-Trello Board: https://trello.com/b/OsvSTA7E/pt1-run-for-your-life
+#### Trello Board For Developer Tasks
+https://trello.com/b/OsvSTA7E/pt1-run-for-your-life
