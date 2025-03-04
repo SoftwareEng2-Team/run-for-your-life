@@ -10,7 +10,7 @@ Any developer seeking to obtain the source code for the Run For Your Life game c
 
 ## DIRECTORIES
 This repository includes several directories to better categorize and store resources associated with our game.
-- /database: includes all information about connecting to our database. The database is used for storing user credentials and location updates.
+- /database: This includes all information about connecting to our database, which stores user credentials and location updates.
 - /defunctfiles: includes older files we keep for reference.
 - /DEVELOPER_DOCUMENTATION: this current directory. Stores any documentation that might be useful to any developers.
 - /gamedev: where our game files are stored. This includes files for both the frontend and backend. 
