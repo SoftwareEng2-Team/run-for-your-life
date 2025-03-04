@@ -1,6 +1,8 @@
-All known bugs and limitations are documented in our GitHub Issue Tracker.
+# Known Issues And Limitations
 
-Current Known Issues:
+*All known bugs and limitations are documented in our GitHub Issue Tracker.*
+
+## Currently Known Issues
 
 - GPS Inaccuracies: Location tracking have slight delays or position shifts in areas with weak signals.
 - Profile Page Refinements (Work in Progress): Some UI elements may be adjusted for better user experience.

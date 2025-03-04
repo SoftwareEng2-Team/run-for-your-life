@@ -1,4 +1,6 @@
-High-level Description: 
+# User Notes
+
+## High-level Description
 Competitive running game that simulates territory acquisition via a completed running route. 
 Players compete by claiming the most space on a shared real-world map each week.
 To claim space one must create and complete a running circuit of any length.
@@ -6,12 +8,12 @@ Upon completion of said circuit, players are rewarded with all map space within 
 The map displays currently existing territories and all in-progress routes by players. A leaderboard will also display the current square miles each player has claimed for that week.
 All scores and territories are reset weekly, and the top player is given a flair for the following week.
 
-How to Install the Software: 
+## How to Install the Software
 Our game requires no installation since it is a live service game hosted on a web server.
 To play our game a player will simply have to go to this URL: https://run-for-your-life.onrender.com/.
 From here, the player will create an account if they do not already have one, they can create one, then sign in. 
 
-How to Use the Software:
+## How to Use the Software
 
 Starting a Run
 - Authenticate by logging in or creating an account.
@@ -22,12 +24,12 @@ Starting a Run
 - Complete a loop or any route of your choice, the game tracks everything live.
 - When completed, your plot of land will display.
 
-Checking Your Progress:
+## Checking Your Progress
 - View live territory updates on the Map screen.
 - Check the Leaderboard to compare rankings.
 - Navigate to the Profile page to see total distance, land claimed, ranking, and recent activity.
 
-Competitive Features
+## Competitive Features
 - User Authentication: Every player must log in before playing.
 - Territory Claiming: Any closed circuit grants all land within as your territory.
 - Leaderboard: Track weekly rankings based on distance covered.
