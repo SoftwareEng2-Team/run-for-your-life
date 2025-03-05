@@ -5,7 +5,7 @@ CREATE TABLE users (
     email VARCHAR(100) UNIQUE NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
     total_distance FLOAT DEFAULT 0,
-    total_territory FLOAT NOT NULL,
+    total_territory FLOAT DEFAULT 0,
     weekly_flair BOOLEAN DEFAULT FALSE
 );
 
@@ -33,6 +33,6 @@ CREATE TABLE leaderboards (
     leaderboard_id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(user_id) ON DELETE CASCADE,
     week_start DATE NOT NULL,
-    total_territory FLOAT NOT NULL,
+    total_territory FLOAT DEFAULT 0,
     rank_num INT DEFAULT NULL 
 );
