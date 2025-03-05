@@ -82,8 +82,6 @@ async function initMap() {
 
   const current_location_window = new google.maps.InfoWindow();
 
-
-
   // Initialize the polyline for the player's path
   playerPathPolyline = new google.maps.Polyline({
     path: [],
@@ -313,7 +311,7 @@ async function claimTerritory() {
     const area = google.maps.geometry.spherical.computeArea(claimedTerritory.getPath().getArray());
     score += area;
 
-    const score_rounded = Number(score.toFixed(2)); 
+    const score_rounded = Number(score.toFixed(2));
     console.log("Territory expanded around:", userPosition);
     console.log("DEBUG CLAIMTERRITORY SCORE:", score_rounded);
 
@@ -323,18 +321,18 @@ async function claimTerritory() {
     const user_id = localStorage.getItem('user_id');
     if (!user_id) {
       console.error("No user_id found in local storage!");
-      return; // Stop execution if user_id is missing
-    }
-    try {
-      // DB request to set the rank of the current user
-      const response = await fetch(`${API_URL}/api/map`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        // Send the user ID and score
-        body: JSON.stringify({ user_id, score_rounded })
-      });
-    } catch (error) {
-      console.error("Error:", error);
+    } else {
+      try {
+        // DB request to set the rank of the current user
+        const response = await fetch(`${API_URL}/api/map`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          // Send the user ID and score
+          body: JSON.stringify({ user_id, score_rounded })
+        });
+      } catch (error) {
+        console.error("Error:", error);
+      }
     }
   } else {
     console.error("User position is not available.");
@@ -375,20 +373,19 @@ async function expandTerritory() {
     const user_id = localStorage.getItem('user_id');
     if (!user_id) {
       console.error("No user_id found in local storage!");
-      return; // Stop execution if user_id is missing
+    } else {
+      try {
+        // DB request to set the rank of the current user
+        const response = await fetch(`${API_URL}/api/map`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          // Send the user ID and rank number
+          body: JSON.stringify({ user_id, score })
+        });
+      } catch (error) {
+        console.error("Error:", error);
+      }
     }
-    try {
-      // DB request to set the rank of the current user
-      const response = await fetch(`${API_URL}/api/map`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        // Send the user ID and rank number
-        body: JSON.stringify({ user_id, score })
-      });
-    } catch (error) {
-      console.error("Error:", error);
-    }
-
     // Update the label position to the center of the new territory
     // const bounds = new google.maps.LatLngBounds();
     // newCoords.forEach(coord => bounds.extend(coord));
