@@ -5,36 +5,40 @@
 ### 1.1 Exact Copy of the Third Section from Last Week
 
 - Allocate tasks and side-tasks (ongoing weekly, so 1 week every week)
-- Complete database setup and ensure backend can communicate with the frontend (1 week)
-- Create and implement login page with user authentication (1 week)
-- Begin working on location tracking storage and developing the visual line that the player will use to track their run completion (2 weeks)
-- Fix leaderboard update inconsistencies and ensure accurate ranking system (1 week)
-- Optimize database queries for faster read/write operations and leaderboard updates (1 week)
-- Build Profile page frontend and architect it to be able to integrate a database (1 week)
+- Draw polygon with the users location (.5 weeks)
+- Have the project fully hooked up to the database (.5 weeks)
+- Implement basic multiplayer (1.5 weeks)
 
 ### 1.2 Progress and Issues
 
 **What we've finished:** 
-- Front end and back end hosting now complete with database set update
-- All pages completed, a lot of backend Setup
-- User can now login or create an account
-- The geolocation API is set up to now track the users position, and if it changes enough, log the changes
-    - This will be important to draw polygons
+- Implemented user account creation with email, username, and password storage. The player is redirected to the login page upon successful registration.
+- Added a guide button on the profile page that provides an overview of game mechanics, navigation button functionality, and player instructions.
+- Created database queries to retrieve leaderboard information, including player names and total claimed territory.
+- Implemented logic to calculate player rank and store it in the database.
+- Launched the beta version and recorded a project demonstration video.
+- Developed live movement tracking, players' paths are now displayed in real-time as they run.
+- Implemented land claiming, when a player completes a closed-loop, the enclosed area is claimed and visually updated on the map.
 
 **What we learned:**  
-- How front end and back end hosting works
-- How to set up the database to read and write to
-- How to track and store the users location, which will be used to draw ploygons 
+- How to structure database queries for real-time leaderboard updates.
+- The importance of user experience, adding the guide button improves player onboarding.
+- Implementing live tracking required careful testing to ensure accurate positioning and land claiming.
+- Handling database rank calculations.
 
 **Where we had trouble/stuck:**  
-- Scheduling difficulties 
-- Tasks taking longer than anticipated 
+- Some issues with database queries caused incorrect leaderboard and profile page updates.
+- Wi-Fi interreuptions will lead to inaccurate player positioning.
+- Scheduling difficulties along with response times.
 
 ### 1.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
-- Allocate tasks and side-tasks (ongoing weekly, so 1 week every week)
-- Draw polygon with the users location (.5 weeks)
-- Have the project fully hooked up to the database (.5 weeks)
-- Implement basic multiplayer (1.5 weeks)
+- Allocate tasks and side-tasks (0.5 week)
+- Optimize database queries for leaderboard and profile page (2 days)
+- Improve the visual representation of claimed land (0.5 week)
+- Implement achievements for specific actions (0.5 week)
+- Implement a bug report form in the profile page (1 day)
+- Complete project poster/presentation and report (1 day)
+- Complete the final release (0.5 week)
 
 ## 2. Contributions of Individual Team Members
 
