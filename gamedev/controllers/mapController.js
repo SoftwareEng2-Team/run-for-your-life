@@ -1,12 +1,7 @@
-import pool from '../../database/connection_pool.mjs';
-
-// Set the user's territory claimed 
 export const setTerrClaimed = async (req, res) => {
-    // Get the user_id and total territory from the request body
     const { user_id, total_territory } = req.body;
 
     try {
-        // Create the query
         const query = `
             WITH updated_leaderboard AS (
                 INSERT INTO leaderboards (user_id, total_territory, rank_num, week_start)
@@ -20,16 +15,18 @@ export const setTerrClaimed = async (req, res) => {
             WHERE user_id = $1
             RETURNING total_territory;
         `;
-        
-        // Perform the query on the database
+
         const result = await pool.query(query, [user_id, total_territory]);
 
-        // Check if any rows were updated
         if (result.rowCount === 0) {
-            return res.status(404).json({ error: 'Not NULL' });
+            return res.status(404).json({ error: 'User not found or total_territory update failed' });
         }
 
-        res.status(200).json({ message: "User's territory claimed updated successfully", total_territory: result.rows[0].total_territory  });
+        console.log("Debug: Updated total_territory in leaderboards:", result.rows[0].total_territory);
+        res.status(200).json({ 
+            message: "User's territory claimed updated successfully", 
+            total_territory: result.rows[0].total_territory 
+        });
     } catch (error) {
         console.error("Database error setting the total_territory:", error);
         res.status(500).json({ error: error.message });
