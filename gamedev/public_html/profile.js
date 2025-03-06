@@ -1,3 +1,5 @@
+// Dotenv configuration for storing the API url in an env file
+import dotenv from 'dotenv';
 dotenv.config({ path: '../public_html/.env' });
 
 document.addEventListener("DOMContentLoaded", async () => {
