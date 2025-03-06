@@ -45,31 +45,33 @@
 ### James Nichols
 
 #### 2.1 Exact Copy of the Third Section from Last Week
-- Create login page for players to fill out to create a account on the database (1 week)
-- Begin working on location tracking storage and developing the visual line that the player will use to track their run completion (2 weeks) 
-- Work on scoring weights to determine how much a given area show score for the player (2 weeks)
+- Finish working on the polygon creation and giving players points that connect to the database (1 week).
+- Begin working on location tracking storage and developing the visual line that the player will use to track their run completion (1 weeks) 
+- Work on scoring weights to determine how much a given area show score for the player (1 weeks)
 
 #### 2.2 Progress and Issues
 
 **What we've finished:** 
-- Create login page for players to fill out to create a account on the database 
-- Created automatic location tracking which is mostly accurate, it struggles inside school buildings
+- Finished creating a visual territory and and line creation that shows where the user is currently moving.
+- Finished linking accounts so when a user logins they are connected to their account.
 - Connected backend to frontend so user profile information is saved.
 
 
 **What we learned:**  .
 - The Google API may have trouble providing managing multiple players at once.
-- Using render rather than the school server to avoid any issues with backend.
+- The program can struggle with location tracking when inside of a building.
+- Using cellar data can make it more consistent and larger additions to the territory works better.
 
 **Where we had trouble/stuck:** 
 - Struggle to properly devide work out for each member of the group.
-- Trouble creating visuals using the API polygon feature.
+- It was difficult to test since we would need to run around an area everytime we wanted to test something.
+- Also had issues using with pushing data to the backend which has stunted progress.
 
 
 #### 2.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
-- Finish working on the polygon creation and giving players points that connect to the database (1 week).
-- Begin working on location tracking storage and developing the visual line that the player will use to track their run completion (1 weeks) 
-- Work on scoring weights to determine how much a given area show score for the player (1 weeks)
+- Fix backend and make visual changes to the display (1 week)
+- Create poster and prepare for presentation (1 week)
+- Run tests to determine bugs for presentation that we can be aware of for presentation (1 week)
 
 ### Calvin Chen
 
