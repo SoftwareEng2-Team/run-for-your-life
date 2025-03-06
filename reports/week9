@@ -76,41 +76,37 @@
 ### Calvin Chen
 
 #### 2.1 Exact Copy of the Third Section from Last Week
-- Implement and test user authentication system to allow account creation, secure login, and session management (7 hrs)
-- Improve frontend-to-database communication by resolving server permission issues or migrating to AWS (5 hrs)
-- Complete profile page integration with user stats and display recent run history (5 hrs)
-- Continue testing and refining GPS tracking logic to improve accuracy in movement detection (4 hrs)
-- Optimize leaderboard update process to handle multiple players updating scores simultaneously (3 hrs)
-- Research and integrate anti-cheating measures such as speed thresholds and activity validation (5 hrs)
-
-#### 2.2 Progress and Issues
-
-**What we've finished:**  
-- Successfully hosted both the frontend and backend on Render.com.
-- Fully set up and connected the database with the backend.
-- User authentication system is complete—users can now log in and create accounts.
-- The leaderboard is now fully functional, dynamically updating rankings.
-- The profile page is complete, ready to display user information, ranking, and achievements.
-- The geolocation API tracks movement and logs the player's path at specific intervals.
-- Resolved previous database permission issues encountered on OSU’s server.
-
-**What we learned:**  
-- Hosting the game on Render.com is a more viable option than AWS, as it is easier to manage
-- User experience is significantly improved by refining the profile and leaderboard page layout 
-- Debugging geolocation tracking requires frequent real-world testing to validate accuracy and consistency
-- How to host our frontend and backend along with connecting to our database on Render.com
-
-**Where we had trouble/stuck:**  
-- Google Maps API issues caused intermittent failures when navigating to the map page.
-- Some UI inconsistencies needed fixes across different devices.
-- Scheduling conflicts led to slower progress in some areas.
-
-#### 2.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
 - Allocate tasks and side-tasks (ongoing weekly, so 1 week every week)
 - Finalize profile page database integration and test dynamic user stats (2 days)
 - Implement polygon drawing to visualize captured areas using GPS coordinates (1 week)
 - Improve map page stability and fix any remaining Google Maps API issues (1 week)
 - Implement basic multiplayer interactions such as tracking nearby users (1 week)
+
+#### 2.2 Progress and Issues
+
+**What we've finished:**  
+- Debug leaderboard database queries, ensuring proper player ranking and score updates.
+- Reviewed feedback for the beta release.
+- Implemented land claiming logic (how completed loops trigger area capture).
+- Launched our beta release.
+- Added a user guide button to inform new players about how our game works and what it's about.
+- Implemented a visual line to visually display the live tracking of the player movement.
+
+**What we learned:**  
+- How to optimize database queries for real-time updates for leaderboard rankings.
+- Google Maps API tracking requires strong wifi connection for utmost accuracy.
+- Network interrupptions will impact tracking accuracy.
+- Adding a guide button improves our new user experience.
+
+**Where we had trouble/stuck:**  
+- Leaderboard did not update correctly due to database query issues.
+- Balancing schedule conflicts while working on both frontend and backend logic.
+
+#### 2.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
+- Add a bug report form to the profile page for player feedback (1 day).
+- Complete the final project poster, presentation, and report (1 day).
+- Improve leaderboard and profile page performance (via database queires) (0.5 week)
+- Release the final project (0.5 week)
 
 ### Brian Munger
 
