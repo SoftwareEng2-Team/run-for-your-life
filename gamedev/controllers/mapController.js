@@ -9,15 +9,12 @@ export const setTerrClaimed = async (req, res) => {
         // Create the query
         const query = `
             WITH updated_leaderboard AS (
-                UPDATE leaderboards
-                SET total_territory = total_territory + $2
-                WHERE user_id = $1
-                RETURNING total_territory
+            INSERT INTO leaderboards (user_id, total_territory, rank_num, week_start)
+            VALUES ($1, $2, NULL, CURRENT_DATE)
+            ON CONFLICT (user_id) DO UPDATE 
+            SET total_territory = leaderboards.total_territory + EXCLUDED.total_territory
+            RETURNING total_territory
             )
-            UPDATE users
-            SET total_territory = (SELECT total_territory FROM updated_leaderboard)
-            WHERE user_id = $1
-            RETURNING total_territory;
         `;
         
         // Perform the query on the database
