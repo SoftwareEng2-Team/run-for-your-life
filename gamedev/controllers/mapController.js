@@ -12,13 +12,9 @@ export const setTerrClaimed = async (req, res) => {
                 RETURNING total_territory
             )
             UPDATE users
-            SET total_territory = (
-                SELECT COALESCE(SUM(total_territory), 0) 
-                FROM leaderboards 
-                WHERE user_id = $1
-            )
+            SET total_territory = (SELECT COALESCE(SUM(total_territory), 0) FROM leaderboards WHERE user_id = $1)
             WHERE user_id = $1
-            RETURNING total_territory;
+            RETURNING total_territory;            
         `;
 
         const result = await pool.query(query, [user_id, total_territory]);
