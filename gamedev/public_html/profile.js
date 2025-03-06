@@ -1,3 +1,5 @@
+dotenv.config({ path: '../public_html/.env' });
+
 document.addEventListener("DOMContentLoaded", async () => {
   // Clear all text fields 
   document.getElementById("username").textContent = "";
