@@ -11,8 +11,8 @@ export const getProfile = async (req, res) => {
             SELECT 
                 u.username, 
                 l.rank_num AS rank, 
-                u.total_distance AS total_distance_ran, 
-                u.total_territory AS total_distance_claimed
+                COALESCE(u.total_distance, 0) AS total_distance_ran, 
+                COALESCE(l.total_territory, 0) AS total_distance_claimed
             FROM users u
             LEFT JOIN leaderboards l 
                 ON u.user_id = l.user_id 
