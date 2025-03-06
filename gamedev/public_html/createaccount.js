@@ -1,7 +1,3 @@
-// Dotenv configuration for storing the API url in an env file
-import dotenv from 'dotenv';
-dotenv.config({ path: '../public_html/.env' });
-
 // Wait until the page is fully loaded
 document.addEventListener("DOMContentLoaded", function () {
     // When page loads, hide all errors
@@ -19,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const password = document.getElementById("password").value;
         const confirm_password = document.getElementById("confirm_password").value;
         // API URL for the backend
-        const API_URL = process.env.API_URL;
+        const API_URL = "https://run-for-your-life-api.onrender.com";
 
         // If the passwords match, send a POST request to the API
         if (password === confirm_password) {
