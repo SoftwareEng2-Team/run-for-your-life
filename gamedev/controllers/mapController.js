@@ -1,4 +1,3 @@
-import pool from '../../database/connection_pool.mjs';
 export const setTerrClaimed = async (req, res) => {
     const { user_id, total_territory } = req.body;
 
@@ -8,18 +7,22 @@ export const setTerrClaimed = async (req, res) => {
                 INSERT INTO leaderboards (user_id, total_territory, rank_num, week_start)
                 VALUES ($1, $2, NULL, CURRENT_DATE)
                 ON CONFLICT (user_id, week_start) DO UPDATE 
-                SET total_territory = leaderboards.total_territory + EXCLUDED.total_territory
+                SET total_territory = COALESCE(leaderboards.total_territory, 0) + EXCLUDED.total_territory
                 RETURNING total_territory
             )
             UPDATE users
-            SET total_territory = (SELECT total_territory FROM leaderboards WHERE user_id = $1 ORDER BY week_start DESC LIMIT 1)
+            SET total_territory = (
+                SELECT COALESCE(MAX(total_territory), 0) 
+                FROM leaderboards 
+                WHERE user_id = $1
+            )
             WHERE user_id = $1
             RETURNING total_territory;
         `;
 
         const result = await pool.query(query, [user_id, total_territory]);
 
-        if (result.rowCount === 0) {
+        if (result.rowCount === 0 || result.rows[0].total_territory === null) {
             return res.status(404).json({ error: 'User not found or total_territory update failed' });
         }
 

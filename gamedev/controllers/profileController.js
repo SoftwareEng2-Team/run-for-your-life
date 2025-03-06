@@ -13,13 +13,16 @@ export const getProfile = async (req, res) => {
             l.rank_num AS rank, 
             COALESCE(u.total_distance, 0) AS total_distance_ran, 
             COALESCE(
-                (SELECT total_territory FROM leaderboards WHERE user_id = u.user_id ORDER BY week_start DESC LIMIT 1),
+                (SELECT MAX(total_territory) FROM leaderboards WHERE user_id = u.user_id),
                 0
             ) AS total_distance_claimed
         FROM users u
-        LEFT JOIN leaderboards l ON u.user_id = l.user_id
+        LEFT JOIN leaderboards l 
+            ON u.user_id = l.user_id AND l.week_start = (SELECT MAX(week_start) FROM leaderboards WHERE user_id = u.user_id)
         WHERE u.user_id = $1;
-    `;    
+    `;
+    
+    
 
         // Perform the query on the database
         const { rows } = await pool.query(query, [user_id]);
