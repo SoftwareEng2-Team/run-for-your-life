@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Report a Bug</title>
+</head>
+<body>
+  <h1>Report a Bug</h1>
+  <p>Please fill out the details below:</p>
+
+  <form id="bugForm">
+    <label for="bugTitle">Bug Title:</label><br/>
+    <input type="text" id="bugTitle" required><br/><br/>
+
+    <label for="description">Description:</label><br/>
+    <textarea id="description" rows="3" required></textarea><br/><br/>
+
+    <label for="steps">Steps to Reproduce:</label><br/>
+    <textarea id="steps" rows="3" required></textarea><br/><br/>
+
+    <label for="expected">Expected Behavior:</label><br/>
+    <textarea id="expected" rows="2" required></textarea><br/><br/>
+
+    <label for="actual">Actual Behavior:</label><br/>
+    <textarea id="actual" rows="2" required></textarea><br/><br/>
+
+    <label for="device">Device Details (optional):</label><br/>
+    <input type="text" id="device"><br/><br/>
+
+    <label for="logs">Error Logs (optional):</label><br/>
+    <textarea id="logs" rows="2"></textarea><br/><br/>
+
+    <button type="submit">Submit Bug Report</button>
+  </form>
+
+  <p id="successMessage" style="color: green; display: none;">
+    Thank you! Your bug report has been submitted.
+  </p>
+  <p id="errorMessage" style="color: red; display: none;">
+    Oops! Something went wrong. Please try again later.
+  </p>
+
+  <!-- New back button -->
+  <button id="backButton" type="button">Back to Profile</button>
+
+  <!-- Scripts -->
+  <script src="bugreport.js"></script>
+  <script>
+    // When the DOM is ready, wire up the back button
+    document.addEventListener("DOMContentLoaded", () => {
+      const backButton = document.getElementById("backButton");
+      backButton.addEventListener("click", () => {
+        // Navigate back to profile page
+        window.location.href = "profile.html";
+      });
+    });
+  </script>
+</body>
+</html>

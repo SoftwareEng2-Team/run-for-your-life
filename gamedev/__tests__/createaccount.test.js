@@ -75,7 +75,6 @@ describe('CreateAccount Form Tests', () => {
 
     expect(passwordError.style.visibility).toBe('hidden');
 
-    // If you want to verify the code tried to redirect:
-    // expect(window.location.href).toBe("https://run-for-your-life.onrender.com/");
+
   });
 });
