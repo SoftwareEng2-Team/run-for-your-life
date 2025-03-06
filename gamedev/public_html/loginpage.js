@@ -1,3 +1,7 @@
+// Dotenv configuration for storing the API url in an env file
+import dotenv from 'dotenv';
+dotenv.config({ path: '../public_html/.env' });
+
 // Wait until the page is fully loaded
 document.addEventListener("DOMContentLoaded", function () {
     // When page loads, hide error message regarding incorrect email / password

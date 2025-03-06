@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config({ path: '../public_html/.env' });
+
 let map;
 // The player's draggable marker
 let draggableMarker;
