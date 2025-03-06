@@ -347,8 +347,7 @@ async function expandTerritory() {
     const currentCoords = claimedTerritory.getPath().getArray();
     // Add the outside path to the current territory
     outsidePath.push(outsidePath[0]);
-    const newCoords = currentCoords.concat(outsidePath);
-
+    const newCoords = removeRedundancies(currentCoords.concat(outsidePath));
     // Create a new polygon with the expanded territory
     claimedTerritory.setMap(null); // Remove the previous territory
     claimedTerritory = new google.maps.Polygon({
@@ -367,6 +366,8 @@ async function expandTerritory() {
     score += expansionWidth;
     console.log("Territory expanded around:", userPosition);
     console.log("DEBUG EXPANDTERRITORY SCORE:", score);
+
+    
 
     // Update the database with the territory claimed section
     // API URL for the backend
@@ -400,6 +401,24 @@ async function expandTerritory() {
   } else {
     console.error("User position or outside path is not available.");
   }
+}
+
+async function removeRedundancies(polygoncoords) {
+if (claimedTerritory) {
+  let filteredCoords = polygoncoords.filter((coord, index) => {
+    //Remove the current coordinate from the polygon
+    let incision = polygoncoords.slice(0, index).concat(polygoncoords.slice(index + 1));
+    //Must be at least 3 coordinates to form a polygon
+    if(incision.length <= 3) {
+      return true;
+    }
+    //Create a polygon without the current coordinate, then check if the coordinate is still inside the polygon
+    let excision = google.maps.geometry.poly.containsLocation(new google.maps.LatLng(coord), new google.maps.Polygon({paths: incision}));
+    //If coordinate is inside the polygon, excise it
+    return !excision;
+  });
+  return filteredCoords;
+}
 }
 
 // Custom OverlayView for the static label
