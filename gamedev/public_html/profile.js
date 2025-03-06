@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("achievements").innerHTML = "";
 
   // API URL for the backend
-  const API_URL = process.env.API_URL;
+  const API_URL = "https://run-for-your-life-api.onrender.com";
   // Retrieve the user_id from local storage
   const user_id = localStorage.getItem('user_id');
   if (!user_id) {
