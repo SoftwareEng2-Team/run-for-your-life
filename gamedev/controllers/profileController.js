@@ -17,9 +17,9 @@ export const getProfile = async (req, res) => {
                 0
             ) AS total_distance_claimed
         FROM users u
+        LEFT JOIN leaderboards l ON u.user_id = l.user_id
         WHERE u.user_id = $1;
-    `;
-    
+    `;    
 
         // Perform the query on the database
         const { rows } = await pool.query(query, [user_id]);
