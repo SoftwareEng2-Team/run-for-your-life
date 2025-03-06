@@ -23,25 +23,11 @@ let locationHistory = [];
 let territoryLabel = null;
 
 async function initMap() {
-  //Removed feature for beta release
-  // Bounding Box for the OSU Campus
-  // const osuBounds = {
-  //   // Coordinates for the map boundary
-  //   north: 44.56788,
-  //   south: 44.55726,
-  //   east: -123.27163,
-  //   west: -123.28965
-  // };
 
   // Initialize the map with the boundary
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 44.5646, lng: -123.2620 },
-    zoom: 16,
-    //Removed feature for beta release
-    // restriction: {
-    //   latLngBounds: osuBounds,
-    //   strictBounds: true,
-    // },
+    zoom: 16
   });
 
   // Static Marker on Corvallis
@@ -189,15 +175,6 @@ async function initMap() {
 
           // For debugging purposes, update the console periodically with the user's position
           console.log("User position:", pos);
-
-          //Removed feature for beta release
-          // // If the user is currently outside of the OSU campus bounds, notify them
-          // if (pos.lat < osuBounds.south || pos.lat > osuBounds.north ||
-          //   pos.lng < osuBounds.west || pos.lng > osuBounds.east) {
-          //   console.log("Location is outside OSU campus. Stay within the boundary.");
-          //   return;
-          // }
-
 
           previousPosition = pos;
 
@@ -386,14 +363,6 @@ async function expandTerritory() {
         console.error("Error:", error);
       }
     }
-    // Update the label position to the center of the new territory
-    // const bounds = new google.maps.LatLngBounds();
-    // newCoords.forEach(coord => bounds.extend(coord));
-    // const center = bounds.getCenter();
-    // if (territoryLabel) {
-    //   territoryLabel.setMap(null);
-    // }
-    // territoryLabel = new TerritoryLabel(center, map, "Your Territory");
   } else {
     console.error("User position or outside path is not available.");
   }
@@ -416,46 +385,6 @@ if (claimedTerritory) {
   return filteredCoords;
 }
 }
-
-// Custom OverlayView for the static label
-// async function TerritoryLabel(position, map, text) {
-//   this.position = position;
-//   this.text = text;
-//   this.div = null;
-//   this.setMap(map);
-// }
-
-// TerritoryLabel.prototype = new google.maps.OverlayView();
-
-// TerritoryLabel.prototype.onAdd = async function () {
-//   const div = document.createElement('div');
-//   div.style.position = 'absolute';
-//   div.style.backgroundColor = 'white';
-//   div.style.border = '1px solid black';
-//   div.style.padding = '2px';
-//   div.style.fontSize = '12px';
-//   div.innerHTML = this.text;
-//   this.div = div;
-
-//   const panes = this.getPanes();
-//   panes.overlayLayer.appendChild(div);
-// };
-
-// TerritoryLabel.prototype.draw = async function () {
-//   const overlayProjection = this.getProjection();
-//   const position = overlayProjection.fromLatLngToDivPixel(this.position);
-
-//   const div = this.div;
-//   div.style.left = position.x + 'px';
-//   div.style.top = position.y + 'px';
-// };
-
-// TerritoryLabel.prototype.onRemove = async function () {
-//   if (this.div) {
-//     this.div.parentNode.removeChild(this.div);
-//     this.div = null;
-//   }
-// };
 
 // Error handling for geolocation
 async function handleLocationError(browserHasGeolocation, current_location_window, pos) {
