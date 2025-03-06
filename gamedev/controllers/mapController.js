@@ -1,4 +1,3 @@
-import pool from '../../database/connection_pool.mjs';
 export const setTerrClaimed = async (req, res) => {
     const { user_id, total_territory } = req.body;
 
@@ -8,12 +7,12 @@ export const setTerrClaimed = async (req, res) => {
                 INSERT INTO leaderboards (user_id, total_territory, rank_num, week_start)
                 VALUES ($1, $2, NULL, CURRENT_DATE)
                 ON CONFLICT (user_id, week_start) DO UPDATE 
-                SET total_territory = COALESCE(leaderboards.total_territory, 0) + EXCLUDED.total_territory
+                SET total_territory = leaderboards.total_territory + EXCLUDED.total_territory
                 RETURNING total_territory
             )
             UPDATE users
             SET total_territory = (
-                SELECT COALESCE(MAX(total_territory), 0) 
+                SELECT COALESCE(SUM(total_territory), 0) 
                 FROM leaderboards 
                 WHERE user_id = $1
             )
