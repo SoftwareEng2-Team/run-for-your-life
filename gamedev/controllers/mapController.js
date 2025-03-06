@@ -1,7 +1,11 @@
 import pool from '../../database/connection_pool.mjs';
 export const setTerrClaimed = async (req, res) => {
-    const { user_id, total_territory } = req.body;
+    console.log("DEBUG: Executing territory claim for user:", user_id, " Territory added:", total_territory);
 
+    const result = await pool.query(query, [user_id, total_territory]);
+    
+    console.log("DEBUG: Query result:", result.rows);
+    
     try {
         const query = `
             WITH updated_leaderboard AS (
@@ -9,7 +13,8 @@ export const setTerrClaimed = async (req, res) => {
                 VALUES ($1, $2, NULL, CURRENT_DATE)
                 ON CONFLICT (user_id, week_start) DO UPDATE 
                 SET total_territory = leaderboards.total_territory + EXCLUDED.total_territory
-                RETURNING total_territory
+                WHERE leaderboards.user_id = EXCLUDED.user_id AND leaderboards.week_start = EXCLUDED.week_start
+                RETURNING total_territory;                
             )
             UPDATE users
             SET total_territory = (SELECT COALESCE(SUM(total_territory), 0) FROM leaderboards WHERE user_id = $1)
