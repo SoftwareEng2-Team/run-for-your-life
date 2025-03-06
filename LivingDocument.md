@@ -73,70 +73,70 @@ Communicating with our team, we will address strengths and weaknesses in ourselv
 Planning to use JavaScript/HTML for the app layout and general display features. Plan to use Python for location grabbing and more technical back-end features. May experiment with Flutter to aid in the development process. 
 
 ### Risks: 
-GPS location tracking:
+##### GPS location tracking:
 Likelihood: Low; Impact: High
 Evidence: Based on our team members' previous experience no one has done the location tracking, so it might be a challenge for us since if it not working then basically the whole game will crash down. Also, we have to think about the GPS signal issues, and permission restrictions. 
 Steps to reduce risk: We are using the Google Geolocation API, which combines GPS, Wifi, cell tower data, and IP address to increase the accuracy of tracking, and also reduce the location tracking issue. The geolocation helps us to improve the issue of accuracy, real-time speed, and reliability. 
 Detecting the problem: We're going to test by taking our device and moving it around on the OSU campus once we finish implementing it, to check if the location tracking is accurate and functions without lacking it. Also player have to allow permission for tracking on their device. 
 Mitigation plan: If the Geolocation API fails, then we will recheck all the implementations we have done on the location tracking. I don't think we are going to re-implement a new location tracking since Geolocation API is one of the most accurate and easy to implement.
 
-The speed limit for players to prevent cheating: 
+##### The speed limit for players to prevent cheating: 
 Likelihood: High; Impact: High 
 Evidence: Not only do our games face this kind of issue, but there are games that players use VPN, and other GPS apps to control the speed. 
 Steps to reduce risk: Implement a speed limit function that detects once the plyer's speed exceeds the fast-walk speed limit, or detects user jump from one location to another location. 
 Detecting the problem: Do some automatic checks that ascertain the speed of movement against set physical benchmarks. 
 Mitigation plan: Modify and improve the logic of speed detection according to the behavioral patterns observed by the player.
 
-Real-time multiplayer interaction: 
+##### Real-time multiplayer interaction: 
 Likelihood: Medium; Impact: High 
 Evidence: The multiplayer synchronization issue happens a lot in different real-time games nowadays, something like lacking, desynchronization, can cause a major problem with how the player's in-game sensitivity. 
 Steps to reduce risk: It can be solved by implementing server-side conflict or interactive solutions by dealing with claiming routes or territory. 
 Detecting the problem: Keep track of two players who claim the same route at the same time, and see if the server-side deals with the problem. 
 Mitigation plan: The server side should be able to detect which user comes first, and be able to handle it without occuring any error.
 
-Database performance: 
+##### Database performance: 
 Likelihood: Medium Impact: High Evidence: 
 Since this is a game that needs player login and allows recording player's data, it is important to have a reliable database to store all player's information and game record.
 Steps to reduce risk: It can be solved by using MongoDB, it can fast reads/writes, flexible schema, and automatic indexing to improve MongoDB performance. This allows for rapid updates to the leaderboard and easy claiming of routes. MongoDB also ensures smooth real-time gameplay through its caching and scalability features. 
 Detecting the problem: It can be detected by implementing functions such as monitoring, logging, and query optimization. 
 Mitigation plan: If the database is not working or crashes, having a replica as a backup will be the best option to support it.
 
-Server performance: 
+##### Server performance: 
 Likelihood: Medium; Impact: High 
 Evidence: When a small amount of users becomes a huge scale of users the server might crash due to not being able to handle multiple player logos at the same time. 
 Steps to reduce risk: We are using Oregon State University's engineering server as our server, which can be securand e, be able to handle multiple user scenarios. 
 Detecting the problem: it would be great to monitor OSU server resource usage. 
 Mitigation plan: If the server crashes down then the best way is to contact OSU IT support.
 
-GPS location tracking:
+##### GPS location tracking:
 Likelihood: Low; Impact: High
 Evidence: Based on our team members' previous experience no one has done the location tracking, so it might be a challenge for us, since if it does not work then basically the whole game will crash down. Also, we have to think about the GPS signal issues, and permission restrictions.
 Steps to reduce risk: We are using the Google Geolocation API, which combines GPS, Wifi, cell tower data, and IP address to increase the accuracy of tracking, and also reduce the location tracking issue. The geolocation helps us to improve the issue of accuracy, real-time speed, and reliability.
 Detecting the problem: We're going to test by taking our device and moving it around on the OSU campus once we finish implementing it, to check if the location tracking is accurate and functions without lacking it. Also, players have to allow permission for tracking on their devices.
 Mitigation plan: If the Geolocation API fails, then we will recheck all the implementations we did on the location tracking. I don't think we are going to re-implement a new location tracking since Geolocation API is one of the most accurate and easy to implement.
 
-The speed limit for players to prevent cheating:
+##### The speed limit for players to prevent cheating:
 Likelihood: High; Impact: High
 Evidence: Not just our games face this kind of issue, some games use VPN, and other GPS apps to control the speed.
 Steps to reduce risk: Implement a speed limit function that detects once the plyer's speed exceeds the fast-walk speed limit or the program detects a jump from one location to another location.
 Detecting the problem: Do some automatic checks that ascertain the speed of movement against set physical benchmarks. 
 Mitigation plan: Modify and improve the logic of speed detection according to the behavioral patterns observed by the player.
 
-  Real-time multiplayer interaction:
+##### Real-time multiplayer interaction:
 Likelihood: Medium; Impact: High
 Evidence: The multiplayer synchronization issue happens a lot in different real-time games nowadays, something like lacking, desynchronization, can cause a major problem with how the player's in-game sensitivity.
 Steps to reduce risk: It can be solved by implementing server-side conflict or interactive solutions by dealing with claiming routes or territory.
 Detecting the problem: Keep track of two players who claim the same route at the same time, and see if the server-side deals with the problem.
 Mitigation plan: The server-side should be able to detect which user comes first, and be able to handle it without encountering any error.
 
-Database performance:
+##### Database performance:
 Likelihood: Medium; Impact: High
 Evidence: Since this is a game thneedseed player login, and allows recording players' data, it is important to have a reliable database to store all players' information and game records.
 Steps to reduce risk: It can be solved by using MongoDB, it can fast reads/writes, flexible schema, and automatic indexing to improve MongoDB performance. This allows for rapid updates to the leaderboard and easy claiming of routes. MongoDB also ensures smooth real-time gameplay through its caching and scalability features.
 Detecting the problem: It can be detected by implementing functions such as monitoring, logging, and query optimization.
 Mitigation plan: If the database is not working or crashes, having a replica as a backup will be the best option.
 
-Server performance:
+##### Server performance:
 Likelihood: Medium; Impact: High
 Evidence: When a small amount of users becomes a huge scale of users the server might crash due to not being able to handle multiple player logos at the same time.
 Steps to reduce risk: We are using Oregon State University's engineering server as our server, which can be secure, and be able to handle multiple user scenarios.
@@ -155,25 +155,25 @@ Evan Albert - Quality Assurance
 ### Team process:
 We will be using Visual Studio code for the main part of our programming as all of our team members have experience using it in past projects. We have yet to discover other possible alternatives and ways we want to implement API location gathering.
 
-James Nichols, Project Manager: 
+##### James Nichols, Project Manager: 
 As the project manager my main job will be ensuring that the team stays on track of deadlines and members know their tasks. Since each member has so much going on it’ll be important for me to be on top of things and able to divide up work so member feels too overwhelmed. I was assigned this role by the staff (professor) but I believe I will be able to excel at this role and help guide our team to a successful project.
 
-Brian Munger, Implement User Interface:
+##### Brian Munger, Implement User Interface:
 Per my role of implementing the user interface for our game, it is my job to design an interface where the user can effectively navigate the app, see their progress, and perform other necessary actions. In doing this, I will communicate closely with Connor to bring his design to life. I intend to use Flutter to implement the user interface for our game. 
 
-Keona Abad, Quality Assurance:
+##### Keona Abad, Quality Assurance:
 As the quality assurance role for our team, I need to ensure that the project meets all functional and quality requirements. I will have to design and then implement test plans, execute the tests, and then document the results, this way we can identify any issues early. Working closely with the whole team, I will make sure that our software is reliable, bug-free, and user-friendly.
 
-Shi-Ru Huang, Programmer & Tester:
+##### Shi-Ru Huang, Programmer & Tester:
 Being a programmer and tester, it is my duty to stay on track every single week, making sure that all the programs that I’ve done are implemented correctly, also as a tester, I will have to check whether the program matches the requirements and specifications. In the meantime, is it extremely important to stay in contact and be proactive with all my team members, make sure we all are on the same page.
 
-Connor Sun, Game Design/Programmer:
+##### Connor Sun, Game Design/Programmer:
 A game designer/programmer creates and implements game-related features. The role is vital as our entire project centers around a gameplay loop that will attract and keep users engaged. I am justifiable in this role as I came up with the project idea, made several improvements to the initial design, and have prior experience designing games and balancing existing features.
 
-Calvin Chen, Tester:
+##### Calvin Chen, Tester:
 The role of a tester is to ensure the quality, reliability, and functionality of the software being developed. It will be my duty to test the product for bugs, usability issues, and compliance with requirements. I will also create test plans, write test cases, and document the results. This role is essential for our project because testing ensures that the final product meets user expectations and minimizes costly errors. 
 
-Evan Albert, Quality Assurance:
+##### Evan Albert, Quality Assurance:
 Being the quality assurance means that I have the responsibility to ensure that the app development is on track and meets the desired outcomes throughout production. I will ensure that any bugs or possible structure flaws are identified early on and addressed accordingly.
 
 
@@ -183,48 +183,49 @@ We plan to test the key features, including geolocation tracking, server respons
 ### Documentation Plan:
 The README file will contain an overview, installation steps, and usage instructions. A USER_GUIDE.md file will provide gameplay instructions and key features. For developers, inline documentation and an API.md file will outline endpoints. A TESTING.md file will document our test plans, and a CHANGELOG.md will track updates. By the end of our development, if need be we will add some more documents such as a CONTRIBUTING.md file for coding standards and the Git workflow we used. Our goal is to make clear documents for not just users, but developers, and administrators as well. 
 
-Geolocation tracking;
-Unit testing: Each function will be tested as development goes on. The test will include different features such as how accurate the location tracking API is, also how the marker appears on the map. By testing each function in isolation we can tell quickly what the problem may be and make corrections or workarounds.
+### Geolocation Tracking Location Tracking:
+##### Unit testing: Each function will be tested as development goes on. The test will include different features such as how accurate the location tracking API is, also how the marker appears on the map. By testing each function in isolation we can tell quickly what the problem may be and make corrections or workarounds.
 
-System testing: Test how the location tracking connects between the point calculation functions and the mapping API. By comparing the results that the system gives to the expected results we can determine if everything is working smoothly. 
+##### System testing: Test how the location tracking connects between the point calculation functions and the mapping API. By comparing the results that the system gives to the expected results we can determine if everything is working smoothly. 
 
-Usability testing: Since our product is a game that many will use usability testing will be the most important. Since the geolocation is not able to be interacted with by the user it shouldn't be a major concern. However, since our product involves location tracking we will have to have users test to see if they can use our app to track people. 
+##### Usability testing: Since our product is a game that many will use usability testing will be the most important. Since the geolocation is not able to be interacted with by the user it shouldn't be a major concern. However, since our product involves location tracking we will have to have users test to see if they can use our app to track people. 
 
-Example test suites: 
+###### Example test suites: 
 1) Enter random locations to see if the location marker properly tracks them.
 2) Enter random location sizes to see if the points are accurately returned and calculated.
 3) Have random friends or people run our website to determine if the user can understand the layout and whether they can use the app to track other users' data.
 
-Server Responsiveness;
+##### Server Responsiveness:
 Unit testing: Each function will be tested as development goes on. The test will include different features such as how the server runs depending on the amount of users currently on, also how user quickly the site can update itself to display new data. Testing each feature in isolation allows for obvious bugs to be found in corrected. 
 
-System testing: Test how the server handles taking in data from multiple sources, such as the location tracking and the user database. Since the app will be running 24 hours a day, the server will need to be able to handle all the features and accurately update the information provided by the users.
+##### System testing: Test how the server handles taking in data from multiple sources, such as the location tracking and the user database. Since the app will be running 24 hours a day, the server will need to be able to handle all the features and accurately update the information provided by the users.
 
-Usability testing: Since our product is a game that many will use usability testing will be the most important. The server will need to be able to respond to users at a near-instant rate. The server will also need to be tested with different amounts of players online. Since the responsiveness will most likely change depending on the amount of users.
+##### Usability testing: Since our product is a game that many will use usability testing will be the most important. The server will need to be able to respond to users at a near-instant rate. The server will also need to be tested with different amounts of players online. Since the responsiveness will most likely change depending on the amount of users.
 
-Example test suites: 
+###### Example test suites: 
 1) Have only one or two users on the server and test responsiveness.
 2) Have many users on the server, most likely from class, and determine if the server can handle that or if it will need to implement multiple servers.
 3) Have users enter the server on different levels of connection and test responsiveness; mobile data, Wi-Fi, and low mobile data (1-2 bars). 
 
-Territory Claimed and Points Scored;
+##### Territory Claimed and Points Scored:
 Unit testing: Each function will be tested as development goes on. The test will include different features such as how accurate the location tracking API is with creating territories, and that the points are accurately calculated based on territory. By testing each feature in isolation it will reveal if we need to change weights for points or alter how territories are created.
 
-System testing: Test how the location tracking connects between the point calculation functions and the mapping API. By comparing the results that the system gives to the expected results we can determine if everything is working smoothly. 
+##### System testing: Test how the location tracking connects between the point calculation functions and the mapping API. By comparing the results that the system gives to the expected results we can determine if everything is working smoothly. 
 
-Usability testing: Since our product is a game that many will use usability testing will be the most important. The most significant feature to be tested will be how the territories are displayed. These will be a key feature for the users to determine how other users are doing and what their territory looks like. Another major feature that will need a lot of testing and adjusting is the points calculations. Since some areas will be more difficult to claim the points for it will need to be adjusted to reflect that. 
+##### Usability testing: Since our product is a game that many will use usability testing will be the most important. The most significant feature to be tested will be how the territories are displayed. These will be a key feature for the users to determine how other users are doing and what their territory looks like. Another major feature that will need a lot of testing and adjusting is the points calculations. Since some areas will be more difficult to claim the points for it will need to be adjusted to reflect that. 
 
-Example test suites: 
+##### Example test suites: 
 1) Create random territories and ensure the points properly reflect the size.
 2) Enter random weights for different map areas and make sure they are properly reflected in the point calculations.
 3) Have multiple users at once claim territory to make sure the functions can handle multiple inputs at once.
 
-Processes Description
+### Processes Description
 
-Test-Automation Infrastructure
-Tools Used:
+#### Test-Automation Infrastructure
+##### Tools Used:
 
-Jest: We used Jest as a test automation framework for unit, validation, and integration tests. We decided on Jest because it allows:
+###### Jest: 
+We used Jest as a test automation framework for unit, validation, and integration tests. We decided on Jest because it allows:
 - The support of modern JavaScript modules.
 - Offers a fast test execution and uses built-in code coverage reporting.
 - Has a large community and extensive eco-system
@@ -249,44 +250,43 @@ Commit and Push:
 - Once everything is verified and you have a new test with code changes, the CI processes will find it automatically.
 
 
-Continuous Integration:
+##### Continuous Integration:
 Service Used:
 GitHub Actions:
 - Our repository is integrated with GitHub Actions using a workflow file located inside the .github directory.
 - This workflow installs dependencies, runs our build, and uses test files for every push and pull request.
 
-Justification for GitHub Actions:
+##### Justification for GitHub Actions:
 - Seamless Integration: Developed inside GitHub it allows easy access and no additional tools needed.
 - Matrix Builds: Can test across multiple Node.js versions and different operating systems.
 - Cost: Free use for public projects.
 - Community: Provides lots of examples and support.
 
-Pros and Cons Matrix for CI Services Considered:
-- GitHub Actions:
+##### Pros and Cons Matrix for CI Services Considered:
+###### GitHub Actions:
 Pros: Integrated with GitHub, Supports matrix builds, free, community.
 Cons: Complex workflows need careful management.
 
-- Travis CI
+###### Travis CI
 Pros: Simple configuration, and widely used.
 Cons: Limited free tier, and has slower build times.
 
-- CircleCI
+###### CircleCI
 Pros: Offers fast and scalable builds, and allows for configurable environments.
 Cons: More complex pricing and configuration. It is also not tightly integrated with GitHub.
 
-Test Executed in a CI Build:
+#### Test Executed in a CI Build:
 - Unit Tests: Tests located in __tests__ folder
 - Validation Tests: Simulates user interactions contained inside __tests__ folder.
 - Integration Tests
 - Systems Test
 
-Development Actions that Trigger a CI Build:
+#### Development Actions that Trigger a CI Build:
 - Pushes to any Branch: Any commit that is pushed to a branch will trigger a build.
 - Pull Requests: Opening or updating a pull request automatically triggers a CI build.
 - Merges: Any code that is merged into the main branch will trigger a final build and test run.
 
-
-Timeline with milestones:
+### Timeline with milestones:
 Week 3: Project Planning.
 - Finalize project idea and scope, and present our project to the class.
 - Develop the living document.
@@ -308,18 +308,18 @@ Week 5: Start development of the app.
 Week 6: Mid-term presentation. Share what we have so far, see results, and address any concerns.
 - Continue working towards implementing the user interface. Focus on the leaderboard and profile pages (user authentication) this week.
 - Choose a database service and start integrating it into our application. It will need to store player credentials, as well as their location data to show other users. 
-- Figure out how to host our application with both front end and back end services covered.
+- Figure out how to host our application with both front-end and back-end services covered.
 
 Week 7: Full game logic and user interface navigation.
 - Work to finish implementing the core features of our game. 
-- Implement route validation (ensure closed loop formations before territory claim).
+- Implement route validation (ensure closed-loop formations before territory claim).
 - Implement cheating detection (speed validation and GPS consistency).
-- Optimize real-time synchronization for multiple players through our sql database.
+- Optimize real-time synchronization for multiple players through our SQL database.
 - Begin testing with multiple simulated players.
 - Create a general user interface, allowing them to easily navigate through the game. 
 
 Week 8: UI refinement and mobile optimization.
-- Improve UI/UX for the game map, leaderboard and profile.
+- Improve UI/UX for the game map, leaderboard, and profile.
 - Optimize mobile responsiveness (scaling maps for different screen sizes).
 - Test GPS accuracy under different conditions (Wi-Fi, cellular, bad reception areas).
 - Run beta testing with multiple team members to collect UI/UX feedback.
@@ -336,7 +336,7 @@ Week 10: Final testing and project presentation.
 - Record gameplay demonstration video.
 - Conduct final presentation rehearsals.
 
-Coding guideline: 
+### Coding guideline: 
 
 With our project, we are implementing our design to be accessible through a webpage. This way, it can be utilized on any device without installation. Additionally, all of the group members have experience with website development, making it a smart choice. We are using HTML to structure our web pages, CSS to style them, and JavaScript to handle the functionality of our project.
 
@@ -346,14 +346,15 @@ Finally, for JavsScript, we will declare variables that have meaningful names th
 
 For all languages, using caution to periodically enter a new line if the current line gets too long will increase readability. Using 'camel case' for naming variables will keep the code consistent and easy to read.
 
-Software Architecture:
-Client-Server Architecture Pattern
-The two major enities for our Software Architercture would be; the players and the database server. 
+### Software Architecture:
+#### Client-Server Architecture Pattern
+The two major entities for our Software architecture would be; the players and the database server. 
   - The player's create accounts that link to the server and as they do actions in the game those values are updated and returned to the database.
-  - The database then responses back with the results of the player's action.
-    ex: if a player completes a circuit the area that they captured would be sent to the database, then server would respond by sending other players the visual showing what areas the
-        player has captured. 
-Major Software Components and Their Functionality:
+  - The database then responds back with the results of the player's action.
+    ex: if a player completes a circuit the area that they captured would be sent to the database, then the server would respond by sending other players the visual showing what areas the
+        player has captured.
+    
+#### Major Software Components and Their Functionality:
 1. Frontend
     - The front end will be developed using HTML, CSS, and JavaScript and hosted using render.com.
     - It will be responsible for rendering the user interface, handling user interactions, and sending/receiving data from the backend.
@@ -368,7 +369,7 @@ Major Software Components and Their Functionality:
     - The primary method of communication will be HTTP requests (REST API) for data retrieval and updates.
     - WebSockets may be used as an alternative for real-time updates, depending on feasibility and server constraints.
 
-Interfaces Between Components:
+#### Interfaces Between Components:
 1. Frontend to Backend
   - The front end will communicate with the backend using RESTful API requests (HTTP GET/POST/PUT/DELETE).
     - If WebSockets are implemented, the front end will establish a persistent connection for real-time updates.
@@ -378,7 +379,7 @@ Interfaces Between Components:
 3. Third-Party API Integration
     - The Google GeoLocation API will be used to retrieve and process location-based data.
 
-Data Storage and Organization:
+#### Data Storage and Organization:
 MySQL Schema (Relational Database)
 Main Entities:
 - Users Table
@@ -410,14 +411,14 @@ Main Entities:
     - HTTP requests will be sufficient for most operations, but WebSockets may be needed for real-time features.
     - If real-time performance is required, the system can switch to WebSockets for efficiency.
 
-Alternative Architectural Decisions:
+#### Alternative Architectural Decisions:
 Frontend Hosting
 - Chosen Approach: Host the front end using render.com.
     - Pros: Free hosting, easy access, and no extra infrastructure needed.
     - Cons: Potential restrictions on what can be deployed.
 - Alternative: Use a third-party hosting service like Render.com or AWS EC2.
     - Pros: More flexibility and fewer restrictions.
-    - Cons: May introduce additional costs and configuration overhead.
+    - Cons: This may introduce additional costs and configuration overhead.
 Backend Technology
 - Chosen Approach: Use Node.js with MySQL for structured data storage.
     - Pros: Supports real-time interactions, efficient with relational data.
@@ -433,29 +434,26 @@ Data Communication
     - Pros: Faster and more efficient for continuous data updates.
     - Cons: More complex to implement, and may not be supported on the school's server.
 
-Software Design: 
-Front-End
+#### Software Design: 
+##### Front-End
 - UI Package: The map view displays the map and user movement. The leaderboard view renders the current leaderboard. The profile view displays user-specific metrics and information.
 - Networking package: Manages REST API requests and handles fetching user locations and game data.
 - Game Logic package: Handles displaying claimed land and processes user GPS movement.
 
-Back-End
+##### Back-End
 - API Handlers: Manages core game logic such as updating position and claim territory.
 - Game Logic: Computes areas enclosed by a completed run and checks if a user's route overlaps another's.
 - Database Handlers: Handles user data and stores running route data.
 
-Database
+#####Database
 - The backbone for storing and managing game data.
 - The schema includes key tables such as users, which store gameplay statistics, routes, which logs completed running circuits with timestamps and GPS coordinates, and territories, which track claimed land areas for each user.
 
-
-
-Location Tracking API
+##### Location Tracking API
 - Uses Google Maps API to fetch and process real-time location data.
 - Ensures routes are valid before allowing a claim.
 
-
-Coding guideline
+### Coding guideline
 With our project, we are implementing our design to be accessible through a webpage. This way, it can be utilized on any device without installation. Additionally, all of the group members have experience with website development, making it a smart choice. We are using HTML to structure our web pages, CSS to style them, and JavaScript to handle the functionality of our project. 
 
 - For HTML, we will always declare the document type at the beginning (for example, <!DOCTYPE html>). We will use lowercase element names, as this is the industry standard, and we will open and close all elements on different lines.
@@ -464,24 +462,20 @@ With our project, we are implementing our design to be accessible through a webp
 
 For all languages, using caution to periodically enter a new line if the current line gets too long will increase readability. Using underscores for naming variables will keep the code consistent and easy to read. 
 
-Git Repo Link: 
-Organization: https://github.com/SoftwareEng2-Team 
-Repository: https://github.com/SoftwareEng2-Team/runio 
-
-
-Trello:
-https://trello.com/b/OsvSTA7E/pt1-run-for-your-life
-
-
-Communication tools and rules:
+### Communication tools and rules:
 Discord: https://discord.gg/fjCdaebj, respond within a day. 
 Text Message (Group Chat), respond within half a day (in reasonable hours).
 GitHub: Sync as often as possible to keep work up to date; contribute to weekly reports as necessary.
 
+### API Keys and Additional Links
 
 Google Geolocation API Key: AIzaSyBYPZyFFX2wm_TAr1haKfFJGMlDbHkF8TQ
 Database URL: postgresql://run_for_your_life_user:8fFWEwEBpMPdijfG10sYt8p0UfMsT9Yo@dpg-cusf9fl6l47c7386ejjg-a.oregon-postgres.render.com/run_for_your_life
 
+Trello board: https://trello.com/b/OsvSTA7E/pt1-run-for-your-life
 Figma link: https://www.figma.com/design/SG1ROIIvWYSpmKm1g8WVZm/Untitled?node-id=0-1&t=ExN0nOSrw4YITC6Y-1
-
 Project link: https://run-for-your-life.onrender.com/
+
+#### Git Repo Link: 
+Organization: https://github.com/SoftwareEng2-Team 
+Repository: https://github.com/SoftwareEng2-Team/runio 
