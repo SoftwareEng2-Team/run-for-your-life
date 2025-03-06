@@ -6,12 +6,12 @@ export const setTerrClaimed = async (req, res) => {
             WITH updated_leaderboard AS (
                 INSERT INTO leaderboards (user_id, total_territory, rank_num, week_start)
                 VALUES ($1, $2, NULL, CURRENT_DATE)
-                ON CONFLICT (user_id, week_start) DO UPDATE 
+                ON CONFLICT (user_id) DO UPDATE 
                 SET total_territory = leaderboards.total_territory + EXCLUDED.total_territory
                 RETURNING total_territory
             )
             UPDATE users
-            SET total_territory = (SELECT total_territory FROM updated_leaderboard)
+            SET total_territory = (SELECT MAX(total_territory) FROM leaderboards WHERE user_id = $1)
             WHERE user_id = $1
             RETURNING total_territory;
         `;
