@@ -3,18 +3,19 @@
 
 ### Access Our Game Here!
 Game link: https://run-for-your-life.onrender.com/ 
-- For information regarding running our game locally, navigate to /DEVELOPER_DOCUMENTATION
+- For information regarding running our game locally, navigate to /DEVELOPER_DOCUMENTATION.
 
 ### About Our Game
 Run For Your Life is a competitive running game that simulates territory acquisition via a completed running route. Players compete by claiming the most space on a shared real-world map weekly. To claim space one must create and complete a running circuit of any length. Upon completion of said circuit, players are rewarded with all map space within that circuit being claimed as their territory regardless of whether it is already claimed. The map displays currently existing territories and all in-progress routes by players. A leaderboard will also display the current square miles each player has claimed for that week. All scores and territories are reset weekly, and the top player is given a flair for the following week.
+
 *Using cellular data can make location tracking more accurate! Data rates may apply.*
 
 #### How To Navigate Our Game
-###### Leaderboard
+##### Leaderboard Page
 Located on the left, this button takes you to the leaderboard page where you'll see weekly rankings, top players, and key statistics. Use this page to compare your performance with others and see where you stand.
-###### Map
+##### Map Page
 Found in the center, this button directs you to the map page. Here you can start your run, explore new areas, and plan your route. This is your primary interface for navigating the game world and claiming territory.
-###### Profile
+##### Profile Page
 The rightmost button leads to your profile page. This page displays your personal stats, achievements, and current ranking. It serves as your personal hub to track progress and review your performance.
 
 ### How To Play
@@ -41,5 +42,5 @@ The rightmost button leads to your profile page. This page displays your persona
 ### Where To Find Additional Information And Documentation
 Additional information and documentation regarding our game, such as how to play and how to host the application locally, can be found in the documentation directories. 
 
-#### Trello
-Trello Board: https://trello.com/b/OsvSTA7E/pt1-run-for-your-life
+#### Trello Board For Developer Tasks
+https://trello.com/b/OsvSTA7E/pt1-run-for-your-life
