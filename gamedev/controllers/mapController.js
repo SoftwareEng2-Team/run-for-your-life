@@ -8,8 +8,14 @@ export const setTerrClaimed = async (req, res) => {
     try {
         // Create the query
         const query = `
+            WITH updated_leaderboard AS (
+                UPDATE leaderboards
+                SET total_territory = total_territory + $2
+                WHERE user_id = $1
+                RETURNING total_territory
+            )
             UPDATE users
-            SET total_territory = total_territory + $2
+            SET total_territory = (SELECT total_territory FROM updated_leaderboard)
             WHERE user_id = $1
             RETURNING total_territory;
         `;
@@ -17,7 +23,12 @@ export const setTerrClaimed = async (req, res) => {
         // Perform the query on the database
         const result = await pool.query(query, [user_id, total_territory]);
 
-        res.status(200).json({ message: "User's territory claimed updated successfully", total_territory: result.total_territory  });
+        // Check if any rows were updated
+        if (result.rowCount === 0) {
+            return res.status(404).json({ error: 'Not NULL' });
+        }
+
+        res.status(200).json({ message: "User's territory claimed updated successfully", total_territory: result.rows[0].total_territory  });
     } catch (error) {
         console.error("Database error setting the total_territory:", error);
         res.status(500).json({ error: error.message });
