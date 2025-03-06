@@ -1,3 +1,4 @@
+import pool from '../../database/connection_pool.mjs';
 export const setTerrClaimed = async (req, res) => {
     const { user_id, total_territory } = req.body;
 
