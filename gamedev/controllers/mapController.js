@@ -11,7 +11,6 @@ export const setTerrClaimed = async (req, res) => {
             UPDATE users
             SET total_territory = total_territory + $2
             WHERE user_id = $1
-            RETURNING total_territory;
         `;
         
         // Perform the query on the database
@@ -21,6 +20,8 @@ export const setTerrClaimed = async (req, res) => {
         if (result.rowCount === 0) {
             return res.status(404).json({ error: 'Not NULL' });
         }
+
+        res.status(201).json({ message: "User's territory claimed updated successfully" });
     } catch (error) {
         console.error("Database error setting the total_territory:", error);
         res.status(500).json({ error: error.message });
