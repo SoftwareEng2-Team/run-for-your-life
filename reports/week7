@@ -174,23 +174,24 @@
 ### Evan Albert
 
 #### 2.1 Exact Copy of the Third Section from Last Week
-- Finished implementing the login authentication (3 days).
-- Meet with our TA on Thursday (15 mins).
-- Further dicuss with team member fo the next step on Monday (2hr).
+- Implement database in code
+- Have the website display the leaderboard, sign-in, and profile pages correctly
+- Have the code correctly read/write from database
 
 #### 2.2 Progress and Issues
 
 **What we've finished:** 
-- Finished the leaderboard basic implementation. 
-- Sorting function and proper CSS is working with more refinements on the way. 
-- Game design has been ironed out a lot but specifics are hard to talk about in a simple paragraph.
+- Updated the Trello board to fit our current project tasks
+- Designed and implemented the frontend for the leaderboard page, added sorting and ranking
+- Designed the login page, will implement the frontend today
+- Further our progress on the database, will be integrated soon 
 
 
 **What we learned:**  
 - We learned how to make the login authentication work and how it must go through the database to retrieve that user's authentication and send it back to log that player in its own account.
 
 **Where we had trouble/stuck:**
-- Still figuring out testing on a public server.
+- Figuring out continuous integration using Jest and GitHub Actions.
 
 #### 2.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
 - Start the manipulation of the database from the backend (4 hours)

@@ -1,12 +1,16 @@
-OBTAIN SOURCE CODE: Any developer seeking to obtain the source code for the Run For Your Life game can do so via our GitHub repository (https://github.com/SoftwareEng2-Team/run-for-your-life/).
+# Developer Notes
+
+## Obtain Source Code
+Any developer seeking to obtain the source code for the Run For Your Life game can do so via our GitHub repository (https://github.com/SoftwareEng2-Team/run-for-your-life/).
 - To download the source code, developers can use the command 'git clone git@github.com:SoftwareEng2-Team/run-for-your-life.git' in their local terminal.
 - Ensure you are currently in the desired directory before running the command (i.e., cd desired_directory).
 - The game files are stored in the /gamedev directory.
 - Older files are saved in the /defunct directory. These are kept for reference only.
 - Most of the frontend and backend are stored in /gamedev/public_html. Here you will find the HTML / CSS files for the front end and some of the JS files for the back end.
 
-DIRECTORIES: This repository includes several directories to better categorize and store resources associated with our game.
-- /database: includes all information about connecting to our database. The database is used for storing user credentials and location updates.
+## Directories
+This repository includes several directories to better categorize and store resources associated with our game.
+- /database: This includes all information about connecting to our database, which stores user credentials and location updates.
 - /defunctfiles: includes older files we keep for reference.
 - /DEVELOPER_DOCUMENTATION: this current directory. Stores any documentation that might be useful to any developers.
 - /gamedev: where our game files are stored. This includes files for both the frontend and backend. 
@@ -20,7 +24,7 @@ DIRECTORIES: This repository includes several directories to better categorize a
 - /versions: contains published versions of our game. For example, beta release, alpha release, version 1.2, etc. 
 - Other files: other files, such as our current living document and README file, are stored in the main repository.
 
-HOW TO BUILD SOFTWARE:
+## How To Build Software
 - Developers can clone the GitHub repo if they desire to test different files, learn how the game works, or for other purposes. Our code is open source!
 - Before cloning, insure you have Git installed: https://git-scm.com/downloads
 - Navigate to your desired workspace using your desired terminal. Enter "git clone git@github.com:SoftwareEng2-Team/run-for-your-life.git" to clone the repository to your workplace.
@@ -32,13 +36,16 @@ HOW TO BUILD SOFTWARE:
   - WARNING: this server.js file is NOT connected to our database. When running locally, the game will not save progress/log you in correctly. Navigate to 'http://localhost:3000/map.html' to use the game with limited functionality.
 - Additionally, extensions on Visual Studio Code, such as 'Live Server' can also be used to host the webpages for the game locally. If desired, download the extensions, and press the "Go Live" button in the bottom right of the IDE. Follow the instructions to host the webpage. 
 
-- Otherwise, to access our application that is hosted and updated, access the link: https://run-for-your-life.onrender.com/. This will redirect you to our game's login page. 
+## Where To Find Our Hosted Game
+Otherwise, to access our application that is hosted and updated, access the link: https://run-for-your-life.onrender.com/. This will redirect you to our game's login page. 
 
-HOW TO TEST THE SOFTWARE: This application's backend is tested using Selenium and Google ChromeDriver. Install Selenium using 'npm install selenium-webdriver' and download ChromeDriver from the link 'https://developer.chrome.com/docs/chromedriver/downloads'. You can run existing test scripts files in JavaScript by invoking 'node <path to testscript>/testscript.js'. Any future tests should be kept in a testing directory. 
+## How To Test The Software
+This application's backend is tested using Selenium and Google ChromeDriver. Install Selenium using 'npm install selenium-webdriver' and download ChromeDriver from the link 'https://developer.chrome.com/docs/chromedriver/downloads'. You can run existing test scripts files in JavaScript by invoking 'node <path to testscript>/testscript.js'. Any future tests should be kept in a testing directory. 
 
-HOW TO ADD NEW TESTS: New tests can be added by creating a new script or cloning an existing script and adding to that. All testing should be done in an async() function such that you can await driver to open and load the frontend. 
+## How To Add New Tests
+New tests can be added by creating a new script or cloning an existing script and adding to that. All testing should be done in an async() function such that you can await driver to open and load the frontend. 
 
-HOW TO BUILD A RELEASE OF THE SOFTWARE:
+## How To Build A Release Of The Software
 - After building the software the developer should have a new version with an updated ID number that correlates to that new version.
 - They must update the version numbers in the code, documentation, and configuration files.
 - They should place the new version files into a separate folder inside our versions folder to help keep track of our progress.

@@ -33,6 +33,6 @@ CREATE TABLE leaderboards (
     leaderboard_id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(user_id) ON DELETE CASCADE,
     week_start DATE NOT NULL,
-    total_territory FLOAT NOT NULL,
+    total_territory FLOAT DEFAULT 0,
     rank_num INT DEFAULT NULL 
 );
