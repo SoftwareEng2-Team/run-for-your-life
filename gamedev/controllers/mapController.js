@@ -8,14 +8,10 @@ export const setTerrClaimed = async (req, res) => {
     try {
         // Create the query
         const query = `
-            WITH updated_territory AS (
-                SELECT total_territory + $2 AS new_total_territory
-                FROM users
-                WHERE user_id = $1
-            )   
             UPDATE users
-            SET total_territory = (SELECT new_total_territory FROM updated_territory)
-            WHERE user_id = $1;
+            SET total_territory = total_territory + $2
+            WHERE user_id = $1
+            RETURNING total_territory;
         `;
         
         // Perform the query on the database
