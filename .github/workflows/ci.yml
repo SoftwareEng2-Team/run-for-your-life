@@ -1,0 +1,44 @@
+name: Run Tests on Push & PR
+
+on:  
+  push:
+    branches: [main, gamedev] 
+  pull_request:
+    branches: [main, gamedev]  
+
+jobs:
+  test:
+    runs-on: ubuntu-latest 
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3  
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20  
+
+      - name: Install dependencies
+        run: |
+          cd gamedev
+          npm install  
+
+      - name: Wait for PostgreSQL to be ready
+        run: |
+          echo "Waiting for PostgreSQL"
+          sleep 10
+        
+      - name: Initialize Database Schema
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          export PGPASSWORD=${{ secrets.POSTGRES_PASSWORD }}  # ✅ Ensure password is passed
+          psql "$DATABASE_URL" --set=sslmode=require -f database/query.sql  # ✅ Use DATABASE_URL with SSL
+
+      - name: Run Tests
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          cd gamedev
+          npm test  

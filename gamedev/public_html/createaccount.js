@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const password = document.getElementById("password").value;
         const confirm_password = document.getElementById("confirm_password").value;
         // API URL for the backend
-        const API_URL = 'https://run-for-your-life-api.onrender.com';
+        const API_URL = "https://run-for-your-life-api.onrender.com";
 
         // If the passwords match, send a POST request to the API
         if (password === confirm_password) {

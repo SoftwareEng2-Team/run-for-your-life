@@ -1,22 +1,22 @@
-Run For Your Life!
-James Nichols, Brian Munger, Keona Abad, Shi-Ru Huang, Connor Sun, Calvin Chen, Evan Albert
+# Run For Your Life!
+## James Nichols, Brian Munger, Keona Abad, Shi-Ru Huang, Connor Sun, Calvin Chen, Evan Albert
 
-Abstract: 
+### Abstract: 
 Competitive running game that simulates territory acquisition via a completed running route. Players compete by claiming the most space on a shared real-world map each week. To claim space one must create and complete a running circuit of any length. Upon completion of said circuit, players are rewarded with all map space within that circuit being claimed as their territory regardless of whether it is already claimed. The map displays currently existing territories and all in-progress routes by players. A leaderboard will also display the current square miles each player has claimed for that week. All scores and territories are reset every week and the top player is given a flair for the following week.
 
-Goal: 
+### Goal: 
 Our team goal is to have a working game that takes in user location to track their movement. The game mechanics are based on the game Paper.io and allow users to compete against each other each day claiming land.
 
-Current practice: 
+### Current practice: 
 Similar applications exist to motivate users to engage in physical activity while progressing in-game. For example, Pokemon Go utilizes the user's location to catch Pokemon, access Pokestops, and battle other trainers. We aim to develop a game that encourages users to participate in healthy movements such as running and walking by creating friendly competition. Other mobile applications exist, such as Strava and Nike Run Club, that allow users to record their runs. However, creating a community-based game will motivate users to compete by running. 
 
-Novelty: 
+### Novelty: 
 We will use JavaScript to code the program with a location-tracking API. This allows the service to receive live updates and allows other users to compete for land. While other apps offer interactive maps that users can interact with, our game will enable people to compete over the land of the map in a territory-claiming style similar to paper.io.
 
-Effects: 
+### Effects: 
 New and improved “.io game” genre for runners but with required real-time physical activities such as routes to run to claim plots of land. It will create friendly competition for local runners to compete with each other in terms of speed and distance.
 
-Use Cases: 
+### Use Cases: 
 New players open the app and are shown a login page. The player will need to create a username and password to link to an account. If the player enters a username that isn’t already in use the player will be able to login to that account and begin playing the game. The new player will be able to compete with current players. The new player will not be able to play the game until they have successfully made an account.
 
 Returning players open the app and are shown a login page. The player will need to login to their account using their username and password. If the player enters an incorrect username that player will be prompted to try again. Once the player gets their username and password correct. The player will be able to play the game and continue with the score that they left off. If the player can not remember their login information they’ll have to create a new account and start over.
@@ -31,7 +31,6 @@ The player decides to stop playing our game. When a player decides to stop playi
 
 If a player has an unstable connection. When a player is playing our game they must be connected to the site at all times so that their location can be properly displayed. If a player disconnects from the game server they will be kicked out and will need to login again to continue playing. Any paths that they were currently working on will be removed, but their score will be saved.
 
-
 Returning players open the app and are shown a login page. The player will need to login to their account using their username and password. If the player enters an incorrect username that player will be prompted to try again. Once the player gets their username and password correct. The player will be able to play the game and continue with the score that they left off. If the player can not remember their login information they’ll have to create a new account and start over.
 
 The top player of the week opens the app. The top player will have to log in using their username and password to access their account. Once logged in they will be able to go to the leader board and see their total score for the week at the top. They will see their name now has a fire effect around it to signify that they’re the top player. The player score will be reset at the end of the week each Sunday.
@@ -42,27 +41,25 @@ Old player lost their login information and are unable to access their account. 
 
 The player decides to stop playing our game. When a player decides to stop playing the game all they have to do is click the logout button on their screen or close the site page. Doing either option will stop the location tracking and end any paths that they are making. If the user wishes to join again later then they just need to login to the game again and their location will be tracked again. 
 
-
-
 Location tracking that maps the path the user runs. 
 Involve friendly competition by allowing users to go against other users, fighting to claim the most amount of land. 
 Allow users to ‘cut off’ each other, and eliminate one of their lives. A user can cut off another user’s path by running through their path and completing a route before that user. 
 Leaderboard that shows the top runners and largest land owners currently.
 
-Stretch goals:
+### Stretch goals:
 Security access for IP address.
 Expand the game map outside of the Corvallis OSU campus.
 Monetize the game to make money.
 Stop cheating (using a car/bike).
 
-Non-functional Requirements:
+### Non-functional Requirements:
 Scalability: The app will be able to handle one to two concurrent players during its initial phase and will be able to handle more players long term.
 
 Usability: The app will provide interactive and engaging experiences and will be tested with individuals to help identify better accessibility and ease of use.
 
 Security and Privacy: The user will be able to view and manage their data. The app will share information regarding their location, letting the user know when their location is used during their gameplay session.
 
-External Requirements:
+### External Requirements:
 It can be expected that the app will encounter location errors, to combat this we will ensure that the location during gameplay is constantly updated and will let the user know when the internet connection is lost. 
 
 We will include a public URL on our GitHub that will allow potential users to download the app easily and will have instructions on how to start and play the game.
@@ -72,10 +69,10 @@ Included on our GitHub we will have a clear walkthrough on the development of ou
 Communicating with our team, we will address strengths and weaknesses in ourselves understanding where it will be best to put numbers.
 
 
-Technical approach: 
+### Technical approach: 
 Planning to use JavaScript/HTML for the app layout and general display features. Plan to use Python for location grabbing and more technical back-end features. May experiment with Flutter to aid in the development process. 
 
-Risks: 
+### Risks: 
 GPS location tracking:
 Likelihood: Low; Impact: High
 Evidence: Based on our team members' previous experience no one has done the location tracking, so it might be a challenge for us since if it not working then basically the whole game will crash down. Also, we have to think about the GPS signal issues, and permission restrictions. 
@@ -146,7 +143,7 @@ Steps to reduce risk: We are using Oregon State University's engineering server 
 Detecting the problem: it would be great to monitor OSU server resource usage.
 Mitigation plan: If the server crashes down then the best way is to contact OSU IT support.
 
-Team members and roles/responsibilities:
+### Team members and roles/responsibilities:
 James Nichols - Project Manager  
 Brian Munger - Implement User Interface; Assist In Back End 
 Keona Abad - Quality Assurance
@@ -155,7 +152,7 @@ Connor Sun - Gameplay Design and Tester
 Calvin Chen - Tester
 Evan Albert - Quality Assurance
 
-Team process:
+### Team process:
 We will be using Visual Studio code for the main part of our programming as all of our team members have experience using it in past projects. We have yet to discover other possible alternatives and ways we want to implement API location gathering.
 
 James Nichols, Project Manager: 
@@ -180,10 +177,10 @@ Evan Albert, Quality Assurance:
 Being the quality assurance means that I have the responsibility to ensure that the app development is on track and meets the desired outcomes throughout production. I will ensure that any bugs or possible structure flaws are identified early on and addressed accordingly.
 
 
-Test Plans and Bugs:
+### Test Plans and Bugs:
 We plan to test the key features, including geolocation tracking, server responsiveness, and the accuracy of claimed territory, along with the number of points the users get.
 
-Documentation Plan:
+### Documentation Plan:
 The README file will contain an overview, installation steps, and usage instructions. A USER_GUIDE.md file will provide gameplay instructions and key features. For developers, inline documentation and an API.md file will outline endpoints. A TESTING.md file will document our test plans, and a CHANGELOG.md will track updates. By the end of our development, if need be we will add some more documents such as a CONTRIBUTING.md file for coding standards and the Git workflow we used. Our goal is to make clear documents for not just users, but developers, and administrators as well. 
 
 Geolocation tracking;
@@ -221,6 +218,73 @@ Example test suites:
 1) Create random territories and ensure the points properly reflect the size.
 2) Enter random weights for different map areas and make sure they are properly reflected in the point calculations.
 3) Have multiple users at once claim territory to make sure the functions can handle multiple inputs at once.
+
+Processes Description
+
+Test-Automation Infrastructure
+Tools Used:
+
+Jest: We used Jest as a test automation framework for unit, validation, and integration tests. We decided on Jest because it allows:
+- The support of modern JavaScript modules.
+- Offers a fast test execution and uses built-in code coverage reporting.
+- Has a large community and extensive eco-system
+- Works easily with our CI pipeline (Github Actions)
+
+Adding new test files
+Choose a test type:
+- Unit Test
+- Validation Test
+
+Create Test file:
+For test files using Jest place them inside the gamedev/__tests__/
+
+Writing Test Code:
+- Follow our coding conventions and structure similar to existing tests.
+- If using ESM, include necessary imports.
+
+Running Locally:
+- Run Jest with npm test to check for testing before committing.
+
+Commit and Push:
+- Once everything is verified and you have a new test with code changes, the CI processes will find it automatically.
+
+
+Continuous Integration:
+Service Used:
+GitHub Actions:
+- Our repository is integrated with GitHub Actions using a workflow file located inside the .github directory.
+- This workflow installs dependencies, runs our build, and uses test files for every push and pull request.
+
+Justification for GitHub Actions:
+- Seamless Integration: Developed inside GitHub it allows easy access and no additional tools needed.
+- Matrix Builds: Can test across multiple Node.js versions and different operating systems.
+- Cost: Free use for public projects.
+- Community: Provides lots of examples and support.
+
+Pros and Cons Matrix for CI Services Considered:
+- GitHub Actions:
+Pros: Integrated with GitHub, Supports matrix builds, free, community.
+Cons: Complex workflows need careful management.
+
+- Travis CI
+Pros: Simple configuration, and widely used.
+Cons: Limited free tier, and has slower build times.
+
+- CircleCI
+Pros: Offers fast and scalable builds, and allows for configurable environments.
+Cons: More complex pricing and configuration. It is also not tightly integrated with GitHub.
+
+Test Executed in a CI Build:
+- Unit Tests: Tests located in __tests__ folder
+- Validation Tests: Simulates user interactions contained inside __tests__ folder.
+- Integration Tests
+- Systems Test
+
+Development Actions that Trigger a CI Build:
+- Pushes to any Branch: Any commit that is pushed to a branch will trigger a build.
+- Pull Requests: Opening or updating a pull request automatically triggers a CI build.
+- Merges: Any code that is merged into the main branch will trigger a final build and test run.
+
 
 Timeline with milestones:
 Week 3: Project Planning.
@@ -415,7 +479,8 @@ Text Message (Group Chat), respond within half a day (in reasonable hours).
 GitHub: Sync as often as possible to keep work up to date; contribute to weekly reports as necessary.
 
 
-API key: AIzaSyBYPZyFFX2wm_TAr1haKfFJGMlDbHkF8TQ
+Google Geolocation API Key: AIzaSyBYPZyFFX2wm_TAr1haKfFJGMlDbHkF8TQ
+Database URL: postgresql://run_for_your_life_user:8fFWEwEBpMPdijfG10sYt8p0UfMsT9Yo@dpg-cusf9fl6l47c7386ejjg-a.oregon-postgres.render.com/run_for_your_life
 
 Figma link: https://www.figma.com/design/SG1ROIIvWYSpmKm1g8WVZm/Untitled?node-id=0-1&t=ExN0nOSrw4YITC6Y-1
 

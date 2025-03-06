@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("achievements").innerHTML = "";
 
   // API URL for the backend
-  const API_URL = 'https://run-for-your-life-api.onrender.com';
+  const API_URL = "https://run-for-your-life-api.onrender.com";
   // Retrieve the user_id from local storage
   const user_id = localStorage.getItem('user_id');
   if (!user_id) {
@@ -31,15 +31,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log("user_id: ", user_id);
     console.log("username: ", data.username);
     console.log("rank: ", data.rank);
-    console.log("totalDistance: ", data.totalDistance);
+    console.log("total_distance_ran: ", data.total_distance_ran);
+    console.log("total_distance_claimed: ", data.total_distance_claimed);
 
     // Update the profile info section.
-    document.getElementById("username").textContent = data.username || "";
-    document.getElementById("rank").textContent = data.rank ? "#" + data.rank : "0";
+    document.getElementById("username").textContent = data.username || "No user - sign in!";
+    document.getElementById("rank").textContent = data.rank ? "#" + data.rank : "No rank yet!";
 
     // Update the stats section.
-    document.getElementById("totalDistance").textContent = data.totalDistance ? data.totalDistance + " miles" : "0";
-    document.getElementById("totalClaimed").textContent = data.totalClaimed ? data.totalClaimed + " sqft" : "0";
+    document.getElementById("totalDistance").textContent = data.total_distance_ran ? data.total_distance_ran + " miles" : "0";
+    document.getElementById("totalClaimed").textContent = data.total_distance_claimed ? data.total_distance_claimed + " sqft" : "0";
     //document.getElementById("knockouts").textContent = data.knockouts || "";
 
   } catch (error) {

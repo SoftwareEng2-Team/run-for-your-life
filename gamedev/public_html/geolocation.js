@@ -24,28 +24,25 @@ let territoryLabel = null;
 
 async function initMap() {
   //Removed feature for beta release
-    // Bounding Box for the OSU Campus
-    // const osuBounds = {
-    //   // Coordinates for the map boundary
-    //   north: 44.56788,
-    //   south: 44.55726,
-    //   east: -123.27163,
-    //   west: -123.28965
-    // };
+  // Bounding Box for the OSU Campus
+  // const osuBounds = {
+  //   // Coordinates for the map boundary
+  //   north: 44.56788,
+  //   south: 44.55726,
+  //   east: -123.27163,
+  //   west: -123.28965
+  // };
 
   // Initialize the map with the boundary
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 44.5646, lng: -123.2620 },
     zoom: 16,
     //Removed feature for beta release
-      // restriction: {
-      //   latLngBounds: osuBounds,
-      //   strictBounds: true,
-      // },
+    // restriction: {
+    //   latLngBounds: osuBounds,
+    //   strictBounds: true,
+    // },
   });
-
-
-
 
   // Static Marker on Corvallis
   draggableMarker = new google.maps.Marker({
@@ -85,8 +82,6 @@ async function initMap() {
 
   const current_location_window = new google.maps.InfoWindow();
 
-
-
   // Initialize the polyline for the player's path
   playerPathPolyline = new google.maps.Polyline({
     path: [],
@@ -102,7 +97,7 @@ async function initMap() {
   let route_started = false;
 
   //Player makes new marker to be used in their route
-  function addCheckpoint() {
+  async function addCheckpoint() {
     try {
       const checkpointMarker = new google.maps.Marker({
         position: location,
@@ -110,51 +105,51 @@ async function initMap() {
         title: "Checkpoint",
         draggable: true
       });
-      
+
       checkpoints.push(checkpointMarker);
       updatePlannedRoute();
-    } 
+    }
     catch (error) {
       console.error("Error adding checkpoint:", error);
     }
   }
 
-  function startRoute() {
+  async function startRoute() {
     //Player must have at least three checkpoints to make a full route
     if (checkpoints.length < 3) {
       alert("You need at least three checkpoints to start!");
       return;
     }
-    
+
     //Start the route
     route_started = true;
     for (checkpoint in checkpoints) {
       checkpoints[checkpoint].setDraggable(false);
     }
     alert("Route started! Follow your designated path.");
-  
+
     //Start tracking player's movement
     trackPlayerProgress();
   }
 
   //Watch player's movement 
-  function trackPlayerProgress() {
+  async function trackPlayerProgress() {
     if (navigator.geolocation) {
       navigator.geolocation.watchPosition(
         (position) => {
           const userPos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-  
+
           //Check if user is near a checkpoint
           if (checkpoints.length > 0) {
             const nextCheckpoint = checkpoints[0];
             const distance = google.maps.geometry.spherical.computeDistanceBetween(userPos, nextCheckpoint);
             //Consider the checkpoint reached if within 5 meters
-            if (distance < 5) { 
+            if (distance < 5) {
               //Remove the reached checkpoint
-              checkpoints.shift(); 
+              checkpoints.shift();
               //Update polyline to reflect the remaining path
               plannedRoutePolyline.setPath(checkpoints);
-  
+
               if (checkpoints.length === 0) {
                 alert("Route completed! You have claimed the area.");
                 route_started = false;
@@ -178,8 +173,8 @@ async function initMap() {
     }
   }
 
-  // Function to update the user's location
-  function updateLocation() {
+  // async function to update the user's location
+  async function updateLocation() {
     if (navigator.geolocation) {
       // Use the Geolocation API to get the user's current position
       navigator.geolocation.getCurrentPosition(
@@ -190,29 +185,29 @@ async function initMap() {
           };
 
           // Store the user's current position
-          userPosition = pos; 
+          userPosition = pos;
 
           // For debugging purposes, update the console periodically with the user's position
           console.log("User position:", pos);
 
           //Removed feature for beta release
-            // // If the user is currently outside of the OSU campus bounds, notify them
-            // if (pos.lat < osuBounds.south || pos.lat > osuBounds.north ||
-            //   pos.lng < osuBounds.west || pos.lng > osuBounds.east) {
-            //   console.log("Location is outside OSU campus. Stay within the boundary.");
-            //   return;
-            // }
+          // // If the user is currently outside of the OSU campus bounds, notify them
+          // if (pos.lat < osuBounds.south || pos.lat > osuBounds.north ||
+          //   pos.lng < osuBounds.west || pos.lng > osuBounds.east) {
+          //   console.log("Location is outside OSU campus. Stay within the boundary.");
+          //   return;
+          // }
 
-          
+
           previousPosition = pos;
 
           // Store the user's location in the array
           locationHistory.push(pos);
 
           // If the array length is 5 (5 seconds), calculate the average location and place a marker
-          if (locationHistory.length === 5) {
+          if (locationHistory.length >= 2) {
             const avgLocation = calculateAverageLocation(locationHistory);
-            placeAverageLocationMarker(avgLocation);
+            //placeAverageLocationMarker(avgLocation);
             locationHistory = []; // Clear the array
           }
 
@@ -262,8 +257,8 @@ async function initMap() {
   setInterval(updateLocation, 500);
 }
 
-// Function to calculate the average location
-function calculateAverageLocation(locations) {
+// async function to calculate the average location
+async function calculateAverageLocation(locations) {
   const sum = locations.reduce((acc, loc) => {
     acc.lat += loc.lat;
     acc.lng += loc.lng;
@@ -276,8 +271,8 @@ function calculateAverageLocation(locations) {
   };
 }
 
-// Function to place a marker at the average location
-function placeAverageLocationMarker(location) {
+// async function to place a marker at the average location
+async function placeAverageLocationMarker(location) {
   const avgLocationMarker = new google.maps.Marker({
     position: location,
     map: map,
@@ -289,7 +284,8 @@ function placeAverageLocationMarker(location) {
   trailMarkers.push(avgLocationMarker);
 }
 
-function claimTerritory() {
+// 
+async function claimTerritory() {
   if (userPosition) {
     const squareSize = 0.0002; // Size of the square in degrees (approx. 50 meters)
     const squareCoords = [
@@ -298,6 +294,7 @@ function claimTerritory() {
       { lat: userPosition.lat - squareSize, lng: userPosition.lng + squareSize },
       { lat: userPosition.lat - squareSize, lng: userPosition.lng - squareSize } // Closing the square
     ];
+    //SPAWN COORDINATES ORDER: BOTTOM RIGHT, TOP RIGHT, TOP LEFT, BOTTOM LEFT
 
     claimedTerritory = new google.maps.Polygon({
       paths: squareCoords,
@@ -311,23 +308,44 @@ function claimTerritory() {
     claimedTerritory.setMap(map);
     console.log("Territory claimed around:", userPosition);
 
-    // Add a static label to display the territory name
-    if (territoryLabel) {
-      territoryLabel.setMap(null);
+    const area = google.maps.geometry.spherical.computeArea(claimedTerritory.getPath().getArray());
+    score += area;
+
+    const score_rounded = Number(score.toFixed(2));
+    console.log("Territory expanded around:", userPosition);
+
+    // Update the database with the territory claimed section
+    // API URL for the backend
+    const API_URL = 'https://run-for-your-life-api.onrender.com';
+    const user_id = localStorage.getItem('user_id');
+    if (!user_id) {
+      console.error("No user_id found in local storage!");
+    } else {
+      console.log("User: ", user_id, " claimed: ", score_rounded);
+      try {
+        // DB request to set the rank of the current user
+        const response = await fetch(`${API_URL}/api/map`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          // Send the user ID and score
+          body: JSON.stringify({ user_id, score_rounded })
+        });
+      } catch (error) {
+        console.error("Error:", error);
+      }
     }
-    territoryLabel = new TerritoryLabel(userPosition, map, "Your Territory");
   } else {
     console.error("User position is not available.");
   }
 }
 
-function expandTerritory() {
+async function expandTerritory() {
   if (userPosition && outsidePath.length > 0) {
     // Get the current territory coordinates
     const currentCoords = claimedTerritory.getPath().getArray();
     // Add the outside path to the current territory
-    const newCoords = currentCoords.concat(outsidePath);
-
+    outsidePath.push(outsidePath[0]);
+    const newCoords = removeRedundancies(currentCoords.concat(outsidePath));
     // Create a new polygon with the expanded territory
     claimedTerritory.setMap(null); // Remove the previous territory
     claimedTerritory = new google.maps.Polygon({
@@ -342,66 +360,105 @@ function expandTerritory() {
     claimedTerritory.setMap(map);
 
     // Calculate the expansion width and update the score
-    const expansionWidth = google.maps.geometry.spherical.computeLength(outsidePath);
+    const expansionWidth = google.maps.geometry.spherical.computeArea(outsidePath.getPath().getArray());
     score += expansionWidth;
+    const score_rounded = Number(score.toFixed(2));
     console.log("Territory expanded around:", userPosition);
-    console.log("Current score:", score);
+    console.log("DEBUG EXPANDTERRITORY SCORE:", score_rounded);
 
-    // Update the label position to the center of the new territory
-    const bounds = new google.maps.LatLngBounds();
-    newCoords.forEach(coord => bounds.extend(coord));
-    const center = bounds.getCenter();
-    if (territoryLabel) {
-      territoryLabel.setMap(null);
+    // Update the database with the territory claimed section
+    // API URL for the backend
+    const API_URL = 'https://run-for-your-life-api.onrender.com';
+    // Retrieve the user_id from local storage
+    const user_id = localStorage.getItem('user_id');
+    if (!user_id) {
+      console.error("No user_id found in local storage!");
+    } else {
+      try {
+        // DB request to set the rank of the current user
+        const response = await fetch(`${API_URL}/api/map`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          // Send the user ID and rank number
+          body: JSON.stringify({ user_id, score_rounded })
+        });
+      } catch (error) {
+        console.error("Error:", error);
+      }
     }
-    territoryLabel = new TerritoryLabel(center, map, "Your Territory");
+    // Update the label position to the center of the new territory
+    // const bounds = new google.maps.LatLngBounds();
+    // newCoords.forEach(coord => bounds.extend(coord));
+    // const center = bounds.getCenter();
+    // if (territoryLabel) {
+    //   territoryLabel.setMap(null);
+    // }
+    // territoryLabel = new TerritoryLabel(center, map, "Your Territory");
   } else {
     console.error("User position or outside path is not available.");
   }
 }
 
-// Custom OverlayView for the static label
-function TerritoryLabel(position, map, text) {
-  this.position = position;
-  this.text = text;
-  this.div = null;
-  this.setMap(map);
+async function removeRedundancies(polygoncoords) {
+if (claimedTerritory) {
+  let filteredCoords = polygoncoords.filter((coord, index) => {
+    //Remove the current coordinate from the polygon
+    let incision = polygoncoords.slice(0, index).concat(polygoncoords.slice(index + 1));
+    //Must be at least 3 coordinates to form a polygon
+    if(incision.length <= 3) {
+      return true;
+    }
+    //Create a polygon without the current coordinate, then check if the coordinate is still inside the polygon
+    let excision = google.maps.geometry.poly.containsLocation(new google.maps.LatLng(coord), new google.maps.Polygon({paths: incision}));
+    //If coordinate is inside the polygon, excise it
+    return !excision;
+  });
+  return filteredCoords;
+}
 }
 
-TerritoryLabel.prototype = new google.maps.OverlayView();
+// Custom OverlayView for the static label
+// async function TerritoryLabel(position, map, text) {
+//   this.position = position;
+//   this.text = text;
+//   this.div = null;
+//   this.setMap(map);
+// }
 
-TerritoryLabel.prototype.onAdd = function() {
-  const div = document.createElement('div');
-  div.style.position = 'absolute';
-  div.style.backgroundColor = 'white';
-  div.style.border = '1px solid black';
-  div.style.padding = '2px';
-  div.style.fontSize = '12px';
-  div.innerHTML = this.text;
-  this.div = div;
+// TerritoryLabel.prototype = new google.maps.OverlayView();
 
-  const panes = this.getPanes();
-  panes.overlayLayer.appendChild(div);
-};
+// TerritoryLabel.prototype.onAdd = async function () {
+//   const div = document.createElement('div');
+//   div.style.position = 'absolute';
+//   div.style.backgroundColor = 'white';
+//   div.style.border = '1px solid black';
+//   div.style.padding = '2px';
+//   div.style.fontSize = '12px';
+//   div.innerHTML = this.text;
+//   this.div = div;
 
-TerritoryLabel.prototype.draw = function() {
-  const overlayProjection = this.getProjection();
-  const position = overlayProjection.fromLatLngToDivPixel(this.position);
+//   const panes = this.getPanes();
+//   panes.overlayLayer.appendChild(div);
+// };
 
-  const div = this.div;
-  div.style.left = position.x + 'px';
-  div.style.top = position.y + 'px';
-};
+// TerritoryLabel.prototype.draw = async function () {
+//   const overlayProjection = this.getProjection();
+//   const position = overlayProjection.fromLatLngToDivPixel(this.position);
 
-TerritoryLabel.prototype.onRemove = function() {
-  if (this.div) {
-    this.div.parentNode.removeChild(this.div);
-    this.div = null;
-  }
-};
+//   const div = this.div;
+//   div.style.left = position.x + 'px';
+//   div.style.top = position.y + 'px';
+// };
+
+// TerritoryLabel.prototype.onRemove = async function () {
+//   if (this.div) {
+//     this.div.parentNode.removeChild(this.div);
+//     this.div = null;
+//   }
+// };
 
 // Error handling for geolocation
-function handleLocationError(browserHasGeolocation, current_location_window, pos) {
+async function handleLocationError(browserHasGeolocation, current_location_window, pos) {
   current_location_window.setPosition(pos);
   current_location_window.setContent(
     browserHasGeolocation
