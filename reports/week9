@@ -168,28 +168,31 @@
 ### Evan Albert
 
 #### 2.1 Exact Copy of the Third Section from Last Week
-- Finished implementing the login authentication (3 days).
-- Meet with our TA on Thursday (15 mins).
-- Further dicuss with team member fo the next step on Monday (2hr).
+- Allocate tasks and side-tasks (ongoing weekly, so 1 week every week)
+- Draw polygon with the users location (.5 weeks)
+- Have the project fully hooked up to the database (.5 weeks)
+- Implement basic multiplayer (1.5 weeks)
 
 #### 2.2 Progress and Issues
 
 **What we've finished:** 
-- Finished the leaderboard basic implementation. 
-- Sorting function and proper CSS is working with more refinements on the way. 
-- Game design has been ironed out a lot but specifics are hard to talk about in a simple paragraph.
+- Territory claimed is now calculated, having trouble setting it to db
+- User profile displays the current user
+- Leaderboard pulls from database, sorts players automatically
+- Locating area coverage / territory is now able to be claimed 
 
 
 **What we learned:**  
-- We learned how to make the login authentication work and how it must go through the database to retrieve that user's authentication and send it back to log that player in its own account.
+- Connecting our frontend to the backend is a larger task than we anticipated
+- Database queries
 
 **Where we had trouble/stuck:**
-- Still figuring out testing on a public server.
+- Understanding and figuring out CI Pipeline test cases.
 
 #### 2.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
-- Start the manipulation of the database from the backend (4 hours)
-- Meet with the team on Wednesday and Thursday (1 hour)
-- Begin to work on the front-end in the sense it needs to make sure it is properly displaying all the data (2 hours)
+- Create and design our presentation and poster (2 days)
+- Get as many of the database issues resolved as possible (untill final release)
+- Get the testing ci pipeline working 
 
 ### Keona Abad
 
