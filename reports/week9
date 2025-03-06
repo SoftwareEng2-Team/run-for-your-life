@@ -1,0 +1,249 @@
+# Weekly Status Report -- 20250129
+
+## 1. Team Report
+
+### 1.1 Exact Copy of the Third Section from Last Week
+
+- Allocate tasks and side-tasks (ongoing weekly, so 1 week every week)
+- Complete database setup and ensure backend can communicate with the frontend (1 week)
+- Create and implement login page with user authentication (1 week)
+- Begin working on location tracking storage and developing the visual line that the player will use to track their run completion (2 weeks)
+- Fix leaderboard update inconsistencies and ensure accurate ranking system (1 week)
+- Optimize database queries for faster read/write operations and leaderboard updates (1 week)
+- Build Profile page frontend and architect it to be able to integrate a database (1 week)
+
+### 1.2 Progress and Issues
+
+**What we've finished:** 
+- Front end and back end hosting now complete with database set update
+- All pages completed, a lot of backend Setup
+- User can now login or create an account
+- The geolocation API is set up to now track the users position, and if it changes enough, log the changes
+    - This will be important to draw polygons
+
+**What we learned:**  
+- How front end and back end hosting works
+- How to set up the database to read and write to
+- How to track and store the users location, which will be used to draw ploygons 
+
+**Where we had trouble/stuck:**  
+- Scheduling difficulties 
+- Tasks taking longer than anticipated 
+
+### 1.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
+- Allocate tasks and side-tasks (ongoing weekly, so 1 week every week)
+- Draw polygon with the users location (.5 weeks)
+- Have the project fully hooked up to the database (.5 weeks)
+- Implement basic multiplayer (1.5 weeks)
+
+## 2. Contributions of Individual Team Members
+
+### James Nichols
+
+#### 2.1 Exact Copy of the Third Section from Last Week
+- Create login page for players to fill out to create a account on the database (1 week)
+- Begin working on location tracking storage and developing the visual line that the player will use to track their run completion (2 weeks) 
+- Work on scoring weights to determine how much a given area show score for the player (2 weeks)
+
+#### 2.2 Progress and Issues
+
+**What we've finished:** 
+- Create login page for players to fill out to create a account on the database 
+- Created automatic location tracking which is mostly accurate, it struggles inside school buildings
+- Connected backend to frontend so user profile information is saved.
+
+
+**What we learned:**  .
+- The Google API may have trouble providing managing multiple players at once.
+- Using render rather than the school server to avoid any issues with backend.
+
+**Where we had trouble/stuck:** 
+- Struggle to properly devide work out for each member of the group.
+- Trouble creating visuals using the API polygon feature.
+
+
+#### 2.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
+- Finish working on the polygon creation and giving players points that connect to the database (1 week).
+- Begin working on location tracking storage and developing the visual line that the player will use to track their run completion (1 weeks) 
+- Work on scoring weights to determine how much a given area show score for the player (1 weeks)
+
+### Calvin Chen
+
+#### 2.1 Exact Copy of the Third Section from Last Week
+- Implement and test user authentication system to allow account creation, secure login, and session management (7 hrs)
+- Improve frontend-to-database communication by resolving server permission issues or migrating to AWS (5 hrs)
+- Complete profile page integration with user stats and display recent run history (5 hrs)
+- Continue testing and refining GPS tracking logic to improve accuracy in movement detection (4 hrs)
+- Optimize leaderboard update process to handle multiple players updating scores simultaneously (3 hrs)
+- Research and integrate anti-cheating measures such as speed thresholds and activity validation (5 hrs)
+
+#### 2.2 Progress and Issues
+
+**What we've finished:**  
+- Successfully hosted both the frontend and backend on Render.com.
+- Fully set up and connected the database with the backend.
+- User authentication system is complete—users can now log in and create accounts.
+- The leaderboard is now fully functional, dynamically updating rankings.
+- The profile page is complete, ready to display user information, ranking, and achievements.
+- The geolocation API tracks movement and logs the player's path at specific intervals.
+- Resolved previous database permission issues encountered on OSU’s server.
+
+**What we learned:**  
+- Hosting the game on Render.com is a more viable option than AWS, as it is easier to manage
+- User experience is significantly improved by refining the profile and leaderboard page layout 
+- Debugging geolocation tracking requires frequent real-world testing to validate accuracy and consistency
+- How to host our frontend and backend along with connecting to our database on Render.com
+
+**Where we had trouble/stuck:**  
+- Google Maps API issues caused intermittent failures when navigating to the map page.
+- Some UI inconsistencies needed fixes across different devices.
+- Scheduling conflicts led to slower progress in some areas.
+
+#### 2.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
+- Allocate tasks and side-tasks (ongoing weekly, so 1 week every week)
+- Finalize profile page database integration and test dynamic user stats (2 days)
+- Implement polygon drawing to visualize captured areas using GPS coordinates (1 week)
+- Improve map page stability and fix any remaining Google Maps API issues (1 week)
+- Implement basic multiplayer interactions such as tracking nearby users (1 week)
+
+### Brian Munger
+
+#### 2.1 Exact Copy of the Third Section from Last Week
+- Implement database in code (~ 5 hours)
+- Have all frontend done (~3 hours)
+- Have all backend mostly done (the week)
+- Integrate interactions with players
+
+#### 2.2 Progress and Issues
+
+**What we've finished:** 
+- Geolocation API now leaves pins every so often of the user's path, will use to draw polygon
+- User can now sign in with their credientals via the login page
+- User can now create an account via the create account page
+- Rearranged GitHub repo to be better organized, completed documentation
+- Created a testing suite for our testing software
+- Prepared for launch, set goals, and scheduled working time
+- Found render.com to be a good server for hosting frontend/backend
+
+**What we learned:**
+- How backend and frontend hosting works 
+- How to connect our database to our backend
+- How to call the database in the frontend code
+- How to track the user's location and create markesr where they go
+
+**Where we had trouble/stuck:**
+- Lack of availability from teammates
+- Learning curve setting up and understanding back end database code 
+
+#### 2.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
+- Have the profile section all completed with user information
+- Have a polygon drawn marking the users captured area
+- Implement basic multiplayer, will work more on after inital launch 
+
+### Shi-Ru Huang
+
+#### 2.1 Exact Copy of the Third Section from Last Week
+- Finished implementing the login authentication (3 days).
+- Meet with our TA on Thursday (15 mins).
+- Further dicuss with team member fo the next step on Monday (2hr).
+
+#### 2.2 Progress and Issues
+
+**What we've finished:** 
+- Meet with our TA on Thursday (15 mins).
+- Further dicuss with team member fo the next step on Monday (2hr).
+
+**What we learned:** 
+- What I've learn is that in order to make the login authentication work, it must go through the database to retrieve that user's authentication and send it back to log that player in jis own aacount.
+
+**Where we had trouble/stuck:**
+- What I encounter is that, it really hard to catch up and communicate for the past week, since everyone's schedule did not work well at the same time
+
+#### 2.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
+- Finished implementing the login authentication (3 days).
+- Meet with our TA on Thursday (15 mins).
+- Further dicuss with team member fo the next step on Monday (2hr).
+- Meet we team member to work on the project on Thursday (2hr).
+
+### Evan Albert
+
+#### 2.1 Exact Copy of the Third Section from Last Week
+- Finished implementing the login authentication (3 days).
+- Meet with our TA on Thursday (15 mins).
+- Further dicuss with team member fo the next step on Monday (2hr).
+
+#### 2.2 Progress and Issues
+
+**What we've finished:** 
+- Finished the leaderboard basic implementation. 
+- Sorting function and proper CSS is working with more refinements on the way. 
+- Game design has been ironed out a lot but specifics are hard to talk about in a simple paragraph.
+
+
+**What we learned:**  
+- We learned how to make the login authentication work and how it must go through the database to retrieve that user's authentication and send it back to log that player in its own account.
+
+**Where we had trouble/stuck:**
+- Still figuring out testing on a public server.
+
+#### 2.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
+- Start the manipulation of the database from the backend (4 hours)
+- Meet with the team on Wednesday and Thursday (1 hour)
+- Begin to work on the front-end in the sense it needs to make sure it is properly displaying all the data (2 hours)
+
+### Keona Abad
+
+#### 2.1 Exact Copy of the Third Section from Last Week
+- Start the manipulation of the database from the backend (4 hours)
+- Meet with the team on Wednesday and Thursday (1 hour)
+- Begin to work on the front-end in the sense it needs to make sure it is properly displaying all the data (2 hours)
+
+#### 2.2 Progress and Issues
+
+**What we've finished:** 
+- Successfully have the frontend, backend, and database hosted through Render.com.
+- Routing through each end is hooked up
+- Now able to register as a user and log in as a user as a frontend and the data gets stored properly
+
+**What we learned:**  
+We have learned that because we are hosting through render, our code requires a lot of bypass strings. We've also learned how to use bcrypt to hash passwords and unhash them when looking at equality.
+
+**Where we had trouble/stuck:**
+There was some confusion on why, when a user successfully logs in, it kept on routing us to an incorrect window even though our href was setup properly. It wasn't the fact that href wasn't working properly but it was the fact that async defer was not properly loading the scrip,t which was also the reason our map wasn't getting updated at one point. 
+
+#### 2.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
+
+- Hopefully finish our polygon for tracking our users route (1-5 hours)
+- Meet with the team on Wednesday and Thursday (1 hour)
+- I need to be helping on the backend side to be able to have data append properly to the leaderboard the way we need it to. Right now it displays all information if I call the leaderboard and we don't want that.(2 hours)
+
+### Connor Sun
+
+#### 2.1 Exact Copy of the Third Section from Last Week 
+
+- Decide where spawning would cause the least amount of frustration for all parties (1 week)
+
+- Figure out if public_html is a viable way to host our website (pushed off because of midterm and other work) (1 week)
+
+- Work on designing backend API specifications given new design expectations (2 weeks)
+
+#### 2.2 Progress and Issues
+
+**What we've finished:** 
+I've not finished much personally since I've had some roadblocks in my life. For the game implementation, live tracking is implemented and what's needed is to implement pathing and spawn territory
+
+**What we learned:**  
+I learned the basics of how to draw polygons and am learning how to integrate it with real-time tracking given the constraint of limited API calls per hour
+
+**Where we had trouble/stuck:**
+I have had some personal struggles that I'm dealing with that interferes with my ability to work. Furthermore, real-time integration has been a struggle due to the scope of our project progress. 
+
+#### 2.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
+
+- Work on designing backend API specifications given that our game is single player for the beta test (1 weeks)
+
+- Implement player spawn territory (1 week)
+
+- Implement player path reaction (1 week)
+
+- Create test cases for path running (1 week)
