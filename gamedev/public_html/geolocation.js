@@ -313,7 +313,6 @@ async function claimTerritory() {
 
     const score_rounded = Number(score.toFixed(2));
     console.log("Territory expanded around:", userPosition);
-    console.log("DEBUG CLAIMTERRITORY SCORE:", score_rounded);
 
     // Update the database with the territory claimed section
     // API URL for the backend
@@ -322,6 +321,7 @@ async function claimTerritory() {
     if (!user_id) {
       console.error("No user_id found in local storage!");
     } else {
+      console.log("User: ", user_id, " claimed: ", score_rounded);
       try {
         // DB request to set the rank of the current user
         const response = await fetch(`${API_URL}/api/map`, {
@@ -362,10 +362,9 @@ async function expandTerritory() {
     // Calculate the expansion width and update the score
     const expansionWidth = google.maps.geometry.spherical.computeArea(outsidePath.getPath().getArray());
     score += expansionWidth;
+    const score_rounded = Number(score.toFixed(2));
     console.log("Territory expanded around:", userPosition);
-    console.log("DEBUG EXPANDTERRITORY SCORE:", score);
-
-    
+    console.log("DEBUG EXPANDTERRITORY SCORE:", score_rounded);
 
     // Update the database with the territory claimed section
     // API URL for the backend
@@ -381,7 +380,7 @@ async function expandTerritory() {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           // Send the user ID and rank number
-          body: JSON.stringify({ user_id, score })
+          body: JSON.stringify({ user_id, score_rounded })
         });
       } catch (error) {
         console.error("Error:", error);
