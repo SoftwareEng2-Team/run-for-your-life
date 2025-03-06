@@ -11,7 +11,7 @@ export const setTerrClaimed = async (req, res) => {
             WITH updated_leaderboard AS (
                 INSERT INTO leaderboards (user_id, total_territory, rank_num, week_start)
                 VALUES ($1, $2, NULL, CURRENT_DATE)
-                ON CONFLICT (user_id) DO UPDATE 
+                ON CONFLICT (user_id, week_start) DO UPDATE 
                 SET total_territory = leaderboards.total_territory + EXCLUDED.total_territory
                 RETURNING total_territory
             )
