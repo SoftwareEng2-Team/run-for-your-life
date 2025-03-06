@@ -111,36 +111,34 @@
 ### Brian Munger
 
 #### 2.1 Exact Copy of the Third Section from Last Week
-- Implement database in code (~ 5 hours)
-- Have all frontend done (~3 hours)
-- Have all backend mostly done (the week)
-- Integrate interactions with players
+- Have the profile section all completed with user information
+- Have a polygon drawn marking the users captured area
+- Implement basic multiplayer, will work more on after inital launch 
 
 #### 2.2 Progress and Issues
 
 **What we've finished:** 
-- Geolocation API now leaves pins every so often of the user's path, will use to draw polygon
-- User can now sign in with their credientals via the login page
-- User can now create an account via the create account page
-- Rearranged GitHub repo to be better organized, completed documentation
-- Created a testing suite for our testing software
-- Prepared for launch, set goals, and scheduled working time
-- Found render.com to be a good server for hosting frontend/backend
+- Territory claimed is now calculated, having trouble setting it to db
+- User profile displays the current user
+- Leaderboard pulls from database, sorts players automatically
+- Locating area coverage / territory is now able to be claimed 
 
 **What we learned:**
-- How backend and frontend hosting works 
-- How to connect our database to our backend
-- How to call the database in the frontend code
-- How to track the user's location and create markesr where they go
+- Connecting our frontend to the backend is a larger task than we anticipated
+- Database queries
+- How we want our score to be calculated
+- How routing works for sending and retrieving information to the database
 
 **Where we had trouble/stuck:**
-- Lack of availability from teammates
-- Learning curve setting up and understanding back end database code 
+- Database not working as anticipated
+- Due dates getting moved
+- Testing CI pipeline proving to have issues
 
 #### 2.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
-- Have the profile section all completed with user information
-- Have a polygon drawn marking the users captured area
-- Implement basic multiplayer, will work more on after inital launch 
+- Create and design our presentation and poster (2 days)
+- Get as many of the database issues resolved as possible (untill final release)
+- Get the testing ci pipeline working 
+- Have basic use cases working and documented
 
 ### Shi-Ru Huang
 
