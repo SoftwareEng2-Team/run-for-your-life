@@ -28,6 +28,7 @@ The rightmost button leads to your profile page. This page displays your persona
 - /database: includes all information about connecting to our database. The database is used for storing user credentials and location updates.
 - /defunctfiles: files no longer used but kept for reference
 - /DEVELOPER_DOCUMENTATION: stores any documentation that might be useful to any developers.
+- /USER_DOCUMENTATION: stores any documentation that might be useful to any users/players. 
 - /gamedev: where the source code for our game is stored.
   - /controllers: contains controller files for our database, including queries.
   - /public_html: mostly frontend code, contains some backend connection. Main page HTML, CSS, and JS files are stored here.
@@ -35,7 +36,6 @@ The rightmost button leads to your profile page. This page displays your persona
   - /run_local: includes server.js file and README for running the game locally. 
 - /living-doc-versions: older versions of our living document for this project are stored here.
 - /reports: our weekly report on developing this game is stored here.
-- /USER_DOCUMENTATION: stores any documentation that might be useful to any users/players. 
 - /versions: includes different release versions of our game. 
 - Other files: other files, such as our current living document and README file, are stored in the main repository.
 
