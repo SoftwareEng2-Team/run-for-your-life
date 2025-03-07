@@ -15,35 +15,26 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Middleware so CORS headers are sent for all requests
-// app.use((req, res, next) => {
-//     res.header("Access-Control-Allow-Origin", "*");  
-//     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-//     res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-//     if (req.method === "OPTIONS") {
-//         return res.status(200).end();  
-//     }
-//     next();
-// });
-
+// CORS Middleware (Placed **Before** Routes)
 app.use((req, res, next) => {
     console.log("CORS Debugging: Incoming request from", req.headers.origin);
 
-    // Allow only specific origins
+    // Allow only specific frontend origins
     const allowedOrigins = [
-        "https://web.engr.oregonstate.edu/",
-        "https://run-for-your-life-frontend.onrender.com/",
-        "https://run-for-your-life.onrender.com/"
+        "https://web.engr.oregonstate.edu",
+        "https://run-for-your-life-frontend.onrender.com",
+        "https://run-for-your-life.onrender.com"
     ];
 
     if (allowedOrigins.includes(req.headers.origin)) {
         res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
+        res.setHeader("Access-Control-Allow-Credentials", "true");  // Required for cookies/auth headers
     }
 
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    res.setHeader("Access-Control-Allow-Credentials", "true");
 
+    // Handle OPTIONS preflight requests properly
     if (req.method === "OPTIONS") {
         return res.sendStatus(204);
     }
@@ -58,7 +49,7 @@ app.use('/api/leaderboard', leaderboardRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/api/map', mapRoutes);
 
-// Start server
+// Start Server
 app.listen(PORT, () => {
-    console.log(`Server listening on port ${PORT}...`);
+    console.log(`🚀 Server listening on port ${PORT}...`);
 });

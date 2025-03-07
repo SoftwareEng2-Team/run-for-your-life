@@ -1,6 +1,16 @@
 import pool from '../../database/connection_pool.mjs';
 export const setTerrClaimed = async (req, res) => {
+<<<<<<< HEAD
     // console.log("DEBUG: Executing territory claim for user:", user_id, " Territory added:", total_territory);
+=======
+    res.setHeader("Access-Control-Allow-Origin", req.headers.origin || "*");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+
+    console.log("DEBUG HI KEONA");
+    console.log("DEBUG: Executing territory claim for user:", user_id, " Territory added:", total_territory);
+>>>>>>> main
 
     const result = await pool.query(query, [user_id, total_territory]);
     
