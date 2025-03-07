@@ -10,12 +10,20 @@ export const setRank = async (req, res) => {
         const query = `
             UPDATE leaderboards
             SET rank_num = $2
-            WHERE user_id = $1;
+            WHERE user_id = $1
             RETURNING rank_num;
         `;
 
         // Perform the query on the database
         const result = await pool.query(query, [user_id, rank_num]);
+
+        // If no rows were updated, return an error
+        if (result.rowCount === 0) {
+            return res.status(404).json({ error: "User not found in leaderboard" });
+        }
+
+        // Send the updated rank to the client
+        res.json(result.rows[0]);
     } catch (error) {
         console.error("Database error setting the rank:", error);
         res.status(500).json({ error: error.message });
