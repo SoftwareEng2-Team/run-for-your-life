@@ -309,7 +309,6 @@ async function claimTerritory() {
         });
 
         const data = await response.json();
-        console.log("DEBUG CLAIMTERRITORY RESPONSE DATA:", data);
         
         if(!response.ok) {
           console.error("Error:", response.status);
