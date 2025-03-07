@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   } else {
     // Update the database with the territory claimed section
     // API URL for the backend
-    // const API_URL = 'https://run-for-your-life-api.onrender.com'; <-- REDUNDANT LINE -CONNOR
     const score = localStorage.getItem('score');
     try {
       // DB request to set the rank of the current user
@@ -52,15 +51,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
-  // try {
-  //   // Delay to ensure database updates are reflected
-  //   setTimeout(async () => {
-  //     await fetchUserProfile(API_URL, user_id);
-  //   }, 500); // 500ms delay to allow DB updates
-  // } catch (error) {
-  //   console.error("Error initializing profile:", error);
-  // }
-
   // Modal (User Guide) Logic
   const guideButton = document.getElementById("guideButton");
   const guideModal = document.getElementById("guideModal");
@@ -80,39 +70,3 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 });
-
-// Function to fetch user profile
-// async function fetchUserProfile(API_URL, user_id) {
-//   try {
-//     // Fetch user profile data from API
-//     const response = await fetch(`${API_URL}/api/profile`, {
-//       method: 'POST',
-//       headers: { 'Content-Type': 'application/json' },
-//       body: JSON.stringify({ user_id })
-//     });
-
-//     const data = await response.json();
-//     console.log("Debug: API response for profile:", data);
-
-//     // Remove previous cache to prevent outdated data
-//     localStorage.removeItem("total_territory");
-
-//     // Store the latest total distance claimed to prevent it from resetting
-//     if (data.total_territory !== null) {
-//       localStorage.setItem("total_territory", data.total_territory);
-//     }
-
-//     // Retrieve last known total_claimed in case of null response
-//     localStorage.removeItem("total_territory");
-//     fetchUserProfile(API_URL, user_id);
-
-//     // Update profile info
-//     document.getElementById("username").textContent = data.username || "No user - sign in!";
-//     document.getElementById("rank").textContent = data.rank ? `#${data.rank}` : "No rank yet!";
-//     document.getElementById("totalDistance").textContent = data.total_distance_ran ? `${data.total_distance_ran} miles` : "0";
-//     document.getElementById("totalClaimed").textContent = storedClaimed ? `${storedClaimed} sqft` : "0 sqft";
-
-//   } catch (error) {
-//     console.error("Error fetching profile data:", error);
-//   }
-// }
