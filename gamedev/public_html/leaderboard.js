@@ -3,11 +3,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Clear any existing leaderboard data
     const leaderboardContainer = document.querySelector(".leaderboard-container");
     leaderboardContainer.innerHTML = "";
+    // Set the API URL
+    const API_URL = 'https://run-for-your-life-api.onrender.com';
 
     async function setRank(user_id, rank) {
         /* Set the rank to the database */
-        // API URL for the backend
-        const API_URL = 'https://run-for-your-life-api.onrender.com';
         try {
             // DB request to set the rank of the current user
             const response = await fetch(`${API_URL}/api/leaderboard/rank`, {
@@ -16,6 +16,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                 // Send the user ID and rank number
                 body: JSON.stringify({ user_id, rank })
             });
+
+            // Indicate if the query was successful
+            const data = await response.json();
+            if (response.ok) {
+                console.log("Successful rank update for user: ", user_id);
+            }
         } catch (error) {
             console.error("Error:", error);
         }
@@ -23,8 +29,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     async function createLeaderboard() {
         /* Fetch leaderboard data from the backend */
-        // API URL for the backend
-        const API_URL = 'https://run-for-your-life-api.onrender.com';
         try {
             // DB request to get player information to set the leaderboard
             const response = await fetch(`${API_URL}/api/leaderboard`, {
@@ -94,9 +98,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             console.log("No territory to update, skipping query");
         } else {
             /* As long as the user is logged in, update the profile info 
-                - Update the database with the territory claimed section
-                - Set the API URL for the backend */
-            const API_URL = 'https://run-for-your-life-api.onrender.com';
+                - Update the database with the territory claimed section */
             const score = localStorage.getItem('score');
             try {
                 // DB request to set the territory of the current user
