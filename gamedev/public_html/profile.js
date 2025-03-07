@@ -66,7 +66,8 @@ async function fetchUserProfile(API_URL, user_id) {
     }
 
     // Retrieve last known total_claimed in case of null response
-    const storedClaimed = localStorage.getItem("total_distance_claimed");
+    localStorage.removeItem("total_distance_claimed"); 
+    fetchUserProfile(API_URL, user_id);  
 
     // Update profile info
     document.getElementById("username").textContent = data.username || "No user - sign in!";
