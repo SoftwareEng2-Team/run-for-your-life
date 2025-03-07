@@ -21,6 +21,8 @@ let outsidePath = [];
 let locationHistory = [];
 // Label for the territory name
 let territoryLabel = null;
+// Variable to track how many meters the user has traveled
+let distance_travelled = 0;
 
 async function initMap() {
 
@@ -170,6 +172,23 @@ async function initMap() {
             lng: position.coords.longitude,
           };
 
+          // Calculate the distance between the last points if available
+          if (previousPosition) {
+            const distance = google.maps.geometry.spherical.computeDistanceBetween(
+              new google.maps.LatLng(previousPosition),
+              new google.maps.LatLng(pos)
+            );
+
+            distance_travelled += distance;
+            distance_travelled = Number(distance_travelled.toFixed(2)); 
+
+            console.log(`Distance traveled: ${distance.toFixed(2)} meters`);
+            console.log(`Total distance: ${distance_travelled.toFixed(2)} meters`);
+
+            // Store in local storage
+            localStorage.setItem('distance_travelled', distance_travelled);
+          }
+
           // Store the user's current position
           userPosition = pos;
 
@@ -293,7 +312,7 @@ async function claimTerritory() {
     // Retrieve the user_id from local storage
     const user_id = localStorage.getItem('user_id');
     console.log("User ID:", user_id);
-    if (!user_id) 
+    if (!user_id)
       console.error("No user_id found in local storage!");
     else
       localStorage.setItem('score', score);
@@ -332,7 +351,7 @@ async function expandTerritory() {
     // Retrieve the user_id from local storage
     const user_id = localStorage.getItem('user_id');
     console.log("User ID:", user_id);
-    if (!user_id) 
+    if (!user_id)
       console.error("No user_id found in local storage!");
     else
       localStorage.setItem('score', score);
@@ -342,21 +361,21 @@ async function expandTerritory() {
 }
 
 async function removeRedundancies(polygoncoords) {
-if (claimedTerritory) {
-  let filteredCoords = polygoncoords.filter((coord, index) => {
-    //Remove the current coordinate from the polygon
-    let incision = polygoncoords.slice(0, index).concat(polygoncoords.slice(index + 1));
-    //Must be at least 3 coordinates to form a polygon
-    if(incision.length <= 3) {
-      return true;
-    }
-    //Create a polygon without the current coordinate, then check if the coordinate is still inside the polygon
-    let excision = google.maps.geometry.poly.containsLocation(new google.maps.LatLng(coord), new google.maps.Polygon({paths: incision}));
-    //If coordinate is inside the polygon, excise it
-    return !excision;
-  });
-  return filteredCoords;
-}
+  if (claimedTerritory) {
+    let filteredCoords = polygoncoords.filter((coord, index) => {
+      //Remove the current coordinate from the polygon
+      let incision = polygoncoords.slice(0, index).concat(polygoncoords.slice(index + 1));
+      //Must be at least 3 coordinates to form a polygon
+      if (incision.length <= 3) {
+        return true;
+      }
+      //Create a polygon without the current coordinate, then check if the coordinate is still inside the polygon
+      let excision = google.maps.geometry.poly.containsLocation(new google.maps.LatLng(coord), new google.maps.Polygon({ paths: incision }));
+      //If coordinate is inside the polygon, excise it
+      return !excision;
+    });
+    return filteredCoords;
+  }
 }
 
 // Error handling for geolocation

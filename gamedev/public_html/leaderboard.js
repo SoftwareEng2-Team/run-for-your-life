@@ -6,27 +6,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Set the API URL
     const API_URL = 'https://run-for-your-life-api.onrender.com';
 
-    async function setRank(user_id, rank) {
-        /* Set the rank to the database */
-        try {
-            // DB request to set the rank of the current user
-            const response = await fetch(`${API_URL}/api/leaderboard/rank`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                // Send the user ID and rank number
-                body: JSON.stringify({ user_id, rank })
-            });
-
-            // Indicate if the query was successful
-            const data = await response.json();
-            if (response.ok) {
-                console.log("Successful rank update for user: ", user_id);
-            }
-        } catch (error) {
-            console.error("Error:", error);
-        }
-    }
-
     async function createLeaderboard() {
         /* Fetch leaderboard data from the backend */
         try {
@@ -60,8 +39,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                     rank_id = "rank_3";
                 }
 
-                // Set rank for the user in the database
-                setRank(player.user_id, index + 1);
+                // Set rank for the first ten users in the database
+                if (data.user_id === localStorage.getItem('user_id')) {
+                    localStorage.setItem('rank', index+1);
+                }
 
                 // Console statements for debugging: attaches name and link to each other
                 currindex = index + 1;
@@ -102,7 +83,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             const score = localStorage.getItem('score');
             try {
                 // DB request to set the territory of the current user
-                const response = await fetch(`${API_URL}/api/map`, {
+                const response = await fetch(`${API_URL}/api/map/territory`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     // Send the user ID and territory claimed
