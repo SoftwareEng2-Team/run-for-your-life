@@ -224,25 +224,6 @@ There was some confusion on why, when a user successfully logs in, it kept on ro
 
 #### 2.1 Exact Copy of the Third Section from Last Week 
 
-- Decide where spawning would cause the least amount of frustration for all parties (1 week)
-
-- Figure out if public_html is a viable way to host our website (pushed off because of midterm and other work) (1 week)
-
-- Work on designing backend API specifications given new design expectations (2 weeks)
-
-#### 2.2 Progress and Issues
-
-**What we've finished:** 
-I've not finished much personally since I've had some roadblocks in my life. For the game implementation, live tracking is implemented and what's needed is to implement pathing and spawn territory
-
-**What we learned:**  
-I learned the basics of how to draw polygons and am learning how to integrate it with real-time tracking given the constraint of limited API calls per hour
-
-**Where we had trouble/stuck:**
-I have had some personal struggles that I'm dealing with that interferes with my ability to work. Furthermore, real-time integration has been a struggle due to the scope of our project progress. 
-
-#### 2.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
-
 - Work on designing backend API specifications given that our game is single player for the beta test (1 weeks)
 
 - Implement player spawn territory (1 week)
@@ -250,3 +231,26 @@ I have had some personal struggles that I'm dealing with that interferes with my
 - Implement player path reaction (1 week)
 
 - Create test cases for path running (1 week)
+
+#### 2.2 Progress and Issues
+
+**What we've finished:** 
+Finished the majority of geolocation implementation and logic for the user to capture area.
+
+**What we learned:**  
+A lot of new interactions with the google maps and geolocation API were learned because of how heavily we use it for the main game feature. A lot of considerations were made to allow the user to claim territory despite the end algorithm being so simple and relatively hands-off.
+
+**Where we had trouble/stuck:**
+The database is currently having issues tracking the player's claimed area. It seems to reset their score which messes with the core gameplay implementation because we want to check how much area the user has claimed over time. Console logging has allowed us to determine the logic is correct for score calculation, but users aren't supposed to be presented with console messages for a functioning web app. 
+
+#### 2.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
+
+- Finalize player path completion logic by creating "snapping" to and from the captured boundary (1 week)
+
+- Finalize player 'total area captured' logic—- given it's done by the time the final project is due (1 week)
+
+- Clean up code by adding comments and removing commented-out or redundant code (1 week)
+
+- Finish up documentation of geolocation (1 week)
+
+- Write test cases (1 week)
