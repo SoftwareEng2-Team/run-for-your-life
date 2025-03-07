@@ -1,3 +1,4 @@
+// Wait until the DOM is fully loaded before running the script
 document.addEventListener("DOMContentLoaded", async () => {
     // Clear any existing leaderboard data
     const leaderboardContainer = document.querySelector(".leaderboard-container");
@@ -78,5 +79,43 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     }
 
+    // Get the user ID from local storage
+    const user_id = localStorage.getItem('user_id');
+
+    // If no user is logged in...
+    if (!user_id) {
+        console.error("No user_id found in local storage!");
+    } else {
+        // If there is a territory to update
+        if (localStorage.getItem('score') === 0 || localStorage.getItem('score') === null) {
+            console.log("No territory to update, skipping query");
+        } else {
+            /* As long as the user is logged in, update the profile info 
+                - Update the database with the territory claimed section
+                - Set the API URL for the backend */
+            const API_URL = 'https://run-for-your-life-api.onrender.com';
+            const score = localStorage.getItem('score');
+            try {
+                // DB request to set the territory of the current user
+                const response = await fetch(`${API_URL}/api/map`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    // Send the user ID and territory claimed
+                    body: JSON.stringify({ user_id, score })
+                });
+
+                // Get the response from the query, reset the score to 0
+                const data = await response.json();
+                localStorage.setItem('score', 0);
+                // Ensure that the response is successful
+                if (response.ok) {
+                    console.log("Successful territory update for user: ", user_id);
+                }
+            // Catch any fetching errors
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        }
+    }
     createLeaderboard();
 });

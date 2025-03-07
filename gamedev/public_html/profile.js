@@ -16,51 +16,56 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (!user_id) {
     console.error("No user_id found in local storage!");
   } else {
-    /* As long as the user is logged in, update the profile info 
-      - Update the database with the territory claimed section
-      - Set the API URL for the backend */
-    const API_URL = 'https://run-for-your-life-api.onrender.com';
-    const score = localStorage.getItem('score');
-    try {
-      // DB request to set the territory of the current user
-      const response = await fetch(`${API_URL}/api/map`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        // Send the user ID and territory claimed
-        body: JSON.stringify({ user_id, score })
-      });
-
-      // Get the response from the query, reset the score to 0
-      const data = await response.json();
-      localStorage.setItem('score', 0);
-      // If the response is successful, retrieve the profile information
-      if (response.ok) {
-        // Retrieve the profile information for the user
-        const response = await fetch(`${API_URL}/api/profile`, {
+    // If there is a territory to update
+    if (localStorage.getItem('score') === 0 || localStorage.getItem('score') === null) {
+      console.log("No territory to update, skipping query");
+    } else {
+      /* As long as the user is logged in, update the profile info 
+        - Update the database with the territory claimed section
+        - Set the API URL for the backend */
+      const API_URL = 'https://run-for-your-life-api.onrender.com';
+      const score = localStorage.getItem('score');
+      try {
+        // DB request to set the territory of the current user
+        const response = await fetch(`${API_URL}/api/map`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ user_id })
+          // Send the user ID and territory claimed
+          body: JSON.stringify({ user_id, score })
         });
 
-        // Get the profile data from the response
-        const profile_data = await response.json();
-        // Retrieve the total territory claimed and round it to 2 decimal places
-        const terr_claimed_rounded = (profile_data.total_distance_claimed).toFixed(2);
-        // As long as the response is successful, update the profile information
+        // Get the response from the query, reset the score to 0
+        const data = await response.json();
+        localStorage.setItem('score', 0);
+        // If the response is successful, retrieve the profile information
         if (response.ok) {
-          // Console statments for debugging
-          console.log("Successful profile update for user: ", user_id);
-          console.log("Terr claimed: ", terr_claimed_rounded);
-          // Update profile info
-          document.getElementById("username").textContent = profile_data.username || "No user - sign in!";
-          document.getElementById("rank").textContent = profile_data.rank ? `#${profile_data.rank}` : "No rank yet!";
-          //document.getElementById("totalDistance").textContent = data.total_distance_ran ? `${data.total_distance_ran} miles` : "0";
-          document.getElementById("totalClaimed").textContent = terr_claimed_rounded ? `${terr_claimed_rounded} sqft` : "0 sqft";
+          // Retrieve the profile information for the user
+          const response = await fetch(`${API_URL}/api/profile`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ user_id })
+          });
+
+          // Get the profile data from the response
+          const profile_data = await response.json();
+          // Retrieve the total territory claimed and round it to 2 decimal places
+          const terr_claimed_rounded = (profile_data.total_distance_claimed).toFixed(2);
+          // As long as the response is successful, update the profile information
+          if (response.ok) {
+            // Console statments for debugging
+            console.log("Successful profile update for user: ", user_id);
+            console.log("Terr claimed: ", terr_claimed_rounded);
+            // Update profile info
+            document.getElementById("username").textContent = profile_data.username || "No user - sign in!";
+            document.getElementById("rank").textContent = profile_data.rank ? `#${profile_data.rank}` : "No rank yet!";
+            //document.getElementById("totalDistance").textContent = data.total_distance_ran ? `${data.total_distance_ran} miles` : "0";
+            document.getElementById("totalClaimed").textContent = terr_claimed_rounded ? `${terr_claimed_rounded} sqft` : "0 sqft";
+          }
         }
+        // Catch any errors
+      } catch (error) {
+        console.error("Error:", error);
       }
-    // Catch any errors
-    } catch (error) {
-      console.error("Error:", error);
     }
   }
 

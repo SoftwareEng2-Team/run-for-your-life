@@ -287,8 +287,7 @@ async function claimTerritory() {
 
     const area = google.maps.geometry.spherical.computeArea(claimedTerritory.getPath().getArray());
     score += area;
-
-    const score_rounded = Number(score.toFixed(2));
+    score = Number(score.toFixed(2));
     console.log("Territory expanded around:", userPosition);
 
     // Retrieve the user_id from local storage
@@ -297,7 +296,7 @@ async function claimTerritory() {
     if (!user_id) 
       console.error("No user_id found in local storage!");
     else
-      localStorage.setItem('score', score_rounded);
+      localStorage.setItem('score', score);
   } else {
     console.error("User position is not available.");
   }
@@ -326,9 +325,9 @@ async function expandTerritory() {
     // Calculate the expansion width and update the score
     const expansionWidth = google.maps.geometry.spherical.computeArea(outsidePath.getPath().getArray());
     score += expansionWidth;
-    const score_rounded = Number(score.toFixed(2));
+    score = Number(score.toFixed(2));
     console.log("Territory expanded around:", userPosition);
-    console.log("DEBUG EXPANDTERRITORY SCORE:", score_rounded);
+    console.log("DEBUG EXPANDTERRITORY SCORE:", score);
 
     // Retrieve the user_id from local storage
     const user_id = localStorage.getItem('user_id');
@@ -336,7 +335,7 @@ async function expandTerritory() {
     if (!user_id) 
       console.error("No user_id found in local storage!");
     else
-      localStorage.setItem('score', score_rounded);
+      localStorage.setItem('score', score);
   } else {
     console.error("User position or outside path is not available.");
   }
