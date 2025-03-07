@@ -1,11 +1,7 @@
 import pool from '../../database/connection_pool.mjs';
 export const setTerrClaimed = async (req, res) => {
-    console.log("Hi Keona");
-    res.setHeader("Access-Control-Allow-Origin", req.headers.origin || "*");
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    res.setHeader("Access-Control-Allow-Credentials", "true");
-    
+    console.log("Entered setTerrClaimed in mapController.js"); 
+
     try {
         const { user_id, score } = req.body;
 
@@ -13,15 +9,15 @@ export const setTerrClaimed = async (req, res) => {
             WITH updated_leaderboard AS (
                 INSERT INTO leaderboards (user_id, total_territory, rank_num, week_start)
                 VALUES ($1, $2, NULL, CURRENT_DATE)
-                ON CONFLICT (user_id, week_start) DO UPDATE 
+                ON CONFLICT (user_id, week_start) DO UPDATE
                 SET total_territory = leaderboards.total_territory + EXCLUDED.total_territory
                 WHERE leaderboards.user_id = EXCLUDED.user_id AND leaderboards.week_start = EXCLUDED.week_start
-                RETURNING total_territory;                
+                RETURNING total_territory
             )
             UPDATE users
             SET total_territory = (SELECT COALESCE(SUM(total_territory), 0) FROM leaderboards WHERE user_id = $1)
             WHERE user_id = $1
-            RETURNING total_territory;            
+            RETURNING users.total_territory;        
         `;
 
         const result = await pool.query(query, [user_id, score]);
