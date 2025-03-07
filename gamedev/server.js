@@ -12,35 +12,58 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Define CORS middleware for blocking requests from unknown origins
+app.use(cors({
+    origin: [
+        "https://web.engr.oregonstate.edu",
+        "https://run-for-your-life-frontend.onrender.com",
+        "https://run-for-your-life.onrender.com",
+    ],
+    methods: "GET,POST,PUT,DELETE",
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// CORS Middleware (Placed **Before** Routes)
+// CORS headers and options set up
 app.use((req, res, next) => {
-    console.log("CORS Debugging: Incoming request from", req.headers.origin);
-
-    // Allow only specific frontend origins
-    const allowedOrigins = [
-        "https://web.engr.oregonstate.edu",
-        "https://run-for-your-life-frontend.onrender.com",
-        "https://run-for-your-life.onrender.com"
-    ];
-
-    if (allowedOrigins.includes(req.headers.origin)) {
-        res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
-        res.setHeader("Access-Control-Allow-Credentials", "true");  // Required for cookies/auth headers
-    }
-
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-
-    // Handle OPTIONS preflight requests properly
+    res.header("Access-Control-Allow-Origin", "*");  
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
     if (req.method === "OPTIONS") {
-        return res.sendStatus(204);
+        return res.status(200).end();  
     }
-
     next();
 });
+
+// // CORS Middleware (Placed **Before** Routes)
+// app.use((req, res, next) => {
+//     console.log("CORS Debugging: Incoming request from", req.headers.origin);
+
+//     // Allow only specific frontend origins
+//     const allowedOrigins = [
+//         "https://web.engr.oregonstate.edu",
+//         "https://run-for-your-life-frontend.onrender.com",
+//         "https://run-for-your-life.onrender.com"
+//     ];
+
+//     if (allowedOrigins.includes(req.headers.origin)) {
+//         res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
+//         res.setHeader("Access-Control-Allow-Credentials", "true");  // Required for cookies/auth headers
+//     }
+
+//     res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+//     res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+//     // Handle OPTIONS preflight requests properly
+//     if (req.method === "OPTIONS") {
+//         return res.sendStatus(204);
+//     }
+
+//     next();
+// });
 
 // API Routes
 app.use('/api/users', userRoutes);

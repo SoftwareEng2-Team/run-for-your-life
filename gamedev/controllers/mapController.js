@@ -1,11 +1,7 @@
 import pool from '../../database/connection_pool.mjs';
 export const setTerrClaimed = async (req, res) => {
-    console.log("Hi Keona");
-    res.setHeader("Access-Control-Allow-Origin", req.headers.origin || "*");
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    res.setHeader("Access-Control-Allow-Credentials", "true");
-    
+    console.log("Entered setTerrClaimed in mapController.js"); 
+
     try {
         const { user_id, score } = req.body;
 
