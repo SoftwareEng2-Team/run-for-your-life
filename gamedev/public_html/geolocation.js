@@ -291,6 +291,8 @@ async function claimTerritory() {
     const score_rounded = Number(score.toFixed(2));
     console.log("Territory expanded around:", userPosition);
 
+    // Retrieve the user_id from local storage
+    const user_id = localStorage.getItem('user_id');
     if (!user_id) 
       console.error("No user_id found in local storage!");
     else
