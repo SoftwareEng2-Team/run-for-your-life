@@ -11,6 +11,7 @@ export const setRank = async (req, res) => {
             UPDATE leaderboards
             SET rank_num = $2
             WHERE user_id = $1;
+            RETURNING rank_num;
         `;
 
         // Perform the query on the database
