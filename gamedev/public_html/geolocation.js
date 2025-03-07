@@ -291,41 +291,10 @@ async function claimTerritory() {
     const score_rounded = Number(score.toFixed(2));
     console.log("Territory expanded around:", userPosition);
 
-    // Update the database with the territory claimed section
-    // API URL for the backend
-    const API_URL = 'https://run-for-your-life-api.onrender.com';
-    const user_id = localStorage.getItem('user_id');
-    if (!user_id) {
+    if (!user_id) 
       console.error("No user_id found in local storage!");
-    } else {
-      console.log("User: ", user_id, " claimed: ", score_rounded);
-      try {
-        // DB request to set the rank of the current user
-        const response = await fetch(`${API_URL}/api/map`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          // Send the user ID and score
-          body: JSON.stringify({ user_id, score_rounded })
-        });
-
-        const data = await response.json();
-        
-        if(!response.ok) {
-          console.error("Error:", response.status);
-          console.error("Error details:", data);
-        } 
-        else {
-            if(data.error) {
-              console.error("Error:", data.error);
-            }
-            else {
-              console.log("Territory claimed successfully Here's the data:", data);
-            }
-        }
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    }
+    else
+      localStorage.setItem('score', score_rounded);
   } else {
     console.error("User position is not available.");
   }
@@ -358,26 +327,12 @@ async function expandTerritory() {
     console.log("Territory expanded around:", userPosition);
     console.log("DEBUG EXPANDTERRITORY SCORE:", score_rounded);
 
-    // Update the database with the territory claimed section
-    // API URL for the backend
-    const API_URL = 'https://run-for-your-life-api.onrender.com';
     // Retrieve the user_id from local storage
     const user_id = localStorage.getItem('user_id');
-    if (!user_id) {
+    if (!user_id) 
       console.error("No user_id found in local storage!");
-    } else {
-      try {
-        // DB request to set the rank of the current user
-        const response = await fetch(`${API_URL}/api/map`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          // Send the user ID and rank number
-          body: JSON.stringify({ user_id, score_rounded })
-        });
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    }
+    else
+      localStorage.setItem('score', score_rounded);
   } else {
     console.error("User position or outside path is not available.");
   }
