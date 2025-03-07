@@ -13,16 +13,18 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Define CORS middleware for blocking requests from unknown origins
-app.use(cors({
-    origin: [
-        "https://web.engr.oregonstate.edu",
-        "https://run-for-your-life-frontend.onrender.com",
-        "https://run-for-your-life.onrender.com",
-    ],
-    methods: "GET,POST,PUT,DELETE",
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true
-}));
+// app.use(cors({
+//     origin: [
+//         "https://web.engr.oregonstate.edu",
+//         "https://run-for-your-life-frontend.onrender.com",
+//         "https://run-for-your-life.onrender.com",
+//     ],
+//     methods: "GET,POST,PUT,DELETE",
+//     allowedHeaders: ["Content-Type", "Authorization"],
+//     credentials: true
+// }));
+
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
