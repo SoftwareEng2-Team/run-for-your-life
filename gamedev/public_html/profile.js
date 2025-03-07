@@ -81,7 +81,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 });
 
-
 // Function to fetch user profile
 // async function fetchUserProfile(API_URL, user_id) {
 //   try {
