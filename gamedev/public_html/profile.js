@@ -1,5 +1,6 @@
+// Wait until the DOM is fully loaded before running the script
 document.addEventListener("DOMContentLoaded", async () => {
-
+  //Clear the profile info on page load
   document.getElementById("username").textContent = "";
   document.getElementById("rank").textContent = "";
   document.getElementById("totalDistance").textContent = "";
@@ -8,111 +9,79 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // API URL for the backend
   const API_URL = "https://run-for-your-life-api.onrender.com";
+  // Get the user ID from local storage
   const user_id = localStorage.getItem('user_id');
 
+  // If no user is logged in...
   if (!user_id) {
     console.error("No user_id found in local storage!");
   } else {
-    // Update the database with the territory claimed section
-    // API URL for the backend
+    /* As long as the user is logged in, update the profile info 
+      - Update the database with the territory claimed section
+      - Set the API URL for the backend */
     const API_URL = 'https://run-for-your-life-api.onrender.com';
     const score = localStorage.getItem('score');
     try {
-      // DB request to set the rank of the current user
+      // DB request to set the territory of the current user
       const response = await fetch(`${API_URL}/api/map`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        // Send the user ID and rank number
+        // Send the user ID and territory claimed
         body: JSON.stringify({ user_id, score })
       });
 
+      // Get the response from the query, reset the score to 0
       const data = await response.json();
+      localStorage.setItem('score', 0);
+      // If the response is successful, retrieve the profile information
       if (response.ok) {
-        console.log("Successful score setting!");
-
+        // Retrieve the profile information for the user
         const response = await fetch(`${API_URL}/api/profile`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ user_id })
         });
 
+        // Get the profile data from the response
         const profile_data = await response.json();
+        // Retrieve the total territory claimed and round it to 2 decimal places
+        const terr_claimed_rounded = (profile_data.total_distance_claimed).toFixed(2);
+        // As long as the response is successful, update the profile information
         if (response.ok) {
+          // Console statments for debugging
           console.log("Successful profile update for user: ", user_id);
-          console.log("Terr claimed: ", profile_data.total_distance_claimed);
+          console.log("Terr claimed: ", terr_claimed_rounded);
           // Update profile info
           document.getElementById("username").textContent = profile_data.username || "No user - sign in!";
           document.getElementById("rank").textContent = profile_data.rank ? `#${profile_data.rank}` : "No rank yet!";
           //document.getElementById("totalDistance").textContent = data.total_distance_ran ? `${data.total_distance_ran} miles` : "0";
-          document.getElementById("totalClaimed").textContent = profile_data.total_distance_claimed ? `${profile_data.total_distance_claimed} sqft` : "0 sqft";
+          document.getElementById("totalClaimed").textContent = terr_claimed_rounded ? `${terr_claimed_rounded} sqft` : "0 sqft";
         }
       }
+    // Catch any errors
     } catch (error) {
       console.error("Error:", error);
     }
   }
 
-  // try {
-  //   // Delay to ensure database updates are reflected
-  //   setTimeout(async () => {
-  //     await fetchUserProfile(API_URL, user_id);
-  //   }, 500); // 500ms delay to allow DB updates
-  // } catch (error) {
-  //   console.error("Error initializing profile:", error);
-  // }
-
-  // Modal (User Guide) Logic
+  /* Modal (User Guide) Logi */
+  // Get the HTML elements for the guide button and modal
   const guideButton = document.getElementById("guideButton");
   const guideModal = document.getElementById("guideModal");
   const closeButton = document.querySelector(".modal .close");
 
+  // Event listeners for the guide button and close button
   guideButton.addEventListener("click", () => {
     guideModal.style.display = "block";
   });
-
   closeButton.addEventListener("click", () => {
     guideModal.style.display = "none";
   });
 
+  // Close the modal if the user clicks outside of it
   window.addEventListener("click", (event) => {
     if (event.target === guideModal) {
       guideModal.style.display = "none";
     }
   });
 });
-
-// Function to fetch user profile
-// async function fetchUserProfile(API_URL, user_id) {
-//   try {
-//     // Fetch user profile data from API
-//     const response = await fetch(`${API_URL}/api/profile`, {
-//       method: 'POST',
-//       headers: { 'Content-Type': 'application/json' },
-//       body: JSON.stringify({ user_id })
-//     });
-
-//     const data = await response.json();
-//     console.log("Debug: API response for profile:", data);
-
-//     // Remove previous cache to prevent outdated data
-//     localStorage.removeItem("total_territory");
-
-//     // Store the latest total distance claimed to prevent it from resetting
-//     if (data.total_territory !== null) {
-//       localStorage.setItem("total_territory", data.total_territory);
-//     }
-
-//     // Retrieve last known total_claimed in case of null response
-//     localStorage.removeItem("total_territory");
-//     fetchUserProfile(API_URL, user_id);
-
-//     // Update profile info
-//     document.getElementById("username").textContent = data.username || "No user - sign in!";
-//     document.getElementById("rank").textContent = data.rank ? `#${data.rank}` : "No rank yet!";
-//     document.getElementById("totalDistance").textContent = data.total_distance_ran ? `${data.total_distance_ran} miles` : "0";
-//     document.getElementById("totalClaimed").textContent = storedClaimed ? `${storedClaimed} sqft` : "0 sqft";
-
-//   } catch (error) {
-//     console.error("Error fetching profile data:", error);
-//   }
-// }
