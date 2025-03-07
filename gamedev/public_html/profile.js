@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   } else {
     // Update the database with the territory claimed section
     // API URL for the backend
-    const API_URL = 'https://run-for-your-life-api.onrender.com';
+    // const API_URL = 'https://run-for-your-life-api.onrender.com'; <-- REDUNDANT LINE -CONNOR
     const score = localStorage.getItem('score');
     try {
       // DB request to set the rank of the current user
