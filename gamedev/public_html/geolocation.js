@@ -307,6 +307,22 @@ async function claimTerritory() {
           // Send the user ID and score
           body: JSON.stringify({ user_id, score_rounded })
         });
+
+        const data = await response.json();
+        console.log("DEBUG CLAIMTERRITORY RESPONSE DATA:", data);
+        
+        if(!response.ok) {
+          console.error("Error:", response.status);
+          console.error("Error details:", data);
+        } 
+        else {
+            if(data.error) {
+              console.error("Error:", data.error);
+            }
+            else {
+              console.log("Territory claimed successfully!");
+            }
+        }
       } catch (error) {
         console.error("Error:", error);
       }
