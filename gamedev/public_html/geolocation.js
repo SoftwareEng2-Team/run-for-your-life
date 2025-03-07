@@ -293,6 +293,7 @@ async function claimTerritory() {
 
     // Retrieve the user_id from local storage
     const user_id = localStorage.getItem('user_id');
+    console.log("User ID:", user_id);
     if (!user_id) 
       console.error("No user_id found in local storage!");
     else
@@ -331,6 +332,7 @@ async function expandTerritory() {
 
     // Retrieve the user_id from local storage
     const user_id = localStorage.getItem('user_id');
+    console.log("User ID:", user_id);
     if (!user_id) 
       console.error("No user_id found in local storage!");
     else
