@@ -36,15 +36,15 @@ document.addEventListener("DOMContentLoaded", async () => {
           body: JSON.stringify({ user_id })
         });
 
-        const data = await response.json();
+        const profile_data = await response.json();
         if (response.ok) {
           console.log("Successful profile update for user: ", user_id);
-          console.log("Terr claimed: ", data.total_territory);
+          console.log("Terr claimed: ", profile_data.total_distance_claimed);
           // Update profile info
-          document.getElementById("username").textContent = data.username || "No user - sign in!";
-          document.getElementById("rank").textContent = data.rank ? `#${data.rank}` : "No rank yet!";
+          document.getElementById("username").textContent = profile_data.username || "No user - sign in!";
+          document.getElementById("rank").textContent = profile_data.rank ? `#${profile_data.rank}` : "No rank yet!";
           //document.getElementById("totalDistance").textContent = data.total_distance_ran ? `${data.total_distance_ran} miles` : "0";
-          //document.getElementById("totalClaimed").textContent = storedClaimed ? `${storedClaimed} sqft` : "0 sqft";
+          document.getElementById("totalClaimed").textContent = profile_data.total_distance_claimed ? `${profile_data.total_distance_claimed} sqft` : "0 sqft";
         }
       }
     } catch (error) {
