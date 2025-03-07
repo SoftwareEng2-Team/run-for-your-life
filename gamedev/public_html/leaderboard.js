@@ -63,11 +63,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                 currindex = index + 1;
                 console.log("name: ", player.username, " rank: ", currindex);
 
+                // Round the total territory to 2 decimal places
+                const total_territory_rounded = (player.total_territory).toFixed(2);
+
                 // Populate each card with player's data
                 card.innerHTML = `
                     <div class="top-row">
                     <p class="name">${player.username}</p>
-                    <p class="score">${player.total_territory} sqft.</p>
+                    <p class="score">${total_territory_rounded} sqft.</p>
                     </div>
                     <p class="rank" id=${rank_id}>${rank}</p>
                 `;
