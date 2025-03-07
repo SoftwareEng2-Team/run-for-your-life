@@ -1,8 +1,7 @@
 import pool from '../../database/connection_pool.mjs';
 export const setTerrClaimed = async (req, res) => {
-<<<<<<< HEAD
-    // console.log("DEBUG: Executing territory claim for user:", user_id, " Territory added:", total_territory);
-=======
+    console.log("Hi Keona");
+    console.log("DEBUG: Executing territory claim for user:", user_id, " Territory added:", total_territory);
     res.setHeader("Access-Control-Allow-Origin", req.headers.origin || "*");
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
@@ -10,7 +9,6 @@ export const setTerrClaimed = async (req, res) => {
 
     console.log("DEBUG HI KEONA");
     console.log("DEBUG: Executing territory claim for user:", user_id, " Territory added:", total_territory);
->>>>>>> main
 
     const result = await pool.query(query, [user_id, total_territory]);
     
@@ -38,7 +36,7 @@ export const setTerrClaimed = async (req, res) => {
             return res.status(404).json({ error: 'User not found or total_territory update failed' });
         }
 
-        // console.log("Debug: Updated total_territory in leaderboards:", result.rows[0].total_territory);
+        console.log("Debug: Updated total_territory in leaderboards:", result.rows[0].total_territory);
         res.status(200).json({ 
             message: "User's territory claimed updated successfully", 
             total_territory: result.rows[0].total_territory 
