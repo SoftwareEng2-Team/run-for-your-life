@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Report a Bug</title>
+  <link rel="stylesheet" href="bugreportpage.css">
+</head>
+<body>
+  <!-- Main container for bug report (mimics profile page style) -->
+  <div class="bugreport-container">
+    <div class="bugreport-header">Report a Bug</div>
+
+    <form id="bugForm">
+      <label for="bugTitle">Bug Title:</label>
+      <input type="text" id="bugTitle" required>
+
+      <label for="description">Description:</label>
+      <textarea id="description" rows="3" required></textarea>
+
+      <label for="steps">Steps to Reproduce:</label>
+      <textarea id="steps" rows="3" required></textarea>
+
+      <label for="expected">Expected Behavior:</label>
+      <textarea id="expected" rows="2" required></textarea>
+
+      <label for="actual">Actual Behavior:</label>
+      <textarea id="actual" rows="2" required></textarea>
+
+      <label for="device">Device Details (optional):</label>
+      <input type="text" id="device">
+
+      <label for="logs">Error Logs (optional):</label>
+      <textarea id="logs" rows="2"></textarea>
+    </form>
+
+    <!-- Success & Error messages -->
+    <p id="successMessage" style="display: none;">
+      Thank you! Your bug report has been submitted.
+    </p>
+    <p id="errorMessage" style="display: none;">
+      Oops! Something went wrong. Please try again later.
+    </p>
+  </div>
+
+  <footer>
+    <button id="backButton" type="button">Back to Profile</button>
+    <button id="submitButton" type="submit" form="bugForm">Submit Bug Report</button>
+  </footer>
+
+  <!-- Bugreport logic -->
+  <script src="bugreport.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const backButton = document.getElementById("backButton");
+      backButton.addEventListener("click", () => {
+        window.location.href = "profile.html"; // or your correct path
+      });
+    });
+  </script>
+</body>
+</html>
