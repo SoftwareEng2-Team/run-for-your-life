@@ -319,7 +319,7 @@ async function claimTerritory() {
               console.error("Error:", data.error);
             }
             else {
-              console.log("Territory claimed successfully!");
+              console.log("Territory claimed successfully Here's the data:", data);
             }
         }
       } catch (error) {
