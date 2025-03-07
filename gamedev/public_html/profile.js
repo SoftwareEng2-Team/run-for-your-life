@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const data = await response.json();
         if (response.ok) {
           console.log("Successful profile update for user: ", user_id);
-          console.log("Terr claimed: ", data.total_distance_claimed);
+          console.log("Terr claimed: ", data.total_territory);
           // Update profile info
           document.getElementById("username").textContent = data.username || "No user - sign in!";
           document.getElementById("rank").textContent = data.rank ? `#${data.rank}` : "No rank yet!";
@@ -81,39 +81,38 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 });
 
-
 // Function to fetch user profile
-async function fetchUserProfile(API_URL, user_id) {
-  try {
-    // Fetch user profile data from API
-    const response = await fetch(`${API_URL}/api/profile`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ user_id })
-    });
+// async function fetchUserProfile(API_URL, user_id) {
+//   try {
+//     // Fetch user profile data from API
+//     const response = await fetch(`${API_URL}/api/profile`, {
+//       method: 'POST',
+//       headers: { 'Content-Type': 'application/json' },
+//       body: JSON.stringify({ user_id })
+//     });
 
-    const data = await response.json();
-    console.log("Debug: API response for profile:", data);
+//     const data = await response.json();
+//     console.log("Debug: API response for profile:", data);
 
-    // Remove previous cache to prevent outdated data
-    localStorage.removeItem("total_distance_claimed");
+//     // Remove previous cache to prevent outdated data
+//     localStorage.removeItem("total_territory");
 
-    // Store the latest total distance claimed to prevent it from resetting
-    if (data.total_distance_claimed !== null) {
-      localStorage.setItem("total_distance_claimed", data.total_distance_claimed);
-    }
+//     // Store the latest total distance claimed to prevent it from resetting
+//     if (data.total_territory !== null) {
+//       localStorage.setItem("total_territory", data.total_territory);
+//     }
 
-    // Retrieve last known total_claimed in case of null response
-    localStorage.removeItem("total_distance_claimed");
-    fetchUserProfile(API_URL, user_id);
+//     // Retrieve last known total_claimed in case of null response
+//     localStorage.removeItem("total_territory");
+//     fetchUserProfile(API_URL, user_id);
 
-    // Update profile info
-    document.getElementById("username").textContent = data.username || "No user - sign in!";
-    document.getElementById("rank").textContent = data.rank ? `#${data.rank}` : "No rank yet!";
-    document.getElementById("totalDistance").textContent = data.total_distance_ran ? `${data.total_distance_ran} miles` : "0";
-    document.getElementById("totalClaimed").textContent = storedClaimed ? `${storedClaimed} sqft` : "0 sqft";
+//     // Update profile info
+//     document.getElementById("username").textContent = data.username || "No user - sign in!";
+//     document.getElementById("rank").textContent = data.rank ? `#${data.rank}` : "No rank yet!";
+//     document.getElementById("totalDistance").textContent = data.total_distance_ran ? `${data.total_distance_ran} miles` : "0";
+//     document.getElementById("totalClaimed").textContent = storedClaimed ? `${storedClaimed} sqft` : "0 sqft";
 
-  } catch (error) {
-    console.error("Error fetching profile data:", error);
-  }
-}
+//   } catch (error) {
+//     console.error("Error fetching profile data:", error);
+//   }
+// }
