@@ -1,4 +1,4 @@
-const BUG_API_URL = "https://script.google.com/macros/s/AKfycbxKSjNcaTb14adZgKCUgXYkTJ4YdFw5si6i7dFTgeDorpoNlIcCCuVUArkeSdb3rgw2/exec";
+const BUG_API_URL = "PASTE IN bugreport script URL, Steps located in DEVELOPER_DOCUMENTATION/DEVELOPER_NOTES";
 
 async function submitBugReport() {
     const bugTitle = document.getElementById("bugTitle").value.trim();
