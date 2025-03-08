@@ -360,7 +360,6 @@ async function expandTerritory() {
   }
 }
 
-<<<<<<< HEAD
 async function removeRedundancies(claimed, tobeclaimed) {
 if (claimedTerritory) {
   let checkingpolygon = new google.maps.Polygon({
@@ -382,25 +381,6 @@ if (claimedTerritory) {
     return !excision;
   });
   return filteredCoords;
-}
-=======
-async function removeRedundancies(polygoncoords) {
-  if (claimedTerritory) {
-    let filteredCoords = polygoncoords.filter((coord, index) => {
-      //Remove the current coordinate from the polygon
-      let incision = polygoncoords.slice(0, index).concat(polygoncoords.slice(index + 1));
-      //Must be at least 3 coordinates to form a polygon
-      if (incision.length <= 3) {
-        return true;
-      }
-      //Create a polygon without the current coordinate, then check if the coordinate is still inside the polygon
-      let excision = google.maps.geometry.poly.containsLocation(new google.maps.LatLng(coord), new google.maps.Polygon({ paths: incision }));
-      //If coordinate is inside the polygon, excise it
-      return !excision;
-    });
-    return filteredCoords;
-  }
->>>>>>> main
 }
 
 // Error handling for geolocation
