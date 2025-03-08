@@ -1,7 +1,8 @@
 import express from 'express';
-import { setTerrClaimed } from '../controllers/mapController.js';
+import { setTerrClaimed, setDistanceClaimed } from '../controllers/mapController.js';
 
 const router = express.Router();
-router.post('/', setTerrClaimed);
+router.post('/territory', setTerrClaimed);
+router.post('/distance', setDistanceClaimed);
 
 export default router;
