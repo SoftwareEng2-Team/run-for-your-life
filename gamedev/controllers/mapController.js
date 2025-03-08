@@ -42,6 +42,10 @@ export const setDistanceClaimed = async (req, res) => {
     try {
         const { user_id, distance_traveled } = req.body;
 
+        if (isNaN(distance_traveled) || distance_traveled == null) {
+            return res.status(400).json({ error: "Invalid distance_traveled value" });
+        }
+        
         const query = `
             UPDATE users
             SET total_distance = total_distance + $2
