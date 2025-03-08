@@ -360,29 +360,29 @@ async function expandTerritory() {
   }
 }
 
-async function removeRedundancies(claimed, tobeclaimed) {
-  if (claimedTerritory) {
-    let checkingpolygon = new google.maps.Polygon({
-      paths: tobeclaimed,
-      strokeWeight: 0,
-      fillOpacity: 0
-    });
-
-    let filteredCoords = polygoncoords.filter((coord, index) => {
-      //Remove the current coordinate from the polygon
-      let incision = polygoncoords.slice(0, index).concat(polygoncoords.slice(index + 1));
-      //Must be at least 3 coordinates to form a polygon
-      if (incision.length <= 3) {
-        return true;
-      }
-      //Create a polygon without the current coordinate, then check if the coordinate is still inside the polygon
-      let excision = google.maps.geometry.poly.containsLocation(new google.maps.LatLng(coord), new google.maps.Polygon({ paths: incision }));
-      //If coordinate is inside the polygon, excise it
-      return !excision;
-    });
-    return filteredCoords;
+async function removeRedundancies(claimed, tobeclaimed) { if (claimedTerritory) {
+  let incision = new google.maps.Polygon({
+    paths: tobeclaimed,
+    strokeWeight: 0,
+    fillOpacity: 0
+  });
+  //For each point in the already claimed area, that point if it's located inside of the new polygon
+  let claimedlength = claimed.length;
+  for(let i = 0; i < claimedlength; i++) {
+    //Need 3 points to make a polygon
+    if(claimedlength <= 3) {
+      break;
+    }
+    if(google.maps.geometry.poly.containsLocation(claimed[i], incision)) {
+      console.log("DEBUG: Point found inside of polygon");
+      claimed.splice(i, 1);
+      i--;
+      claimedlength--;
+    }
   }
-}
+  //Return the remaining points
+  return claimed.concat(tobeclaimed);
+}}
 
 // Error handling for geolocation
 async function handleLocationError(browserHasGeolocation, current_location_window, pos) {
