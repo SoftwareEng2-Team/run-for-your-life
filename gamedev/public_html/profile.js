@@ -46,6 +46,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             body: JSON.stringify({ user_id })
           });
 
+          
+
           // Get the profile data from the response
           const profile_data = await response.json();
           // Retrieve the total territory claimed and round it to 2 decimal places
@@ -57,7 +59,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             console.log("Terr claimed: ", terr_claimed_rounded);
             // Update profile info
             document.getElementById("username").textContent = profile_data.username || "No user - sign in!";
-            document.getElementById("rank").textContent =  `#${localStorage.getItem('rank')}`;
+            document.getElementById("rank").textContent =  localStorage.getItem('rank') ? `#${localStorage.getItem('rank')}` : "Unranked";
             //document.getElementById("totalDistance").textContent = data.total_distance_ran ? `${data.total_distance_ran} miles` : "0";
             document.getElementById("totalClaimed").textContent = terr_claimed_rounded ? `${terr_claimed_rounded} sqft` : "0 sqft";
           }

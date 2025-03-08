@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 }
 
                 // Set rank for the first ten users in the database
-                if (data.user_id === localStorage.getItem('user_id')) {
+                if (player.user_id === localStorage.getItem('user_id')) {
                     localStorage.setItem('rank', index+1);
                 }
 
