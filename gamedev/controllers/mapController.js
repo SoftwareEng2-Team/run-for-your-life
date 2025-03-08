@@ -44,16 +44,16 @@ export const setDistanceClaimed = async (req, res) => {
 
         const query = `
             UPDATE users
-            SET total_distance = users.total_distance + $2
+            SET total_distance = total_distance + $2
             WHERE user_id = $1
             RETURNING total_distance;        
         `;
 
         const result = await pool.query(query, [user_id, distance_traveled]);
 
-        // if (result.rowCount === 0 || result.rows[0].total_distance === null) {
-        //     return res.status(405).json({ error: 'User not found or total_distance update failed' });
-        // }
+        if (result.rowCount === 0 || result.rows[0].total_distance === null) {
+            return res.status(404).json({ error: 'User not found or total_distance update failed' });
+        }
 
         console.log("Debug: Updated total_distance in leaderboards:", result.rows[0].total_distance);
         res.status(200).json({ 
