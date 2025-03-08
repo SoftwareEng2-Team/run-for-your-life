@@ -38,6 +38,37 @@ export const setTerrClaimed = async (req, res) => {
 };
 
 export const setDistanceClaimed = async (req, res) => {
+    try {
+        const { user_id, total_distance } = req.body;
 
+        const query = `
+            WITH updated_leaderboard AS (
+                INSERT INTO leaderboards (user_id, total_distance, rank_num, week_start)
+                VALUES ($1, $2, NULL, CURRENT_DATE)
+                ON CONFLICT (user_id, week_start) DO UPDATE
+                SET total_distance = leaderboards.total_distance + EXCLUDED.total_distance
+                WHERE leaderboards.user_id = EXCLUDED.user_id AND leaderboards.week_start = EXCLUDED.week_start
+                RETURNING total_distance
+            )
+            UPDATE users
+            SET total_distance = (SELECT COALESCE(SUM(total_distance), 0) FROM leaderboards WHERE user_id = $1)
+            WHERE user_id = $1
+            RETURNING total_distance;        
+        `;
+
+        const result = await pool.query(query, [user_id, total_distance]);
+
+        if (result.rowCount === 0 || result.rows[0].total_distance === null) {
+            return res.status(404).json({ error: 'User not found or total_distance update failed' });
+        }
+
+        console.log("Debug: Updated total_distance in leaderboards:", result.rows[0].total_distance);
+        res.status(200).json({ 
+            message: "User's territory travelled updated successfully", 
+            total_distance: result.rows[0].total_distance 
+        });
+    } catch (error) {
+        console.error("Database error setting the total_distance:", error);
+        res.status(500).json({ error: error.message });
+    }
 };
-
