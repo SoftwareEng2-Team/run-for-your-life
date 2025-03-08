@@ -46,49 +46,65 @@ document.addEventListener("DOMContentLoaded", async () => {
             body: JSON.stringify({ user_id })
           });
 
-          
-
           // Get the profile data from the response
           const profile_data = await response.json();
           // Retrieve the total territory claimed and round it to 2 decimal places
           const terr_claimed_rounded = (profile_data.total_distance_claimed).toFixed(2);
           // As long as the response is successful, update the profile information
           if (response.ok) {
-            // Console statments for debugging
-            console.log("Successful profile update for user: ", user_id);
-            console.log("Terr claimed: ", terr_claimed_rounded);
-            // Update profile info
-            document.getElementById("username").textContent = profile_data.username || "No user - sign in!";
-            document.getElementById("rank").textContent =  localStorage.getItem('rank') ? `#${localStorage.getItem('rank')}` : "Unranked";
-            //document.getElementById("totalDistance").textContent = data.total_distance_ran ? `${data.total_distance_ran} miles` : "0";
-            document.getElementById("totalClaimed").textContent = terr_claimed_rounded ? `${terr_claimed_rounded} sqft` : "0 sqft";
-          }
+            // DB request to get player information to set the rank
+            const response = await fetch(`${API_URL}/api/leaderboard`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+            });
+
+            // Get the result of the database query
+            const data = await response.json();
+
+            const rank = "Unranked";
+            // Generate leaderboard cards dynamically
+            data.forEach((player, index) => {
+              if (player.user_id === user_id) {
+                rank = index + 1;
+                console.log("Set the rank of user:", user_id," to", rank);
+              }
+            });
+
+              // Console statments for debugging
+              console.log("Successful profile update for user: ", user_id);
+              console.log("Terr claimed: ", terr_claimed_rounded);
+              // Update profile info
+              document.getElementById("username").textContent = profile_data.username || "No user - sign in!";
+              document.getElementById("rank").textContent = rank;
+              document.getElementById("totalDistance").textContent = data.total_distance_ran ? `${data.total_distance_ran} miles` : "0";
+              document.getElementById("totalClaimed").textContent = terr_claimed_rounded ? `${terr_claimed_rounded} sqft` : "0 sqft";
+            }
         }
-        // Catch any errors
-      } catch (error) {
-        console.error("Error:", error);
+          // Catch any errors
+        } catch (error) {
+          console.error("Error:", error);
+        }
       }
-    }
   }
 
-  /* Modal (User Guide) Logi */
-  // Get the HTML elements for the guide button and modal
-  const guideButton = document.getElementById("guideButton");
-  const guideModal = document.getElementById("guideModal");
-  const closeButton = document.querySelector(".modal .close");
+    /* Modal (User Guide) Logi */
+    // Get the HTML elements for the guide button and modal
+    const guideButton = document.getElementById("guideButton");
+    const guideModal = document.getElementById("guideModal");
+    const closeButton = document.querySelector(".modal .close");
 
-  // Event listeners for the guide button and close button
-  guideButton.addEventListener("click", () => {
-    guideModal.style.display = "block";
-  });
-  closeButton.addEventListener("click", () => {
-    guideModal.style.display = "none";
-  });
-
-  // Close the modal if the user clicks outside of it
-  window.addEventListener("click", (event) => {
-    if (event.target === guideModal) {
+    // Event listeners for the guide button and close button
+    guideButton.addEventListener("click", () => {
+      guideModal.style.display = "block";
+    });
+    closeButton.addEventListener("click", () => {
       guideModal.style.display = "none";
-    }
+    });
+
+    // Close the modal if the user clicks outside of it
+    window.addEventListener("click", (event) => {
+      if (event.target === guideModal) {
+        guideModal.style.display = "none";
+      }
+    });
   });
-});

@@ -39,11 +39,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                     rank_id = "rank_3";
                 }
 
-                // Set rank for the first ten users in the database
-                if (player.user_id === localStorage.getItem('user_id')) {
-                    localStorage.setItem('rank', index+1);
-                }
-
                 // Console statements for debugging: attaches name and link to each other
                 currindex = index + 1;
                 console.log("name: ", player.username, " rank: ", currindex);
