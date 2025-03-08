@@ -327,7 +327,7 @@ async function expandTerritory() {
     const currentCoords = claimedTerritory.getPath().getArray();
     // Add the outside path to the current territory
     outsidePath.push(outsidePath[0]);
-    const newCoords = removeRedundancies(currentCoords.concat(outsidePath));
+    const newCoords = removeRedundancies(currentCoords, outsidePath);
     // Create a new polygon with the expanded territory
     claimedTerritory.setMap(null); // Remove the previous territory
     claimedTerritory = new google.maps.Polygon({
@@ -360,6 +360,30 @@ async function expandTerritory() {
   }
 }
 
+<<<<<<< HEAD
+async function removeRedundancies(claimed, tobeclaimed) {
+if (claimedTerritory) {
+  let checkingpolygon = new google.maps.Polygon({
+    paths: tobeclaimed,
+    strokeWeight: 0,
+    fillOpacity: 0
+  });
+  
+  let filteredCoords = polygoncoords.filter((coord, index) => {
+    //Remove the current coordinate from the polygon
+    let incision = polygoncoords.slice(0, index).concat(polygoncoords.slice(index + 1));
+    //Must be at least 3 coordinates to form a polygon
+    if(incision.length <= 3) {
+      return true;
+    }
+    //Create a polygon without the current coordinate, then check if the coordinate is still inside the polygon
+    let excision = google.maps.geometry.poly.containsLocation(new google.maps.LatLng(coord), new google.maps.Polygon({paths: incision}));
+    //If coordinate is inside the polygon, excise it
+    return !excision;
+  });
+  return filteredCoords;
+}
+=======
 async function removeRedundancies(polygoncoords) {
   if (claimedTerritory) {
     let filteredCoords = polygoncoords.filter((coord, index) => {
@@ -376,6 +400,7 @@ async function removeRedundancies(polygoncoords) {
     });
     return filteredCoords;
   }
+>>>>>>> main
 }
 
 // Error handling for geolocation
