@@ -308,7 +308,7 @@ async function expandTerritory() {
     const currentCoords = claimedTerritory.getPath().getArray();
     // Add the outside path to the current territory
     outsidePath.push(outsidePath[0]);
-    const newCoords = removeRedundancies(currentCoords.concat(outsidePath));
+    const newCoords = removeRedundancies(currentCoords, outsidePath);
     // Create a new polygon with the expanded territory
     claimedTerritory.setMap(null); // Remove the previous territory
     claimedTerritory = new google.maps.Polygon({
@@ -341,8 +341,14 @@ async function expandTerritory() {
   }
 }
 
-async function removeRedundancies(polygoncoords) {
+async function removeRedundancies(claimed, tobeclaimed) {
 if (claimedTerritory) {
+  let checkingpolygon = new google.maps.Polygon({
+    paths: tobeclaimed,
+    strokeWeight: 0,
+    fillOpacity: 0
+  });
+  
   let filteredCoords = polygoncoords.filter((coord, index) => {
     //Remove the current coordinate from the polygon
     let incision = polygoncoords.slice(0, index).concat(polygoncoords.slice(index + 1));
