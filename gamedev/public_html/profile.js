@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (response.ok) {
           const distance_traveled = localStorage.getItem('distance_traveled');
 
+          console.log("User id: ", user_id, "distance traveled", distance_traveled);
           // DB request to set the distance of the current user
           let response = await fetch(`${API_URL}/api/map/distance`, {
             method: 'POST',
