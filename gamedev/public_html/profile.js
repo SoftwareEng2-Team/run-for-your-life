@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const score = localStorage.getItem('score');
       try {
         // DB request to set the territory of the current user
-        const response = await fetch(`${API_URL}/api/map`, {
+        const response = await fetch(`${API_URL}/api/map/territory`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           // Send the user ID and territory claimed
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             console.log("Terr claimed: ", terr_claimed_rounded);
             // Update profile info
             document.getElementById("username").textContent = profile_data.username || "No user - sign in!";
-            document.getElementById("rank").textContent = profile_data.rank ? `#${profile_data.rank}` : "No rank yet!";
+            document.getElementById("rank").textContent =  `#${localStorage.getItem('rank')}`;
             //document.getElementById("totalDistance").textContent = data.total_distance_ran ? `${data.total_distance_ran} miles` : "0";
             document.getElementById("totalClaimed").textContent = terr_claimed_rounded ? `${terr_claimed_rounded} sqft` : "0 sqft";
           }
