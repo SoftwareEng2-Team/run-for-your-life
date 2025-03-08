@@ -20,7 +20,7 @@ export const getProfile = async (req, res) => {
         LEFT JOIN leaderboards l 
             ON u.user_id = l.user_id AND l.week_start = (SELECT MAX(week_start) FROM leaderboards WHERE user_id = u.user_id)
         WHERE u.user_id = $1;
-    `;
+        `;
     
     
 
