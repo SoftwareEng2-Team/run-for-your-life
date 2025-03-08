@@ -180,7 +180,7 @@ async function initMap() {
             );
 
             distance_travelled += distance;
-            distance_travelled = Number(distance_travelled.toFixed(2)); 
+            distance_travelled = Number(distance_travelled.toFixed(2));
 
             console.log(`Distance traveled: ${distance.toFixed(2)} meters`);
             console.log(`Total distance: ${distance_travelled.toFixed(2)} meters`);
@@ -361,26 +361,27 @@ async function expandTerritory() {
 }
 
 async function removeRedundancies(claimed, tobeclaimed) {
-if (claimedTerritory) {
-  let checkingpolygon = new google.maps.Polygon({
-    paths: tobeclaimed,
-    strokeWeight: 0,
-    fillOpacity: 0
-  });
-  
-  let filteredCoords = polygoncoords.filter((coord, index) => {
-    //Remove the current coordinate from the polygon
-    let incision = polygoncoords.slice(0, index).concat(polygoncoords.slice(index + 1));
-    //Must be at least 3 coordinates to form a polygon
-    if(incision.length <= 3) {
-      return true;
-    }
-    //Create a polygon without the current coordinate, then check if the coordinate is still inside the polygon
-    let excision = google.maps.geometry.poly.containsLocation(new google.maps.LatLng(coord), new google.maps.Polygon({paths: incision}));
-    //If coordinate is inside the polygon, excise it
-    return !excision;
-  });
-  return filteredCoords;
+  if (claimedTerritory) {
+    let checkingpolygon = new google.maps.Polygon({
+      paths: tobeclaimed,
+      strokeWeight: 0,
+      fillOpacity: 0
+    });
+
+    let filteredCoords = polygoncoords.filter((coord, index) => {
+      //Remove the current coordinate from the polygon
+      let incision = polygoncoords.slice(0, index).concat(polygoncoords.slice(index + 1));
+      //Must be at least 3 coordinates to form a polygon
+      if (incision.length <= 3) {
+        return true;
+      }
+      //Create a polygon without the current coordinate, then check if the coordinate is still inside the polygon
+      let excision = google.maps.geometry.poly.containsLocation(new google.maps.LatLng(coord), new google.maps.Polygon({ paths: incision }));
+      //If coordinate is inside the polygon, excise it
+      return !excision;
+    });
+    return filteredCoords;
+  }
 }
 
 // Error handling for geolocation
