@@ -21,13 +21,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       console.log("No territory to update, skipping query");
     } else {
       /* As long as the user is logged in, update the profile info 
-        - Update the database with the territory claimed section
-        - Set the API URL for the backend */
-      const API_URL = 'https://run-for-your-life-api.onrender.com';
+        - Update the database with the territory claimed section */
       const score = localStorage.getItem('score');
       try {
         // DB request to set the territory of the current user
-        const response = await fetch(`${API_URL}/api/map/territory`, {
+        let response = await fetch(`${API_URL}/api/map/territory`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           // Send the user ID and territory claimed
@@ -35,7 +33,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
 
         // Get the response from the query, reset the score to 0
-        const data = await response.json();
+        let data = await response.json();
         localStorage.setItem('score', 0);
 
         // If the response is successful, retrieve the profile information
@@ -43,7 +41,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           const distance_traveled = localStorage.getItem('distance_traveled');
 
           // DB request to set the distance of the current user
-          response = await fetch(`${API_URL}/api/map/distance`, {
+          let response = await fetch(`${API_URL}/api/map/distance`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             // Send the user ID and territory claimed
@@ -51,13 +49,13 @@ document.addEventListener("DOMContentLoaded", async () => {
           });
 
           // Get the response from the query, reset the score to 0
-          const data = await response.json();
+          let data = await response.json();
           localStorage.setItem('distance_traveled', 0);
 
           if (response.ok) {
 
             // Retrieve the profile information for the user
-            const response = await fetch(`${API_URL}/api/profile`, {
+            let response = await fetch(`${API_URL}/api/profile`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ user_id })
@@ -70,13 +68,13 @@ document.addEventListener("DOMContentLoaded", async () => {
             // As long as the response is successful, update the profile information
             if (response.ok) {
               // DB request to get player information to set the rank
-              const response = await fetch(`${API_URL}/api/leaderboard`, {
+              let response = await fetch(`${API_URL}/api/leaderboard`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
               });
 
               // Get the result of the database query
-              const data = await response.json();
+              let data = await response.json();
 
               const rank = "Unranked";
               // Generate leaderboard cards dynamically
