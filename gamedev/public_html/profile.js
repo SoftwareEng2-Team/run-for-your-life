@@ -51,9 +51,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
           // Get the response from the query, reset the score to 0
           let data = await response.json();
-          localStorage.setItem('distance_traveled', 0);
 
           if (response.ok) {
+            localStorage.setItem('distance_traveled', 0);
 
             // Retrieve the profile information for the user
             let response = await fetch(`${API_URL}/api/profile`, {

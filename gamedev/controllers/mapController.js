@@ -51,7 +51,7 @@ export const setDistanceClaimed = async (req, res) => {
         const result = await pool.query(query, [user_id, total_distance]);
 
         if (result.rowCount === 0 || result.rows[0].total_distance === null) {
-            return res.status(404).json({ error: 'User not found or total_distance update failed' });
+            return res.status(405).json({ error: 'User not found or total_distance update failed' });
         }
 
         console.log("Debug: Updated total_distance in leaderboards:", result.rows[0].total_distance);
