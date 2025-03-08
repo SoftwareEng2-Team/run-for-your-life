@@ -16,4 +16,4 @@ To help us quickly identify and fix issues, please include the following details
 - Error Logs: If applicable, copy any error messages or logs shown.
 
 ---
-[### User Bug Reports SpreadSheet](https://docs.google.com/spreadsheets/d/1ZWKBd6qduJ-tvkQBmWXDs3_tF2xn455hY23ZqgLHVlE/edit?usp=sharing)
+### [User Bug Reports SpreadSheet](https://docs.google.com/spreadsheets/d/1ZWKBd6qduJ-tvkQBmWXDs3_tF2xn455hY23ZqgLHVlE/edit?usp=sharing)
