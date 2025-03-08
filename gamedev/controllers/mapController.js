@@ -42,16 +42,8 @@ export const setDistanceClaimed = async (req, res) => {
         const { user_id, total_distance } = req.body;
 
         const query = `
-            WITH updated_leaderboard AS (
-                INSERT INTO leaderboards (user_id, total_distance, rank_num, week_start)
-                VALUES ($1, $2, NULL, CURRENT_DATE)
-                ON CONFLICT (user_id, week_start) DO UPDATE
-                SET total_distance = leaderboards.total_distance + EXCLUDED.total_distance
-                WHERE leaderboards.user_id = EXCLUDED.user_id AND leaderboards.week_start = EXCLUDED.week_start
-                RETURNING total_distance
-            )
             UPDATE users
-            SET total_distance = (SELECT COALESCE(SUM(total_distance), 0) FROM leaderboards WHERE user_id = $1)
+            SET total_distance = users.total_distance + $2
             WHERE user_id = $1
             RETURNING total_distance;        
         `;
