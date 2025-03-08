@@ -1,4 +1,5 @@
 import pool from '../../database/connection_pool.mjs';
+
 export const setTerrClaimed = async (req, res) => {
     console.log("Entered setTerrClaimed in mapController.js"); 
 
@@ -39,7 +40,7 @@ export const setTerrClaimed = async (req, res) => {
 
 export const setDistanceClaimed = async (req, res) => {
     try {
-        const { user_id, total_distance } = req.body;
+        const { user_id, distance_traveled } = req.body;
 
         const query = `
             UPDATE users
@@ -48,11 +49,11 @@ export const setDistanceClaimed = async (req, res) => {
             RETURNING total_distance;        
         `;
 
-        const result = await pool.query(query, [user_id, total_distance]);
+        const result = await pool.query(query, [user_id, distance_traveled]);
 
-        if (result.rowCount === 0 || result.rows[0].total_distance === null) {
-            return res.status(405).json({ error: 'User not found or total_distance update failed' });
-        }
+        // if (result.rowCount === 0 || result.rows[0].total_distance === null) {
+        //     return res.status(405).json({ error: 'User not found or total_distance update failed' });
+        // }
 
         console.log("Debug: Updated total_distance in leaderboards:", result.rows[0].total_distance);
         res.status(200).json({ 
