@@ -91,12 +91,30 @@ document.addEventListener("DOMContentLoaded", async () => {
                 // Ensure that the response is successful
                 if (response.ok) {
                     console.log("Successful territory update for user: ", user_id);
+
+                    const distance_traveled = localStorage.getItem('distance_traveled');
+
+                    // DB request to set the distance of the current user
+                    response = await fetch(`${API_URL}/api/map/distance`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        // Send the user ID and territory claimed
+                        body: JSON.stringify({ user_id, distance_traveled })
+                    });
+
+                    // Get the response from the query, reset the score to 0
+                    const data = await response.json();
+                    localStorage.setItem('distance_traveled', 0);
+
+                    if (response.ok) {
+                        console.log("Successful distance traveled update for user: ", user_id);
+                    }
                 }
-            // Catch any fetching errors
-            } catch (error) {
-                console.error("Error:", error);
+                    // Catch any fetching errors
+                } catch (error) {
+                    console.error("Error:", error);
+                }
             }
-        }
     }
-    createLeaderboard();
-});
+        createLeaderboard();
+    });

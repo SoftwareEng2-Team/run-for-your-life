@@ -22,7 +22,7 @@ let locationHistory = [];
 // Label for the territory name
 let territoryLabel = null;
 // Variable to track how many meters the user has traveled
-let distance_travelled = 0;
+let distance_traveled = 0;
 
 async function initMap() {
 
@@ -179,14 +179,15 @@ async function initMap() {
               new google.maps.LatLng(pos)
             );
 
-            distance_travelled += distance;
-            distance_travelled = Number(distance_travelled.toFixed(2));
+            distance_traveled += distance;
+            distance_traveled = Number(distance_traveled.toFixed(2));
 
             console.log(`Distance traveled: ${distance.toFixed(2)} meters`);
-            console.log(`Total distance: ${distance_travelled.toFixed(2)} meters`);
+            console.log(`Total distance: ${distance_traveled.toFixed(2)} meters`);
 
             // Store in local storage
-            localStorage.setItem('distance_travelled', distance_travelled);
+            localStorage.setItem('distance_traveled', distance_traveled);
+            console.log("Distance travelled updated to: ", localStorage.getItem('distance_traveled'));
           }
 
           // Store the user's current position
