@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             const score = localStorage.getItem('score');
             try {
                 // DB request to set the territory of the current user
-                const response = await fetch(`${API_URL}/api/map/territory`, {
+                let response = await fetch(`${API_URL}/api/map/territory`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     // Send the user ID and territory claimed
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 });
 
                 // Get the response from the query, reset the score to 0
-                const data = await response.json();
+                let data = await response.json();
                 localStorage.setItem('score', 0);
                 // Ensure that the response is successful
                 if (response.ok) {
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     const distance_traveled = localStorage.getItem('distance_traveled');
 
                     // DB request to set the distance of the current user
-                    response = await fetch(`${API_URL}/api/map/distance`, {
+                    let response = await fetch(`${API_URL}/api/map/distance`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         // Send the user ID and territory claimed
@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     });
 
                     // Get the response from the query, reset the score to 0
-                    const data = await response.json();
+                    let data = await response.json();
                     localStorage.setItem('distance_traveled', 0);
 
                     if (response.ok) {
