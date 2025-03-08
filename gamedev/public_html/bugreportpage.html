@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="bugreportpage.css">
 </head>
 <body>
-  <!-- Main container for bug report (mimics profile page style) -->
+  <!-- Main container for bug report -->
   <div class="bugreport-container">
     <div class="bugreport-header">Report a Bug</div>
 
@@ -48,12 +48,12 @@
   </footer>
 
   <!-- Bugreport logic -->
-  <script src="bugreport.js"></script>
+  <script src="bugreportpage.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const backButton = document.getElementById("backButton");
       backButton.addEventListener("click", () => {
-        window.location.href = "profile.html"; // or your correct path
+        window.location.href = "profile.html";
       });
     });
   </script>
