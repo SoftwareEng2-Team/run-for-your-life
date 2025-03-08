@@ -70,10 +70,10 @@ New tests can be added by creating a new script or cloning an existing script an
 - Locating the Editor tab on the left, create a new file, select script, and rename it to "bugreport" It should now create a bugreport.gs file.
 - On GitHub access the file inside DEVELOPER_DOCUMENTATION called bugreport.gs.
 - Copy the bugreport.gs and paste it into the new Apps Script bugreport.gs file.
-- On the newly created Spreadsheet locate the ID in the URL. It will look something like this https://docs.google.com/spreadsheets/d/SPREADSHEET-ID/edit?gid=0#gid=0
+- On the newly created Spreadsheet locate the ID in the URL. It will look something like this "https://docs.google.com/spreadsheets/d/SPREADSHEET-ID/edit?gid=0#gid=0"
 - Copy the SPREADSHEET-ID and locate your created bugreport.gs and find SpreadsheetApp.openById("PASTE-SPREADSHEET-ID-HERE"); and paste in SPREADSHEET-ID inside the function.
 - Save the file and locate the blue 'Deploy' button in the top right. Select "New deployment" Congifure it as a Web App that executes as 'Me' and gives access to 'Anyone' and hit 'Deploy'.
-- It will produce a Web app URL Link that needs to be copied. It will look something like https://script.google.com/macros/s/SCRIPTID/exec.
+- It will produce a Web app URL Link that needs to be copied. It will look something like "https://script.google.com/macros/s/SCRIPTID/exec".
 - Now locate the bugreportpage.js inside run-for-your-life/gamedev/public_html/bugreportpage.js
 - At the top of the file you will see const BUG_API_URL = "PASTE IN bugreport.gs found in DEVELOPER_DOCUMENTATION";
 - Paste in the copied script URL and save.
