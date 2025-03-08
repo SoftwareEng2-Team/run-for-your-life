@@ -75,7 +75,7 @@ New tests can be added by creating a new script or cloning an existing script an
 - Save the file and locate the blue 'Deploy' button in the top right. Select "New deployment" Congifure it as a Web App that executes as 'Me' and gives access to 'Anyone' and hit 'Deploy'.
 - It will produce a Web app URL Link that needs to be copied. It will look something like "https://script.google.com/macros/s/SCRIPTID/exec".
 - Now locate the bugreportpage.js inside run-for-your-life/gamedev/public_html/bugreportpage.js
-- At the top of the file you will see const BUG_API_URL = "PASTE IN bugreport.gs found in DEVELOPER_DOCUMENTATION";
+- At the top of the file you will see const BUG_API_URL = "PASTE IN bugreport script URL, Steps located in DEVELOPER_DOCUMENTATION/DEVELOPER_NOTES";
 - Paste in the copied script URL and save.
 - Test out the bug report inside the web game under the profile page. Look into the console on the web and the spreadsheet to see if there was any success/changes.
 - Double-check all permissions to ensure the pathway is not blocked.
