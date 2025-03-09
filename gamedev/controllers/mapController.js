@@ -1,8 +1,6 @@
 import pool from '../../database/connection_pool.mjs';
 
 export const setTerrClaimed = async (req, res) => {
-    console.log("Entered setTerrClaimed in mapController.js"); 
-
     try {
         const { user_id, score } = req.body;
 
@@ -27,7 +25,6 @@ export const setTerrClaimed = async (req, res) => {
             return res.status(404).json({ error: 'User not found or total_territory update failed' });
         }
 
-        console.log("Debug: Updated total_territory in leaderboards:", result.rows[0].total_territory);
         res.status(200).json({ 
             message: "User's territory claimed updated successfully", 
             total_territory: result.rows[0].total_territory 
@@ -39,8 +36,11 @@ export const setTerrClaimed = async (req, res) => {
 };
 
 export const setDistanceClaimed = async (req, res) => {
+    console.log("Entered setDistanceClaimed in mapController.js");
     try {
         const { user_id, distance_traveled } = req.body;
+
+        console.log("")
 
         if (isNaN(distance_traveled) || distance_traveled == null) {
             return res.status(400).json({ error: "Invalid distance_traveled value" });
