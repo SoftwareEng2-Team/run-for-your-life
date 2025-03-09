@@ -40,17 +40,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                     rank_id = "rank_3";
                 }
 
-                // Console statements for debugging: attaches name and link to each other
-                currindex = index + 1;
-                console.log("UserID in db: ", String(player.user_id), " local UserID: ", String(user_id));
-
-                const local_user_id = localStorage.getItem('user_id');
-                if (String(player.user_id) === String(local_user_id) && rank_set == 0) {
-                    localStorage.setItem('rank', index + 1); 
-                    console.log("Set the rank of user:", user_id, " to", rank);
-                    rank_set = 1;
-                }
-
                 // Round the total territory to 2 decimal places
                 const total_territory_rounded = (player.total_territory).toFixed(2);
 
