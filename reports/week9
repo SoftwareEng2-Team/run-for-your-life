@@ -179,12 +179,13 @@
 - Territory claimed is now calculated, having trouble setting it to db
 - User profile displays the current user
 - Leaderboard pulls from database, sorts players automatically
-- Locating area coverage / territory is now able to be claimed 
-
+- Locating area coverage / territory is now able to be claimed
+- Added Bug report page with scripts to connect to a spreadsheet to store information.
 
 **What we learned:**  
 - Connecting our frontend to the backend is a larger task than we anticipated
-- Database queries
+- More about Database queries
+- Google API interaction and using App Scripts to interact with our game.
 
 **Where we had trouble/stuck:**
 - Understanding and figuring out CI Pipeline test cases.
