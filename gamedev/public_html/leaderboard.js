@@ -41,9 +41,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 // Console statements for debugging: attaches name and link to each other
                 currindex = index + 1;
-                console.log("name: ", player.username, " rank: ", currindex);
+                console.log("UserID in db: ", String(player.user_id), " local UserID: ", String(user_id));
 
-                if (player.user_id === user_id) {
+                if (String(player.user_id) === String(user_id) {
                     localStorage.setItem('rank', index + 1); 
                     console.log("Set the rank of user:", user_id, " to", rank);
                 }
