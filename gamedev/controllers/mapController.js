@@ -39,6 +39,7 @@ export const setTerrClaimed = async (req, res) => {
 };
 
 export const setDistanceClaimed = async (req, res) => {
+    console.log("Entered setDistanceClaimed in mapController.js");
     try {
         const { user_id, distance_traveled } = req.body;
 
