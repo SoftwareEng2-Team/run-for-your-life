@@ -85,6 +85,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 }
               });
 
+              let user_rank = localStorage.getItem('rank');
+
               // Console statments for debugging
               console.log("Successful profile update for user: ", user_id);
               console.log("Terr claimed: ", terr_claimed_rounded);
