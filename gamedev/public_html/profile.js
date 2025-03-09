@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               // Generate leaderboard cards dynamically
               data.forEach((player, index) => {
                 if (String(player.user_id) === String(user_id) && rank_set == 0) {
-                  user_rank = index + 1; 
+                  user_rank = "#" + (index + 1); 
                   console.log("Set the rank of user:", user_id, " to", user_rank);
                   rank_set = 1;
                 }
