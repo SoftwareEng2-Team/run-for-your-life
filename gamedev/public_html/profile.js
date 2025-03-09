@@ -38,21 +38,21 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         // If the response is successful, retrieve the profile information
         if (response.ok) {
-          const distance_traveled = localStorage.getItem('distance_traveled');
+          // const distance_traveled = localStorage.getItem('distance_traveled');
           
-          console.log("User id: ", user_id, "distance traveled", distance_traveled);
-          // DB request to set the distance of the current user
-          let response = await fetch(`${API_URL}/api/map/distance`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            // Send the user ID and territory claimed
-            body: JSON.stringify({ user_id, distance_traveled })
-          });
+          // console.log("User id: ", user_id, "distance traveled", distance_traveled);
+          // // DB request to set the distance of the current user
+          // let response = await fetch(`${API_URL}/api/map/distance`, {
+          //   method: 'POST',
+          //   headers: { 'Content-Type': 'application/json' },
+          //   // Send the user ID and territory claimed
+          //   body: JSON.stringify({ user_id, distance_traveled })
+          // });
 
-          // Get the response from the query, reset the score to 0
-          let data = await response.json();
+          // // Get the response from the query, reset the score to 0
+          // let data = await response.json();
 
-          if (response.ok) {
+          //if (response.ok) {
             localStorage.setItem('distance_traveled', 0);
 
             // Retrieve the profile information for the user
@@ -76,12 +76,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
               // Get the result of the database query
               let data = await response.json();
+              let rank_set = 0;
 
               // Generate leaderboard cards dynamically
               data.forEach((player, index) => {
-                if (player.user_id === user_id) {
+                if (String(player.user_id) === String(local_user_id) && rank_set == 0) {
                   localStorage.setItem('rank', index + 1); 
                   console.log("Set the rank of user:", user_id, " to", rank);
+                  rank_set = 1;
                 }
               });
 
@@ -92,11 +94,11 @@ document.addEventListener("DOMContentLoaded", async () => {
               console.log("Terr claimed: ", terr_claimed_rounded);
               // Update profile info
               document.getElementById("username").textContent = profile_data.username || "No user - sign in!";
-              document.getElementById("rank").textContent = rank;
+              document.getElementById("rank").textContent = user_rank;
               document.getElementById("totalDistance").textContent = data.total_distance_ran ? `${data.total_distance_ran} miles` : "0";
               document.getElementById("totalClaimed").textContent = terr_claimed_rounded ? `${terr_claimed_rounded} sqft` : "0 sqft";
             }
-          }
+          //}
         }
         // Catch any errors
       } catch (error) {
