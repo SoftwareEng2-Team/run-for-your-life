@@ -1,7 +1,6 @@
 import pool from '../../database/connection_pool.mjs';
-export const setTerrClaimed = async (req, res) => {
-    console.log("Entered setTerrClaimed in mapController.js"); 
 
+export const setTerrClaimed = async (req, res) => {
     try {
         const { user_id, score } = req.body;
 
@@ -26,7 +25,6 @@ export const setTerrClaimed = async (req, res) => {
             return res.status(404).json({ error: 'User not found or total_territory update failed' });
         }
 
-        console.log("Debug: Updated total_territory in leaderboards:", result.rows[0].total_territory);
         res.status(200).json({ 
             message: "User's territory claimed updated successfully", 
             total_territory: result.rows[0].total_territory 
@@ -38,25 +36,24 @@ export const setTerrClaimed = async (req, res) => {
 };
 
 export const setDistanceClaimed = async (req, res) => {
+    console.log("Entered setDistanceClaimed in mapController.js");
     try {
-        const { user_id, total_distance } = req.body;
+        const { user_id, distance_traveled } = req.body;
 
+        console.log("")
+
+        if (isNaN(distance_traveled) || distance_traveled == null) {
+            return res.status(400).json({ error: "Invalid distance_traveled value" });
+        }
+        
         const query = `
-            WITH updated_leaderboard AS (
-                INSERT INTO leaderboards (user_id, total_distance, rank_num, week_start)
-                VALUES ($1, $2, NULL, CURRENT_DATE)
-                ON CONFLICT (user_id, week_start) DO UPDATE
-                SET total_distance = leaderboards.total_distance + EXCLUDED.total_distance
-                WHERE leaderboards.user_id = EXCLUDED.user_id AND leaderboards.week_start = EXCLUDED.week_start
-                RETURNING total_distance
-            )
             UPDATE users
-            SET total_distance = (SELECT COALESCE(SUM(total_distance), 0) FROM leaderboards WHERE user_id = $1)
+            SET total_distance = total_distance + $2
             WHERE user_id = $1
             RETURNING total_distance;        
         `;
 
-        const result = await pool.query(query, [user_id, total_distance]);
+        const result = await pool.query(query, [user_id, distance_traveled]);
 
         if (result.rowCount === 0 || result.rows[0].total_distance === null) {
             return res.status(404).json({ error: 'User not found or total_distance update failed' });

@@ -56,3 +56,26 @@ New tests can be added by creating a new script or cloning an existing script an
   - Performance test: Ensuring the game runs smoothly.
   - Error Logging: Checking logs for unexpected errors or warnings.
   - Cross-Platform Testing: Checking to see to make sure it can build on mobile device as well as computers.
+
+## REPORT BUGS Implementation Walkthrough
+### Included files and tools
+- bugreportpage.js
+- Google Spreadsheets
+- Google's App Script
+
+### Setup Steps
+- Create a Google Spreadsheet and locate "Sheet1" at the bottom of the spreadsheet renaming it to "BugReport"
+- Locate Columns A through H, filling in row 1 with: Bug Title, Description, Steps, Expected Behavior, Actual Behavior, Device Details, Error Logs, and Timestamp.
+- Locate 'Extensions' at the top of the spreadsheet and click on Apps Script.
+- Locating the Editor tab on the left, create a new file, select script, and rename it to "bugreport" It should now create a bugreport.gs file.
+- On GitHub access the file inside DEVELOPER_DOCUMENTATION called bugreport.gs.
+- Copy the bugreport.gs and paste it into the new Apps Script bugreport.gs file.
+- On the newly created Spreadsheet locate the ID in the URL. It will look something like this "https://docs.google.com/spreadsheets/d/SPREADSHEET-ID/edit?gid=0#gid=0"
+- Copy the SPREADSHEET-ID and locate your created bugreport.gs and find SpreadsheetApp.openById("UniqueSpreadsheetID"); and paste in SPREADSHEET-ID inside the function.
+- Save the file and locate the blue 'Deploy' button in the top right. Select "New deployment" Congifure it as a Web App that executes as 'Me' and gives access to 'Anyone' and hit 'Deploy'.
+- It will produce a Web app URL Link that needs to be copied. It will look something like "https://script.google.com/macros/s/SCRIPTID/exec".
+- Now locate the bugreportpage.js inside run-for-your-life/gamedev/public_html/bugreportpage.js
+- At the top of the file you will see const BUG_API_URL = "Unique Script URL";
+- Paste in the copied script URL and save.
+- Test out the bug report inside the web game under the profile page. Look into the console on the web and the spreadsheet to see if there was any success/changes.
+- Double-check all permissions to ensure the pathway is not blocked.

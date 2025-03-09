@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             // Get the result of the database query
             const data = await response.json();
 
+            let rank_set = 0;
             // Generate leaderboard cards dynamically
             data.forEach((player, index) => {
                 const card = document.createElement("div");
@@ -38,10 +39,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                     rank = "Rank 3";
                     rank_id = "rank_3";
                 }
-
-                // Console statements for debugging: attaches name and link to each other
-                currindex = index + 1;
-                console.log("name: ", player.username, " rank: ", currindex);
 
                 // Round the total territory to 2 decimal places
                 const total_territory_rounded = (player.total_territory).toFixed(2);
@@ -78,7 +75,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             const score = localStorage.getItem('score');
             try {
                 // DB request to set the territory of the current user
-                const response = await fetch(`${API_URL}/api/map/territory`, {
+                let response = await fetch(`${API_URL}/api/map/territory`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     // Send the user ID and territory claimed
@@ -86,17 +83,35 @@ document.addEventListener("DOMContentLoaded", async () => {
                 });
 
                 // Get the response from the query, reset the score to 0
-                const data = await response.json();
+                let data = await response.json();
                 localStorage.setItem('score', 0);
                 // Ensure that the response is successful
                 if (response.ok) {
                     console.log("Successful territory update for user: ", user_id);
+
+                    const distance_traveled = localStorage.getItem('distance_traveled');
+
+                    // DB request to set the distance of the current user
+                    let response = await fetch(`${API_URL}/api/map/distance`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        // Send the user ID and territory claimed
+                        body: JSON.stringify({ user_id, distance_traveled })
+                    });
+
+                    // Get the response from the query, reset the score to 0
+                    let data = await response.json();
+                    localStorage.setItem('distance_traveled', 0);
+
+                    if (response.ok) {
+                        console.log("Successful distance traveled update for user: ", user_id);
+                    }
                 }
-            // Catch any fetching errors
-            } catch (error) {
-                console.error("Error:", error);
+                    // Catch any fetching errors
+                } catch (error) {
+                    console.error("Error:", error);
+                }
             }
-        }
     }
-    createLeaderboard();
-});
+        createLeaderboard();
+    });
