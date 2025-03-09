@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             // Get the result of the database query
             const data = await response.json();
 
+            let rank_set = 0;
             // Generate leaderboard cards dynamically
             data.forEach((player, index) => {
                 const card = document.createElement("div");
@@ -43,9 +44,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                 currindex = index + 1;
                 console.log("UserID in db: ", String(player.user_id), " local UserID: ", String(user_id));
 
-                if (String(player.user_id) === String(user_id) {
+                const local_user_id = localStorage.getItem('user_id');
+                if (String(player.user_id) === String(local_user_id) && rank_set == 0) {
                     localStorage.setItem('rank', index + 1); 
                     console.log("Set the rank of user:", user_id, " to", rank);
+                    rank_set = 1;
                 }
 
                 // Round the total territory to 2 decimal places
