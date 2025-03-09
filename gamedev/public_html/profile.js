@@ -77,11 +77,10 @@ document.addEventListener("DOMContentLoaded", async () => {
               // Get the result of the database query
               let data = await response.json();
 
-              const rank = "Unranked";
               // Generate leaderboard cards dynamically
               data.forEach((player, index) => {
                 if (player.user_id === user_id) {
-                  rank = index + 1;
+                  localStorage.setItem('rank', index + 1); 
                   console.log("Set the rank of user:", user_id, " to", rank);
                 }
               });

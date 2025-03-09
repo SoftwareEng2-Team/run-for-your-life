@@ -43,6 +43,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                 currindex = index + 1;
                 console.log("name: ", player.username, " rank: ", currindex);
 
+                if (player.user_id === user_id) {
+                    localStorage.setItem('rank', index + 1); 
+                    console.log("Set the rank of user:", user_id, " to", rank);
+                }
+
                 // Round the total territory to 2 decimal places
                 const total_territory_rounded = (player.total_territory).toFixed(2);
 
