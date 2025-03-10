@@ -56,7 +56,6 @@ Included on our GitHub we will have a clear walkthrough on the development of ou
 
 Communicating with our team, we will address strengths and weaknesses in ourselves understanding where it will be best to put numbers.
 
-
 ### Technical approach: 
 Planning to use JavaScript/HTML for the app layout and general display features. Plan to use JavaScript for location grabbing and more technical back-end features. May experiment with Flutter to aid in the development process. 
 
@@ -129,7 +128,6 @@ The role of a tester is to ensure the quality, reliability, and functionality of
 ##### Evan Albert, Quality Assurance:
 Being the quality assurance means that I have the responsibility to ensure that the app development is on track and meets the desired outcomes throughout production. I will ensure that any bugs or possible structure flaws are identified early on and addressed accordingly.
 
-
 ### Test Plans and Bugs:
 We plan to test the key features, including geolocation tracking, server responsiveness, and the accuracy of claimed territory, along with the number of points the users get.
 
@@ -141,7 +139,7 @@ The README file will contain an overview, installation steps, and usage instruct
 
 ##### System testing: Test how the location tracking connects between the point calculation functions and the mapping API. By comparing the results that the system gives to the expected results we can determine if everything is working smoothly. 
 
-##### Usability testing: Since our product is a game that many will use usability testing will be the most important. Since the geolocation is not able to be interacted with by the user it shouldn't be a major concern. However, since our product involves location tracking we will have to have users test to see if they can use our app to track people. 
+##### Usability testing: Since our product is a game that many will use, usability testing will be the most important. Since the geolocation is not able to be interacted with by the player it shouldn't be a major concern. However, since our product involves location tracking we will have to have playerss test to see if they can use our app to track people. 
 
 ###### Example test suites: 
 1) Enter random locations to see if the location marker properly tracks them.
@@ -149,9 +147,9 @@ The README file will contain an overview, installation steps, and usage instruct
 3) Have random friends or people run our website to determine if the user can understand the layout and whether they can use the app to track other users' data.
 
 ##### Server Responsiveness:
-Unit testing: Each function will be tested as development goes on. The test will include different features such as how the server runs depending on the amount of users currently on, also how user quickly the site can update itself to display new data. Testing each feature in isolation allows for obvious bugs to be found in corrected. 
+Unit testing: Each function will be tested as development goes on. The test will include different features such as how the server runs depending on the amount of players are currently on, also quickly the site can update itself to display new data. Testing each feature in isolation allows for obvious bugs to be found and corrected. 
 
-##### System testing: Test how the server handles taking in data from multiple sources, such as the location tracking and the user database. Since the app will be running 24 hours a day, the server will need to be able to handle all the features and accurately update the information provided by the users.
+##### System testing: Test how the server handles taking in data from multiple sources, such as the location tracking and the user database. Since the app will be running 24 hours a day, the server will need to be able to handle all the features and accurately update the information provided by the players.
 
 ##### Usability testing: Since our product is a game that many will use usability testing will be the most important. The server will need to be able to respond to users at a near-instant rate. The server will also need to be tested with different amounts of players online. Since the responsiveness will most likely change depending on the amount of users.
 
@@ -427,12 +425,12 @@ Data Communication
 
 ##### Back-End
 - API Handlers: Manages core game logic such as updating position and claim territory.
-- Game Logic: Computes areas enclosed by a completed run and checks if a user's route overlaps another's.
+- Game Logic: Computes areas enclosed by a completed run.
 - Database Handlers: Handles user data and stores running route data.
 
 #####Database
 - The backbone for storing and managing game data.
-- The schema includes key tables such as users, which store gameplay statistics, routes, which logs completed running circuits with timestamps and GPS coordinates, and territories, which track claimed land areas for each user.
+- The schema includes key tables such as users, which store gameplay statistics, routes, which logs completed running circuits and territories, which track claimed land areas for each user.
 
 ##### Location Tracking API
 - Uses Google Maps API to fetch and process real-time location data.
