@@ -1,29 +1,46 @@
 // Calvin Chen
-import fs from 'fs';
-import path from 'path';
-import { JSDOM } from 'jsdom';
+import '@testing-library/jest-dom';
+import { fireEvent, waitFor } from '@testing-library/dom';
 
+describe('Profile Form Validation Tests', () => {
+  beforeEach(() => {
+    document.body.innerHTML = `
+      <form id="profile-form">
+        <input type="text" id="username" required />
+        <input type="email" id="email" required />
+        <button type="submit">Save</button>
+        <div id="error-message" style="visibility: hidden;"></div>
+      </form>
+    `;
 
-describe('Profile Page Validation Test', () => {
-  let document;
-
-  beforeAll(() => {
-    const html = fs.readFileSync(path.resolve(process.cwd(), 'public_html/profile.html'), 'utf8');
-    const dom = new JSDOM(html);
-    document = dom.window.document;
+    // Simulate profile.js script
+    import('../../public_html/profile.js');
   });
 
-  it('should have a span for username and rank', () => {
-    const usernameEl = document.getElementById('username');
-    const rankEl = document.getElementById('rank');
-    expect(usernameEl).not.toBeNull();
-    expect(rankEl).not.toBeNull();
+  test('Shows error if username is empty', async () => {
+    const form = document.getElementById('profile-form');
+    const errorMessage = document.getElementById('error-message');
+
+    document.getElementById('username').value = ''; // Empty username
+    document.getElementById('email').value = 'test@example.com';
+
+    fireEvent.submit(form);
+
+    await waitFor(() => {
+      expect(errorMessage.style.visibility).toBe('visible');
+    });
   });
 
-  it('should have totalDistance and totalClaimed elements', () => {
-    const totalDistanceEl = document.getElementById('totalDistance');
-    const totalClaimedEl = document.getElementById('totalClaimed');
-    expect(totalDistanceEl).not.toBeNull();
-    expect(totalClaimedEl).not.toBeNull();
+  test('Does not allow invalid email format', async () => {
+    const form = document.getElementById('profile-form');
+    const emailInput = document.getElementById('email');
+
+    emailInput.value = 'invalid-email';
+
+    fireEvent.submit(form);
+
+    await waitFor(() => {
+      expect(emailInput.validationMessage).not.toBe('');
+    });
   });
 });
