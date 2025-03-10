@@ -1,0 +1,87 @@
+/* loginpage.css contains styling for both the login page and the sign up page */
+
+/* Styling for the body of the login/create acct page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Styling for the login container (the box where the login labels/text input are located) */
+.login-container {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+/* Styling for the header */
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Styling for the text input labels (i.e. 'Email: ') */
+label {
+    font-size: 14px;
+    color: #555;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Styling for the text input boxes */
+input[type="email"],
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 20px 0;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* Styling for the submit button */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: grey;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Styling for the submit button when the user hovers over it */
+button:hover {
+    background-color: rgb(54, 54, 54);
+}
+
+/* Styling for any error messages- JS will deal with hiding these when necessary */
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Styling for the sign up link */
+.signup-link {
+    margin-top: 20px;
+    font-size: 14px;
+}
+.signup-link a {
+    color: #007BFF;
+    text-decoration: none;
+}
+.signup-link a:hover {
+    text-decoration: underline;
+}

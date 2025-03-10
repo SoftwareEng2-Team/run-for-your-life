@@ -43,7 +43,36 @@ Otherwise, to access our application that is hosted and updated, access the link
 This application's backend is tested using Selenium and Google ChromeDriver. Install Selenium using 'npm install selenium-webdriver' and download ChromeDriver from the link 'https://developer.chrome.com/docs/chromedriver/downloads'. You can run existing test scripts files in JavaScript by invoking 'node <path to testscript>/testscript.js'. Any future tests should be kept in a testing directory. 
 
 ## How To Add New Tests
-New tests can be added by creating a new script or cloning an existing script and adding to that. All testing should be done in an async() function such that you can await driver to open and load the frontend. 
+New tests can be added by creating a new script or cloning an existing script and adding to that. All testing should be done in an async() function such that you can await driver to open and load the frontend.
+
+## How to Add a New Test to the Codebase
+
+### Choose a Test Type:
+- Unit Test: For testing individual functions or components in isolation.  
+- Validation Test: Ensures form validation and user input constraints work correctly.  
+- Integration Test: Tests interactions between different modules.  
+- System Test: Simulates end-to-end user workflows with Puppeteer.
+
+### Create a Test File in the Appropriate Folder:
+- Unit tests: `__tests__/unit/`  
+- Validation tests: `__tests__/validation/`  
+- Integration tests: `__tests__/integration/`  
+- System tests: `__tests__/system/`  
+
+### Write the Test Code: 
+- Follow existing coding conventions to maintain consistency.  
+- Import necessary dependencies (e.g., Puppeteer for system tests).  
+- Use meaningful assertions with `expect()` to validate outcomes.
+
+### Running Test files
+When making and running new tests such as unit, validation, integration, or systems tests:
+- To run tests locally: `npm test`
+- To check test coverage: `npm test -- --coverage`
+- CI test results are available in GitHub Actions logs
+
+### Commit & Push: 
+- Once verified, push the changes, and GitHub Actions will automatically execute the test suite.
+
 
 ## How To Build A Release Of The Software
 - After building the software the developer should have a new version with an updated ID number that correlates to that new version.
@@ -80,7 +109,7 @@ New tests can be added by creating a new script or cloning an existing script an
 - Test out the bug report inside the web game under the profile page. Look into the console on the web and the spreadsheet to see if there was any success/changes.
 - Double-check all permissions to ensure the pathway is not blocked.
 
-### Accessing the Database
+## Accessing the Database
 - Macbook: 
   - (Need to install homebrew if not already installed: https://brew.sh/)
   - brew install postgresql
