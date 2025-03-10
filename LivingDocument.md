@@ -219,72 +219,93 @@ Unit testing: Each function will be tested as development goes on. The test will
 2) Enter random weights for different map areas and make sure they are properly reflected in the point calculations.
 3) Have multiple users at once claim territory to make sure the functions can handle multiple inputs at once.
 
-### Processes Description
+### Test-Automation Infrastructure
+Tools Used:
+Jest
+For our automated testing, we use Jest as the primary test framework for unit, validation, integration, and system tests. Jest is chosen due to its:
 
-#### Test-Automation Infrastructure
-##### Tools Used:
+Modern JavaScript support: Works well with ES modules (ESM).
+Fast execution: Provides an efficient and parallelized test runner.
+Built-in code coverage reporting: Ensures our tests provide sufficient coverage.
+Extensive ecosystem and community support: Widely used, with plenty of plugins and documentation.
+Seamless CI/CD integration: Works natively with GitHub Actions, our chosen CI/CD pipeline.
 
-###### Jest: 
-We used Jest as a test automation framework for unit, validation, and integration tests. We decided on Jest because it allows:
-- The support of modern JavaScript modules.
-- Offers a fast test execution and uses built-in code coverage reporting.
-- Has a large community and extensive eco-system
-- Works easily with our CI pipeline (Github Actions)
-
-Adding new test files
+#### How to Add a New Test to the Codebase
 Choose a test type:
-- Unit Test
-- Validation Test
 
-Create Test file:
-For test files using Jest place them inside the gamedev/__tests__/
+Unit Test – For testing individual functions or components.
+Validation Test – Ensures input constraints and form validation work as expected.
+Integration Test – Validates interaction between different components/modules.
+System Test – Tests the entire application in an end-to-end scenario.
+Create a test file in the appropriate folder:
 
-Writing Test Code:
-- Follow our coding conventions and structure similar to existing tests.
-- If using ESM, include necessary imports.
+Unit tests: __tests__/unit/
+Validation tests: __tests__/validation/
+Integration tests: __tests__/integration/
+System tests: __tests__/system/
 
-Running Locally:
-- Run Jest with npm test to check for testing before committing.
+Write the test code:
 
-Commit and Push:
-- Once everything is verified and you have a new test with code changes, the CI processes will find it automatically.
+Follow the coding conventions in existing test files.
+Import dependencies as necessary (e.g., Puppeteer for system tests).
+Use expect() assertions for validation.
 
+Run the test locally:
 
-##### Continuous Integration:
+Execute tests with npm test to verify correctness before committing.
+
+Commit and push the changes:
+
+Once verified, push the changes, and the CI pipeline will automatically detect and execute the new test.
+
+#### Continuous Integration (CI)
+
 Service Used:
-GitHub Actions:
-- Our repository is integrated with GitHub Actions using a workflow file located inside the .github directory.
-- This workflow installs dependencies, runs our build, and uses test files for every push and pull request.
+GitHub Actions
+Our repository is linked to GitHub Actions, a CI/CD service that runs workflows for testing and deployment. The workflow file is located in .github/workflows/ci.yml.
 
-##### Justification for GitHub Actions:
-- Seamless Integration: Developed inside GitHub it allows easy access and no additional tools needed.
-- Matrix Builds: Can test across multiple Node.js versions and different operating systems.
-- Cost: Free use for public projects.
-- Community: Provides lots of examples and support.
+#### Justification for GitHub Actions
+Features and Benefits
+Seamless Integration: Built into GitHub, eliminating the need for external tools.
+Matrix Builds: Supports testing across multiple Node.js versions and environments.
+Cost: Free for public repositories and provides generous free-tier minutes for private projects.
+Community Support: Strong community and extensive documentation make troubleshooting easier.
 
-##### Pros and Cons Matrix for CI Services Considered:
-###### GitHub Actions:
-Pros: Integrated with GitHub, Supports matrix builds, free, community.
-Cons: Complex workflows need careful management.
+#### Pros and Cons Matrix for CI Services Considered
 
-###### Travis CI
-Pros: Simple configuration, and widely used.
-Cons: Limited free tier, and has slower build times.
+CI Service
 
-###### CircleCI
-Pros: Offers fast and scalable builds, and allows for configurable environments.
-Cons: More complex pricing and configuration. It is also not tightly integrated with GitHub.
+GitHub Actions	
+Pros: Integrated with GitHub, free for public repos, supports matrix builds, strong community
+Cons: Complex workflows require careful management.
 
-#### Test Executed in a CI Build:
-- Unit Tests: Tests located in __tests__ folder
-- Validation Tests: Simulates user interactions contained inside __tests__ folder.
-- Integration Tests
-- Systems Test
+Travis CI
+Pros: Simple configuration, widely adopted, supports many environments.
+Cons: Limited free-tier minutes, slower build times.
 
-#### Development Actions that Trigger a CI Build:
-- Pushes to any Branch: Any commit that is pushed to a branch will trigger a build.
-- Pull Requests: Opening or updating a pull request automatically triggers a CI build.
-- Merges: Any code that is merged into the main branch will trigger a final build and test run.
+CircleCI
+Pros: Fast and scalable builds, configurable environments.	
+Cons: More complex pricing, not tightly integrated with GitHub.
+
+#### Tests Executed in a CI Build
+
+During each CI build, the following tests are executed:
+
+Unit Tests – Located in __tests__/unit/
+Validation Tests – User input validation tests from __tests__/validation/
+Integration Tests – Ensures the interaction between components (__tests__/integration/)
+System Tests – Full application workflows tested using Puppeteer (__tests__/system/)
+
+#### Development Actions That Trigger a CI Build
+
+The CI workflow is triggered by the following actions:
+Pushes to any branch: Any commit pushed to the repository automatically triggers a build.
+
+Pull Requests: Opening or updating a pull request triggers a CI build.
+
+Merges to main branch: Final testing and validation occur before deployment.
+
+These triggers are defined in ci.yml​ci, ensuring continuous validation of code changes.
 
 ### Timeline with milestones:
 Week 3: Project Planning.
