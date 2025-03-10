@@ -79,3 +79,18 @@ New tests can be added by creating a new script or cloning an existing script an
 - Paste in the copied script URL and save.
 - Test out the bug report inside the web game under the profile page. Look into the console on the web and the spreadsheet to see if there was any success/changes.
 - Double-check all permissions to ensure the pathway is not blocked.
+
+### Accessing the Database
+- Macbook: 
+  - (Need to install homebrew if not already installed: https://brew.sh/)
+  - brew install postgresql
+  - brew services start postgresql
+  - psql postgresql://run_for_your_life_user:8fFWEwEBpMPdijfG10sYt8p0UfMsT9Yo@dpg-cusf9fl6l47c7386ejjg-a.oregon-postgres.render.com/run_for_your_life
+- Windows: 
+  - Download postgresql installer from the website: https://www.postgresql.org/download/windows/ 
+  - Run the installer and follow the following steps:
+    - Select the latest postgre sql version
+    - Set a username and password (make sure you remember what you set them to)
+    - Install the psql command line tool
+  - Open pgAdmin or use the comman line to connect to the database
+  - Connect to the server: psql postgresql://run_for_your_life_user:8fFWEwEBpMPdijfG10sYt8p0UfMsT9Yo@dpg-cusf9fl6l47c7386ejjg-a.oregon-postgres.render.com/run_for_your_life 
