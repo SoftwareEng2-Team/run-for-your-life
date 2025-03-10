@@ -395,7 +395,7 @@ async function expandTerritory() {
       fillOpacity: 0.35,
     });
 
-    claimedTerritory.setMap(map);
+    newClaimedTerritory.setMap(map);
 
     // Calculate the expansion width and update the score
     const expansionWidth = google.maps.geometry.spherical.computeArea(newClaimedTerritory.getPath().getArray());
