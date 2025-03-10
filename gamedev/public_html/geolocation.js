@@ -22,7 +22,7 @@ let locationHistory = [];
 // Label for the territory name
 let territoryLabel = null;
 // Variable to track how many meters the user has traveled
-let distance_travelled = 0;
+let distance_traveled = 0;
 //Sees if the user has just started the run
 let newrun = true;
 
