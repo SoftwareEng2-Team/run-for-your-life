@@ -1,6 +1,6 @@
 // Keona Abad Fetch Leaderboard Unit Test
-const fetch = require('node-fetch');
-const { fetchLeaderboard } = require('../../public_html/backend');
+import fetch from 'node-fetch';
+import { fetchLeaderboard } from '../../public_html/backend';
 
 jest.mock('node-fetch', () => jest.fn());
 
