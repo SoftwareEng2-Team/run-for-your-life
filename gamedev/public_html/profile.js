@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       // Get the profile data from the response
       const profile_data = await response.json();
       // Retrieve the total territory claimed and round it to 2 decimal places
-      const terr_claimed_rounded = (profile_data.total_distance_claimed).toFixed(2); F
+      const terr_claimed_rounded = (profile_data.total_distance_claimed).toFixed(2); 
       // As long as the response is successful, update the profile information
       if (response.ok) {
         // DB request to get player information to set the rank
