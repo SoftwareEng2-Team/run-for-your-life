@@ -1,6 +1,6 @@
 const API_URL = "https://script.google.com/macros/s/AKfycbxKSjNcaTb14adZgKCUgXYkTJ4YdFw5si6i7dFTgeDorpoNlIcCCuVUArkeSdb3rgw2/exec"; 
 
-async function fetchLeaderboard() {
+export async function fetchLeaderboard() {
     try {
         let response = await fetch(`${API_URL}/leaderboard`);
         let data = await response.json();
