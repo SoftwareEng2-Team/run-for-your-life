@@ -42,79 +42,79 @@ document.addEventListener("DOMContentLoaded", async () => {
       } catch (error) {
         console.error("Error:", error);
       }
+    }
 
-      //If there is a distance to update
-      if (localStorage.getItem('distance_traveled') == 0 || localStorage.getItem('distance_traveled') == null) {
-        console.log("No distance traveled to update, skipping query");
-      } else {
-        const distance_traveled = localStorage.getItem('distance_traveled');
+    //If there is a distance to update
+    if (localStorage.getItem('distance_traveled') == 0 || localStorage.getItem('distance_traveled') == null) {
+      console.log("No distance traveled to update, skipping query");
+    } else {
+      const distance_traveled = localStorage.getItem('distance_traveled');
 
-        // DB request to set the distance of the current user
-        try {
-          let response = await fetch(`${API_URL}/api/map/distance`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            // Send the user ID and territory claimed
-            body: JSON.stringify({ user_id, distance_traveled })
-          });
-
-          // Get the response from the query, reset the score to 0
-          let data = await response.json();
-
-          if (response.ok) {
-            localStorage.setItem('distance_traveled', 0);
-          }
-        } catch (error) {
-          console.error("Error:", error);
-        }
-      }
-
-      // Retrieve the profile information for the user
+      // DB request to set the distance of the current user
       try {
-        let response = await fetch(`${API_URL}/api/profile`, {
+        let response = await fetch(`${API_URL}/api/map/distance`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ user_id })
+          // Send the user ID and territory claimed
+          body: JSON.stringify({ user_id, distance_traveled })
         });
 
-        // Get the profile data from the response
-        const profile_data = await response.json();
-        // Retrieve the total territory claimed and round it to 2 decimal places
-        const terr_claimed_rounded = (profile_data.total_distance_claimed).toFixed(2);
+        // Get the response from the query, reset the score to 0
+        let data = await response.json();
+
+        if (response.ok) {
+          localStorage.setItem('distance_traveled', 0);
+        }
       } catch (error) {
         console.error("Error:", error);
       }
-      // As long as the response is successful, update the profile information
-      if (response.ok) {
-        // DB request to get player information to set the rank
-        let response = await fetch(`${API_URL}/api/leaderboard`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-        });
+    }
 
-        // Get the result of the database query
-        let data = await response.json();
-        let rank_set = 0;
-        let user_rank = "No rank... Sign in!";
+    // Retrieve the profile information for the user
+    try {
+      let response = await fetch(`${API_URL}/api/profile`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user_id })
+      });
 
-        // Generate leaderboard cards dynamically
-        data.forEach((player, index) => {
-          if (String(player.user_id) === String(user_id) && rank_set == 0) {
-            user_rank = "#" + (index + 1);
-            console.log("Set the rank of user:", user_id, " to", user_rank);
-            rank_set = 1;
-          }
-        });
+      // Get the profile data from the response
+      const profile_data = await response.json();
+      // Retrieve the total territory claimed and round it to 2 decimal places
+      const terr_claimed_rounded = (profile_data.total_distance_claimed).toFixed(2);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+    // As long as the response is successful, update the profile information
+    if (response.ok) {
+      // DB request to get player information to set the rank
+      let response = await fetch(`${API_URL}/api/leaderboard`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      });
 
-        // Console statments for debugging
-        console.log("Successful profile update for user: ", user_id);
-        console.log("Terr claimed: ", terr_claimed_rounded);
-        // Update profile info
-        document.getElementById("username").textContent = profile_data.username || "No user - sign in!";
-        document.getElementById("rank").textContent = user_rank;
-        document.getElementById("totalDistance").textContent = data.total_distance_ran ? `${data.total_distance_ran} miles` : "0";
-        document.getElementById("totalClaimed").textContent = terr_claimed_rounded ? `${terr_claimed_rounded} sqft` : "0 sqft";
-      }
+      // Get the result of the database query
+      let data = await response.json();
+      let rank_set = 0;
+      let user_rank = "No rank... Sign in!";
+
+      // Generate leaderboard cards dynamically
+      data.forEach((player, index) => {
+        if (String(player.user_id) === String(user_id) && rank_set == 0) {
+          user_rank = "#" + (index + 1);
+          console.log("Set the rank of user:", user_id, " to", user_rank);
+          rank_set = 1;
+        }
+      });
+
+      // Console statments for debugging
+      console.log("Successful profile update for user: ", user_id);
+      console.log("Terr claimed: ", terr_claimed_rounded);
+      // Update profile info
+      document.getElementById("username").textContent = profile_data.username || "No user - sign in!";
+      document.getElementById("rank").textContent = user_rank;
+      document.getElementById("totalDistance").textContent = data.total_distance_ran ? `${data.total_distance_ran} miles` : "0";
+      document.getElementById("totalClaimed").textContent = terr_claimed_rounded ? `${terr_claimed_rounded} sqft` : "0 sqft";
     }
   }
 
