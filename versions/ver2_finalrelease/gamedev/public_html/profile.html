@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="profile.css">
+    <title>Run For Your Life - Profile</title>
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-header">Profile Page</div>
+        <div class="profile-info">
+            <!-- Placeholders for dynamic data -->
+            <p><strong>Username:</strong> <span id="username"></span></p>
+            <p><strong>Ranked:</strong> <span id="rank"></span></p>
+        </div>
+        <div class="stats">
+            <p><strong>Total Distance Ran:</strong> <span id="totalDistance"></span></p>
+            <p><strong>Total Area Claimed:</strong> <span id="totalClaimed"></span></p>
+        </div>
+        <div class="achievements-header">Weekly Achievements</div>
+        <div class="achievements" id="achievements">
+            <!-- Achievements will be injected here -->
+        </div>
+
+        <!-- User Guide Button (placed within the container) -->
+        <button id="guideButton">User Guide</button>
+        <button id="bugReportButton">Report a Bug</button>
+        <script>
+            document.getElementById('bugReportButton').addEventListener('click', () => {
+              window.location.href = 'bugreportpage.html';
+            });
+          </script>
+    </div>
+
+    <!-- Modal for the User Guide -->
+    <div id="guideModal" class="modal">
+        <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>New User Guide</h2>
+        <p>Welcome to <em>Run For Your Life</em>!</p>
+        <p>This competitive game challenges you to run through a dynamic map, claim territory, and compete against other players. Below is an in-depth overview of the game's features and how to navigate them:</p>
+        
+        <h3>Game Overview</h3>
+        <p>
+            In <em>Run For Your Life</em>, your objective is to explore the game map and claim territory by running through designated areas to improve your ranking. As you progress, your stats update on your profile, and you can monitor your performance on the leaderboard.
+        </p>
+        
+        <h3>Navigation Buttons</h3>
+        <ul>
+            <li>
+            <strong>Leaderboard:</strong> Located on the left, this button takes you to the leaderboard page where you'll see weekly rankings, top players, and key statistics. Use this page to compare your performance with others and see where you stand.
+            </li>
+            <li>
+            <strong>Map:</strong> Found in the center, this button directs you to the map page. Here you can start your run, explore new areas, and plan your route. This is your primary interface for navigating the game world and claiming territory.
+            </li>
+            <li>
+            <strong>Profile:</strong> The rightmost button leads to your profile page. This page displays your personal stats, achievements, and current ranking. It serves as your personal hub to track progress and review your performance.
+            </li>
+        </ul>
+        
+        <h3>How to Play</h3>
+        <ul>
+            <li>Begin by exploring the map to familiarize yourself with the environment.</li>
+            <li>Start your run from the map page, as you run, you'll claim territory.</li>
+            <li>Your progress, including distance ran and territory claimed, will be recorded on your profile.</li>
+            <li>Check the leaderboard frequently to see how you compare with other players and to set new goals.</li>
+        </ul>
+        
+        <p>We hope this guide helps you get started. Enjoy the game and good luck!</p>
+        </div>
+    </div>  
+
+    <footer>
+        <div id="navbuttons">
+            <button class="nav" type="button">
+                <a href="leaderboard.html">
+                    <img src="images/leaderboard-icon.png" alt="Leaderboard">
+                </a>
+            </button>
+            <button class="nav" type="button">
+                <a href="map.html">
+                    <img src="images/map-icon.png" alt="Map">
+                </a>
+            </button>
+            <button class="nav" type="button">
+                <a href="profile.html">
+                    <img src="images/profile-icon.png" alt="Profile">
+                </a>
+            </button>
+        </div>
+    </footer>
+    <script src="profile.js" defer></script>
+</body>
+</html>
