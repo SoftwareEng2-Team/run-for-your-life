@@ -219,8 +219,6 @@ Unit testing: Each function will be tested as development goes on. The test will
 2) Enter random weights for different map areas and make sure they are properly reflected in the point calculations.
 3) Have multiple users at once claim territory to make sure the functions can handle multiple inputs at once.
 
-# Test Plan Extension: Automation & CI
-
 ## Test-Automation Infrastructure
 
 ### Tools Used: Jest
