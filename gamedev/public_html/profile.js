@@ -12,8 +12,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Get the user ID from local storage
   const user_id = localStorage.getItem('user_id');
 
-  localStorage.setItem('distance_traveled', 100);
-
   // If no user is logged in...
   if (!user_id) {
     console.error("No user_id found in local storage!");
@@ -51,7 +49,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       console.log("No distance traveled to update, skipping query");
     } else {
       const distance_traveled = localStorage.getItem('distance_traveled');
-      console.log("Distance to set: ", distance_traveled);
       // DB request to set the distance of the current user
       try {
         let response = await fetch(`${API_URL}/api/map/distance`, {
