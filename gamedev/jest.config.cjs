@@ -7,11 +7,5 @@ module.exports = {
   testMatch: ['**/__tests__/**/*.test.js'],
   globals: {
     BASE_URL: 'file://' + process.cwd() + '/public_html/'
-  },
-  testEnvironment: 'jsdom',
-
-  testEnvironmentOptions: {
-    resources: "usable",
-    runScripts: "dangerously"
   }
 };
