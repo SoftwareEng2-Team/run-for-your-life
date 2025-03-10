@@ -6,7 +6,7 @@ export async function fetchLeaderboard() {
         let data = await response.json();
         console.log("Leaderboard Data:", data);
 
-        // Ensure this only runs in a browser
+        // Only run in a browser
         if (typeof window !== "undefined" && document) {
             const leaderboardDiv = document.getElementById("leaderboard");
             if (leaderboardDiv) {
@@ -24,7 +24,7 @@ export async function fetchLeaderboard() {
     }
 }
 
-// Ensure this only runs in a browser and not for our jest
+// Only run in a browser
 if (typeof window !== "undefined") {
     window.onload = fetchLeaderboard;
 }

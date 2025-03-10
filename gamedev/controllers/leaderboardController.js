@@ -3,7 +3,7 @@ import pool from '../../database/connection_pool.mjs';
 // Fetch Leaderboard Information
 export const getLeaderboard = async (req, res) => {
     try {
-        // Create the query
+        // Query
         const query = `
             SELECT 
                 u.user_id, 

@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 // Get the response from the query, reset the score to 0
                 let data = await response.json();
                 localStorage.setItem('score', 0);
-                // Ensure that the response is successful
+                // Response is successful
                 if (response.ok) {
                     console.log("Successful territory update for user: ", user_id);
 
