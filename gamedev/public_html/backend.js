@@ -1,4 +1,4 @@
-const API_URL = "https://run-for-your-life-api.onrender.com"; 
+const API_URL = "https://run-for-your-life-api.onrender.com/api";
 
 export async function fetchLeaderboard() {
     try {
