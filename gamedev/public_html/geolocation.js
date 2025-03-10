@@ -203,12 +203,14 @@ async function initMap() {
           // Store the user's location in the array
           locationHistory.push(pos);
 
+          //We don't use the markers anymore so commenting out for now
+
           // If the array length is 5 (5 seconds), calculate the average location and place a marker
-          if (locationHistory.length >= 2) {
-            const avgLocation = calculateAverageLocation(locationHistory);
-            //placeAverageLocationMarker(avgLocation);
-            locationHistory = []; // Clear the array
-          }
+              // if (locationHistory.length >= 2) {
+              //   const avgLocation = calculateAverageLocation(locationHistory);
+              //   //placeAverageLocationMarker(avgLocation);
+              //   locationHistory = []; // Clear the array
+              // }
 
           map.setCenter(pos);
 
@@ -432,10 +434,6 @@ async function removeRedundancies(claimed, tobeclaimed) { if (claimedTerritory) 
   //Return the remaining points
   return claimed.concat(tobeclaimed);
 }}
-
-async function snapToPerimeter() {
-
-}
 
 // Error handling for geolocation
 async function handleLocationError(browserHasGeolocation, current_location_window, pos) {
