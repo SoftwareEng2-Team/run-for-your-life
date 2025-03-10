@@ -307,7 +307,7 @@ function findClosestPoint(point, polygon) {
 }
 
 // async function to calculate the average location
-export function calculateAverageLocation(locations) {
+function calculateAverageLocation(locations) {
   if (locations.length === 0) return null;
 
   let totalLat = 0;
@@ -338,7 +338,7 @@ async function placeAverageLocationMarker(location) {
 }
 
 // 
-export async function claimTerritory() {
+async function claimTerritory() {
   if (userPosition) {
     const squareSize = 0.0002; // Size of the square in degrees (approx. 50 meters)
     const squareCoords = [

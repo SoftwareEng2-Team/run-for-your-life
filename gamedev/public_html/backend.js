@@ -1,4 +1,4 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbxKSjNcaTb14adZgKCUgXYkTJ4YdFw5si6i7dFTgeDorpoNlIcCCuVUArkeSdb3rgw2/exec"; 
+const API_URL = "https://run-for-your-life-api.onrender.com/api";
 
 export async function fetchLeaderboard() {
     try {
