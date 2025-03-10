@@ -305,10 +305,10 @@ async function claimTerritory() {
     claimedTerritory.setMap(map);
     console.log("Territory claimed around:", userPosition);
 
-    const area = google.maps.geometry.spherical.computeArea(claimedTerritory.getPath().getArray());
-    score += area;
-    score = Number(score.toFixed(2));
-    console.log("Territory expanded around:", userPosition);
+    // const area = google.maps.geometry.spherical.computeArea(claimedTerritory.getPath().getArray());
+    // score += area;
+    // score = Number(score.toFixed(2));
+    // console.log("Territory expanded around:", userPosition);
 
     // Retrieve the user_id from local storage
     const user_id = localStorage.getItem('user_id');
