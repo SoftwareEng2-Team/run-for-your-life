@@ -383,10 +383,7 @@ async function expandTerritory() {
     // Get the current territory coordinates
     const currentCoords = claimedTerritory.getPath().getArray();
     // Add the outside path to the current territory
-    outsidePath.push(outsidePath[0]);
-    console.log("DEBUG PATH BEFORE REMOVE: ", currentCoords);
-    const newCoords = removeRedundancies(currentCoords, outsidePath);
-    console.log("DEBUG PATH AFTER REMOVE: ", newCoords);
+    const newCoords = currentCoords.concat(outsidePath);
     // Create a new polygon with the expanded territory
     claimedTerritory.setMap(null); // Remove the previous territory
     let newClaimedTerritory = new google.maps.Polygon({
@@ -398,7 +395,7 @@ async function expandTerritory() {
       fillOpacity: 0.35,
     });
 
-    newClaimedTerritory.setMap(map);
+    claimedTerritory.setMap(map);
 
     // Calculate the expansion width and update the score
     const expansionWidth = google.maps.geometry.spherical.computeArea(newClaimedTerritory.getPath().getArray());
