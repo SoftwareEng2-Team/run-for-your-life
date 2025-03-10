@@ -7,6 +7,9 @@ Competitive running game that simulates territory acquisition via a completed ru
 ### Goal: 
 Our team goal is to have a working game that takes in user location to track their movement. The game mechanics are based on the game Paper.io and allow users to compete against each other each day claiming land.
 
+### Reflections:
+- James: The main lesson I learned was how different you must approach group projects compared to working on assignments individually. Working in a large group resulted in accommodating and working around many people's schedules. I was also able to further develop my skills of analyzing other people's code and understanding how it works since my group members would have different styles or tackle different challenges differently than I would. At the start of the class, our group was very ambitious and designed a project that was way too big for a one-term project, however working as a group we were able to choose the most important features of our project and perfect those rather than create the original complicated design. Overall this class was a great learning experience for what working in a group to complete a company project would be, and I'm pleased with the group I formed since they were mostly strangers before this class. 
+
 ### Current practice: 
 Similar applications exist to motivate users to engage in physical activity while progressing in-game. For example, Pokemon Go utilizes the user's location to catch Pokemon, access Pokestops, and battle other trainers. We aim to develop a game that encourages users to participate in healthy movements such as running and walking by creating friendly competition. Other mobile applications exist, such as Strava and Nike Run Club, that allow users to record their runs. However, creating a community-based game will motivate users to compete by running. 
 
