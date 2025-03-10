@@ -1,8 +1,9 @@
 // Keona Abad Fetch Leaderboard Unit Test
-import fetch from 'node-fetch';
+import { jest } from '@jest/globals';
 import { fetchLeaderboard } from '../../public_html/backend';
 
-jest.mock('node-fetch', () => jest.fn());
+// Manually mock `fetch` as a global function
+global.fetch = jest.fn();
 
 describe('fetchLeaderboard', () => {
     afterEach(() => {
@@ -11,17 +12,18 @@ describe('fetchLeaderboard', () => {
 
     it('should fetch leaderboard data successfully', async () => {
         const mockData = [{ name: 'Player1', score: 100 }, { name: 'Player2', score: 500 }];
-        fetch.mockResolvedValue({
+        
+        global.fetch.mockResolvedValue({
             json: jest.fn().mockResolvedValue(mockData),
         });
 
         await fetchLeaderboard();
-        expect(fetch).toHaveBeenCalledWith(expect.stringContaining('/leaderboard'));
+        expect(global.fetch).toHaveBeenCalledWith(expect.stringContaining('/leaderboard'));
     });
 
     it('should handle fetch errors properly', async () => {
-        fetch.mockRejectedValue(new Error('Network Error'));
+        global.fetch.mockRejectedValue(new Error('Network Error'));
+
         await expect(fetchLeaderboard()).rejects.toThrow('Network Error');
     });
-
 });

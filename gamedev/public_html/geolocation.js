@@ -307,16 +307,20 @@ function findClosestPoint(point, polygon) {
 }
 
 // async function to calculate the average location
-async function calculateAverageLocation(locations) {
-  const sum = locations.reduce((acc, loc) => {
-    acc.lat += loc.lat;
-    acc.lng += loc.lng;
-    return acc;
-  }, { lat: 0, lng: 0 });
+export function calculateAverageLocation(locations) {
+  if (locations.length === 0) return null;
+
+  let totalLat = 0;
+  let totalLng = 0;
+
+  locations.forEach(location => {
+      totalLat += location.lat;
+      totalLng += location.lng;
+  });
 
   return {
-    lat: sum.lat / locations.length,
-    lng: sum.lng / locations.length,
+      lat: totalLat / locations.length,
+      lng: totalLng / locations.length
   };
 }
 
@@ -334,7 +338,7 @@ async function placeAverageLocationMarker(location) {
 }
 
 // 
-async function claimTerritory() {
+export async function claimTerritory() {
   if (userPosition) {
     const squareSize = 0.0002; // Size of the square in degrees (approx. 50 meters)
     const squareCoords = [
@@ -415,7 +419,11 @@ async function expandTerritory() {
   }
 }
 
-async function removeRedundancies(claimed, tobeclaimed) { if (claimedTerritory) {
+function locationRefactorTesting(point, polygon) {
+  return google.maps.geometry.poly.containsLocation(point, polygon)
+}
+
+async function removeRedundancies(claimed, tobeclaimed, refactorfunc) { if (claimedTerritory) {
   let incision = new google.maps.Polygon({
     paths: tobeclaimed,
     strokeWeight: 0,
@@ -424,7 +432,7 @@ async function removeRedundancies(claimed, tobeclaimed) { if (claimedTerritory) 
   //For each point in the already claimed area, that point if it's located inside of the new polygon
   let claimedlength = claimed.length;
   for(let i = 0; i < claimedlength; i++) {
-    if(google.maps.geometry.poly.containsLocation(claimed[i], incision)) {
+    if(refactorfunc(claimed[i], incision)) {
       console.log("DEBUG: Point found inside of polygon");
       claimed.splice(i, 1);
       i--;

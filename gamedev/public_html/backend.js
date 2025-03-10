@@ -6,20 +6,25 @@ export async function fetchLeaderboard() {
         let data = await response.json();
         console.log("Leaderboard Data:", data);
 
-        // Update leaderboard on webpage
-        const leaderboardDiv = document.getElementById("leaderboard");
-        leaderboardDiv.innerHTML = "<h2>Leaderboard</h2>";
-
-        data.forEach((player, index) => {
-            const entry = document.createElement("p");
-            entry.textContent = `${index + 1}. ${player.username} - ${player.total_distance_km} km`;
-            leaderboardDiv.appendChild(entry);
-        });
-``
+        // Ensure this only runs in a browser
+        if (typeof window !== "undefined" && document) {
+            const leaderboardDiv = document.getElementById("leaderboard");
+            if (leaderboardDiv) {
+                leaderboardDiv.innerHTML = "<h2>Leaderboard</h2>";
+                data.forEach((player, index) => {
+                    const entry = document.createElement("p");
+                    entry.textContent = `${index + 1}. ${player.username} - ${player.total_distance_km} km`;
+                    leaderboardDiv.appendChild(entry);
+                });
+            }
+        }
     } catch (error) {
         console.error("Error fetching leaderboard:", error);
+        throw error;
     }
 }
 
-// Run function on page load
-window.onload = fetchLeaderboard;
+// Ensure this only runs in a browser and not for our jest
+if (typeof window !== "undefined") {
+    window.onload = fetchLeaderboard;
+}
