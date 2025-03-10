@@ -36,11 +36,8 @@ export const setTerrClaimed = async (req, res) => {
 };
 
 export const setDistanceClaimed = async (req, res) => {
-    console.log("Entered setDistanceClaimed in mapController.js");
     try {
         const { user_id, distance_traveled } = req.body;
-
-        console.log("")
 
         if (isNaN(distance_traveled) || distance_traveled == null) {
             return res.status(400).json({ error: "Invalid distance_traveled value" });
@@ -48,7 +45,7 @@ export const setDistanceClaimed = async (req, res) => {
         
         const query = `
             UPDATE users
-            SET total_distance = total_distance + $2
+            SET total_distance = COALESCE(total_distance, 0) + $2
             WHERE user_id = $1
             RETURNING total_distance;        
         `;

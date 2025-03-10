@@ -198,28 +198,27 @@
 ### Keona Abad
 
 #### 2.1 Exact Copy of the Third Section from Last Week
-- Start the manipulation of the database from the backend (4 hours)
+- Hopefully finish our polygon for tracking our users route (1-5 hours)
 - Meet with the team on Wednesday and Thursday (1 hour)
-- Begin to work on the front-end in the sense it needs to make sure it is properly displaying all the data (2 hours)
+- I need to be helping on the backend side to be able to have data append properly to the leaderboard the way we need it to. Right now it displays all information if I call the leaderboard and we don't want that.(2 hours)
 
 #### 2.2 Progress and Issues
 
 **What we've finished:** 
-- Successfully have the frontend, backend, and database hosted through Render.com.
-- Routing through each end is hooked up
-- Now able to register as a user and log in as a user as a frontend and the data gets stored properly
+- Properly displaying the correct data onto the frontend user profile
+- Properly displaying the correct data onto the frontend leaderboard
 
 **What we learned:**  
-We have learned that because we are hosting through render, our code requires a lot of bypass strings. We've also learned how to use bcrypt to hash passwords and unhash them when looking at equality.
+We have learned how to create queries that are required for the backend to display specific things on the frontend
 
 **Where we had trouble/stuck:**
-There was some confusion on why, when a user successfully logs in, it kept on routing us to an incorrect window even though our href was setup properly. It wasn't the fact that href wasn't working properly but it was the fact that async defer was not properly loading the scrip,t which was also the reason our map wasn't getting updated at one point. 
-
+Trying to add the total distance a user has ran with the territory claimed
 #### 2.3 Plans and Goals for the Following Week (list as bullet points along with estimated time to accomplish)
 
-- Hopefully finish our polygon for tracking our users route (1-5 hours)
+- Refine files to look good for release (1 hour)
 - Meet with the team on Wednesday and Thursday (1 hour)
-- I need to be helping on the backend side to be able to have data append properly to the leaderboard the way we need it to. Right now it displays all information if I call the leaderboard and we don't want that.(2 hours)
+- Create poster (2 hours)
+- Test cases (1 hour)
 
 ### Connor Sun
 
