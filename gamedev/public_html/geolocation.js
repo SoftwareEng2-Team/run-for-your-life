@@ -307,16 +307,20 @@ function findClosestPoint(point, polygon) {
 }
 
 // async function to calculate the average location
-async function calculateAverageLocation(locations) {
-  const sum = locations.reduce((acc, loc) => {
-    acc.lat += loc.lat;
-    acc.lng += loc.lng;
-    return acc;
-  }, { lat: 0, lng: 0 });
+export function calculateAverageLocation(locations) {
+  if (locations.length === 0) return null;
+
+  let totalLat = 0;
+  let totalLng = 0;
+
+  locations.forEach(location => {
+      totalLat += location.lat;
+      totalLng += location.lng;
+  });
 
   return {
-    lat: sum.lat / locations.length,
-    lng: sum.lng / locations.length,
+      lat: totalLat / locations.length,
+      lng: totalLng / locations.length
   };
 }
 
