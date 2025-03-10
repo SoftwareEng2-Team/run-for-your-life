@@ -1,6 +1,7 @@
+// Calvin Chen
 describe('Profile System Tests', () => {
     beforeAll(() => {
-      jest.setTimeout(10000); // Ensure long test runs complete
+      jest.setTimeout(10000); 
     });
   
     test('User can update profile in production', async () => {
