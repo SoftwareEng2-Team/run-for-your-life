@@ -12,13 +12,14 @@ export const registerUser = async (req, res) => {
             [username, email, hashedPassword]
         );
         res.status(201).json({ message: "User registered successfully", user_id: result.rows[0].user_id });
+    // Console log any database issues
     } catch (error) {
         console.error("Error registering user:", error);
         res.status(500).json({ error: "Database error during registration" });
     }
 };
 
-// User Login
+// User Login controller function
 export const loginUser = async (req, res) => {
     const { email, password } = req.body;
 
@@ -32,7 +33,7 @@ export const loginUser = async (req, res) => {
 
         const user = result.rows[0];
 
-        // Comparing hashed password
+        // Comparing hashed password (using bcrypt to encrypt)
         const validPassword = await bcrypt.compare(password, user.password_hash);
 
         if (!validPassword) {
@@ -40,6 +41,7 @@ export const loginUser = async (req, res) => {
         }
 
         res.status(200).json({ message: "Login successful", user_id: user.user_id });
+    // Console log any database issues
     } catch (error) {
         console.error("Error logging in:", error);
         res.status(500).json({ error: "Database error during login" });
