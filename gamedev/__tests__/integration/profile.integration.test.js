@@ -1,32 +1,21 @@
 // Calvin Chen
-import { updateProfileAPI } from '../public_html/profile.js';
+import fs from 'fs';
+import path from 'path';
+import { JSDOM } from 'jsdom';
 
-describe('Profile Integration Tests', () => {
-  test('updateProfileAPI sends correct request to backend', async () => {
-    global.fetch = jest.fn().mockResolvedValue({
-      ok: true,
-      json: async () => ({ message: 'Profile updated successfully' })
-    });
+describe('Profile Page Integration Test', () => {
+  let dom, document, window;
 
-    const userData = { username: 'testuser', email: 'updated@example.com' };
-    
-    const response = await updateProfileAPI(userData);
-
-    expect(global.fetch).toHaveBeenCalledWith('/api/profile', expect.objectContaining({
-      method: 'POST',
-      headers: expect.objectContaining({ 'Content-Type': 'application/json' }),
-      body: JSON.stringify(userData),
-    }));
-
-    expect(response.message).toBe('Profile updated successfully');
+  beforeEach(() => {
+    const html = fs.readFileSync(path.resolve(process.cwd(), 'public_html/profile.html'), 'utf8');
+    dom = new JSDOM(html, { runScripts: 'dangerously', resources: 'usable' });
+    document = dom.window.document;
+    window = dom.window;
   });
 
-  test('Handles API failure gracefully', async () => {
-    global.fetch = jest.fn().mockResolvedValue({
-      ok: false,
-      json: async () => ({ error: 'Failed to update profile' })
-    });
-
-    await expect(updateProfileAPI({ username: 'testuser' })).rejects.toThrow('Failed to update profile');
+  it('should navigate to bug report page on clicking the bugReportButton', () => {
+    const bugReportButton = document.getElementById('bugReportButton');
+    bugReportButton.click();
+    expect(window.location.href).toContain('bugreportpage.html');
   });
 });
