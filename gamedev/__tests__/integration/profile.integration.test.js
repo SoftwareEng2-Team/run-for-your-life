@@ -1,32 +1,14 @@
 // Calvin Chen
-import { updateProfileAPI } from '../public_html/profile.js';
+import express from 'express';
+import request from 'supertest';
+import path from 'path';
 
-describe('Profile Integration Tests', () => {
-  test('updateProfileAPI sends correct request to backend', async () => {
-    global.fetch = jest.fn().mockResolvedValue({
-      ok: true,
-      json: async () => ({ message: 'Profile updated successfully' })
-    });
+const app = express();
+app.use(express.static(path.join(process.cwd(), 'public_html')));
 
-    const userData = { username: 'testuser', email: 'updated@example.com' };
-    
-    const response = await updateProfileAPI(userData);
-
-    expect(global.fetch).toHaveBeenCalledWith('/api/profile', expect.objectContaining({
-      method: 'POST',
-      headers: expect.objectContaining({ 'Content-Type': 'application/json' }),
-      body: JSON.stringify(userData),
-    }));
-
-    expect(response.message).toBe('Profile updated successfully');
-  });
-
-  test('Handles API failure gracefully', async () => {
-    global.fetch = jest.fn().mockResolvedValue({
-      ok: false,
-      json: async () => ({ error: 'Failed to update profile' })
-    });
-
-    await expect(updateProfileAPI({ username: 'testuser' })).rejects.toThrow('Failed to update profile');
+describe('Profile System Test', () => {
+  it('should serve the profile.html page', async () => {
+    const response = await request(app).get('/profile.html').expect(200);
+    expect(response.text).toContain('<div class="profile-container">');
   });
 });

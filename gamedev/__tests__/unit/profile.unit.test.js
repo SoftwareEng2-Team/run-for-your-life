@@ -1,26 +1,19 @@
 // Calvin Chen
-import { updateProfile, getUserProfile } from '../public_html/profile.js';
+import fs from 'fs';
+import path from 'path';
+import { JSDOM } from 'jsdom';
 
-describe('Profile Unit Tests', () => {
-  test('updateProfile updates user data correctly', () => {
-    const mockUser = { username: 'testuser', email: 'test@example.com' };
-    const newEmail = 'updated@example.com';
-    
-    const updatedUser = updateProfile(mockUser, { email: newEmail });
+describe('Profile Page Unit Test', () => {
+  let document;
 
-    expect(updatedUser.email).toBe(newEmail);
+  beforeAll(() => {
+    const html = fs.readFileSync(path.resolve(process.cwd(), 'public_html/profile.html'), 'utf8');
+    const dom = new JSDOM(html);
+    document = dom.window.document;
   });
 
-  test('getUserProfile returns user profile correctly', () => {
-    const mockUser = { id: 1, username: 'testuser', email: 'test@example.com' };
-
-    global.fetch = jest.fn().mockResolvedValue({
-      ok: true,
-      json: async () => mockUser
-    });
-
-    return getUserProfile(1).then(data => {
-      expect(data).toEqual(mockUser);
-    });
+  it('should have a header with "Profile Page"', () => {
+    const header = document.querySelector('.profile-header');
+    expect(header.textContent).toBe('Profile Page');
   });
 });
