@@ -415,7 +415,11 @@ async function expandTerritory() {
   }
 }
 
-async function removeRedundancies(claimed, tobeclaimed) { if (claimedTerritory) {
+function locationRefactorTesting(point, polygon) {
+  return google.maps.geometry.poly.containsLocation(point, polygon)
+}
+
+async function removeRedundancies(claimed, tobeclaimed, refactorfunc) { if (claimedTerritory) {
   let incision = new google.maps.Polygon({
     paths: tobeclaimed,
     strokeWeight: 0,
@@ -424,7 +428,7 @@ async function removeRedundancies(claimed, tobeclaimed) { if (claimedTerritory) 
   //For each point in the already claimed area, that point if it's located inside of the new polygon
   let claimedlength = claimed.length;
   for(let i = 0; i < claimedlength; i++) {
-    if(google.maps.geometry.poly.containsLocation(claimed[i], incision)) {
+    if(refactorfunc(claimed[i], incision)) {
       console.log("DEBUG: Point found inside of polygon");
       claimed.splice(i, 1);
       i--;
