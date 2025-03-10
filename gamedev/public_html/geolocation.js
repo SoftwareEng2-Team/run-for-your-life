@@ -307,7 +307,7 @@ function findClosestPoint(point, polygon) {
 }
 
 // async function to calculate the average location
-export function calculateAverageLocation(locations) {
+function calculateAverageLocation(locations) {
   if (locations.length === 0) return null;
 
   let totalLat = 0;
