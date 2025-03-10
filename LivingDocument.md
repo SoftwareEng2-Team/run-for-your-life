@@ -220,16 +220,17 @@ Unit testing: Each function will be tested as development goes on. The test will
 3) Have multiple users at once claim territory to make sure the functions can handle multiple inputs at once.
 
 ### Test-Automation Infrastructure
-##### Tools Used:
+Tools Used:
 Jest
 For our automated testing, we use Jest as the primary test framework for unit, validation, integration, and system tests. Jest is chosen due to its:
 
-Modern JavaScript support – Works well with ES modules (ESM).
-Fast execution – Provides an efficient and parallelized test runner.
-Built-in code coverage reporting – Ensures our tests provide sufficient coverage.
-Extensive ecosystem and community support – Widely used, with plenty of plugins and documentation.
-Seamless CI/CD integration – Works natively with GitHub Actions, our chosen CI/CD pipeline.
-How to Add a New Test to the Codebase
+Modern JavaScript support: Works well with ES modules (ESM).
+Fast execution: Provides an efficient and parallelized test runner.
+Built-in code coverage reporting: Ensures our tests provide sufficient coverage.
+Extensive ecosystem and community support: Widely used, with plenty of plugins and documentation.
+Seamless CI/CD integration: Works natively with GitHub Actions, our chosen CI/CD pipeline.
+
+#### How to Add a New Test to the Codebase
 Choose a test type:
 
 Unit Test – For testing individual functions or components.
@@ -258,7 +259,7 @@ Service Used:
 GitHub Actions
 Our repository is linked to GitHub Actions, a CI/CD service that runs workflows for testing and deployment. The workflow file is located in .github/workflows/ci.yml.
 
-##### Justification for GitHub Actions
+#### Justification for GitHub Actions
 Feature	Benefit
 Seamless Integration	Built into GitHub, eliminating the need for external tools.
 Matrix Builds	Supports testing across multiple Node.js versions and environments.
@@ -266,7 +267,7 @@ Cost-Free for public repositories and provides generous free-tier minutes for pr
 Community Support	Strong community and extensive documentation make troubleshooting easier.
 Pros and Cons Matrix for CI Services Considered
 
-##### CI Service
+#### CI Service
 
 GitHub Actions	
 Pros: Integrated with GitHub, free for public repos, supports matrix builds, strong community
@@ -280,7 +281,7 @@ CircleCI
 Pros: Fast and scalable builds, configurable environments.	
 Cons: More complex pricing, not tightly integrated with GitHub.
 
-##### Tests Executed in a CI Build
+#### Tests Executed in a CI Build
 
 During each CI build, the following tests are executed:
 
@@ -289,7 +290,7 @@ Validation Tests – User input validation tests from __tests__/validation/
 Integration Tests – Ensures the interaction between components (__tests__/integration/)
 System Tests – Full application workflows tested using Puppeteer (__tests__/system/)
 
-##### Development Actions That Trigger a CI Build
+#### Development Actions That Trigger a CI Build
 
 The CI workflow is triggered by the following actions:
 Pushes to any branch:
