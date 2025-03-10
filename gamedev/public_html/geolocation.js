@@ -338,7 +338,7 @@ async function placeAverageLocationMarker(location) {
 }
 
 // 
-export async function claimTerritory() {
+async function claimTerritory() {
   if (userPosition) {
     const squareSize = 0.0002; // Size of the square in degrees (approx. 50 meters)
     const squareCoords = [
