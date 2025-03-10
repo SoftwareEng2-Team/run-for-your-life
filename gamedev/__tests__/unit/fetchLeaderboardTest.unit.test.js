@@ -2,7 +2,7 @@
 import { jest } from '@jest/globals';
 import { fetchLeaderboard } from '../../public_html/backend';
 
-// ✅ Manually mock `fetch` as a global function
+// Manually mock `fetch` as a global function
 global.fetch = jest.fn();
 
 describe('fetchLeaderboard', () => {
@@ -13,7 +13,6 @@ describe('fetchLeaderboard', () => {
     it('should fetch leaderboard data successfully', async () => {
         const mockData = [{ name: 'Player1', score: 100 }, { name: 'Player2', score: 500 }];
         
-        // ✅ Make sure fetch resolves correctly
         global.fetch.mockResolvedValue({
             json: jest.fn().mockResolvedValue(mockData),
         });
