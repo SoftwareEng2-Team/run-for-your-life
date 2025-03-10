@@ -49,7 +49,8 @@ describe('CreateAccount Form Tests', () => {
     
         jest.resetModules();
         global.fetch = jest.fn().mockResolvedValue({
-            ok: false, // Simulate incorrect login
+            // Simulate incorrect login
+            ok: false, 
             json: () => Promise.resolve({ error: "Invalid credentials" })
         });
     
