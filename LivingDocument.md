@@ -243,31 +243,37 @@ Unit tests: __tests__/unit/
 Validation tests: __tests__/validation/
 Integration tests: __tests__/integration/
 System tests: __tests__/system/
+
 Write the test code:
 
 Follow the coding conventions in existing test files.
 Import dependencies as necessary (e.g., Puppeteer for system tests).
 Use expect() assertions for validation.
+
 Run the test locally:
 
 Execute tests with npm test to verify correctness before committing.
+
 Commit and push the changes:
 
 Once verified, push the changes, and the CI pipeline will automatically detect and execute the new test.
-Continuous Integration (CI)
+
+#### Continuous Integration (CI)
+
 Service Used:
 GitHub Actions
 Our repository is linked to GitHub Actions, a CI/CD service that runs workflows for testing and deployment. The workflow file is located in .github/workflows/ci.yml.
 
 #### Justification for GitHub Actions
-Feature	Benefit
-Seamless Integration	Built into GitHub, eliminating the need for external tools.
-Matrix Builds	Supports testing across multiple Node.js versions and environments.
-Cost-Free for public repositories and provides generous free-tier minutes for private projects.
-Community Support	Strong community and extensive documentation make troubleshooting easier.
-Pros and Cons Matrix for CI Services Considered
+Features and Benefits
+Seamless Integration: Built into GitHub, eliminating the need for external tools.
+Matrix Builds: Supports testing across multiple Node.js versions and environments.
+Cost: Free for public repositories and provides generous free-tier minutes for private projects.
+Community Support: Strong community and extensive documentation make troubleshooting easier.
 
-#### CI Service
+#### Pros and Cons Matrix for CI Services Considered
+
+CI Service
 
 GitHub Actions	
 Pros: Integrated with GitHub, free for public repos, supports matrix builds, strong community
@@ -293,15 +299,12 @@ System Tests – Full application workflows tested using Puppeteer (__tests__/sy
 #### Development Actions That Trigger a CI Build
 
 The CI workflow is triggered by the following actions:
-Pushes to any branch:
+Pushes to any branch: Any commit pushed to the repository automatically triggers a build.
 
-Any commit pushed to the repository automatically triggers a build.
-Pull Requests:
+Pull Requests: Opening or updating a pull request triggers a CI build.
 
-Opening or updating a pull request triggers a CI build.
-Merges to main branch:
+Merges to main branch: Final testing and validation occur before deployment.
 
-Final testing and validation occur before deployment.
 These triggers are defined in ci.yml​ci, ensuring continuous validation of code changes.
 
 ### Timeline with milestones:
