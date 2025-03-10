@@ -1,3 +1,4 @@
+// Keona Abad System Run Tracking Test
 import puppeteer from 'puppeteer';
 
 const BASE_URL = 'https://run-for-your-life-api.onrender.com';
@@ -48,7 +49,7 @@ describe('System Test: User Registration, Run Submission & Leaderboard Update', 
 
     it('Submits a run for the user', async () => {
         const response = await page.evaluate(async (BASE_URL, userId) => {
-            const res = await fetch(`${BASE_URL}/api/runs/run`, {  // ✅ FIXED ENDPOINT
+            const res = await fetch(`${BASE_URL}/api/runs/run`, { 
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -60,9 +61,8 @@ describe('System Test: User Registration, Run Submission & Leaderboard Update', 
                 })
             });
 
-            const text = await res.text();  // Read raw response
-            console.log("Submit Run Response:", text);  // Log response for debugging
-            
+            const text = await res.text();  
+            console.log("Submit Run Response:", text);  
             try {
                 return JSON.parse(text);
             } catch (e) {
@@ -76,13 +76,13 @@ describe('System Test: User Registration, Run Submission & Leaderboard Update', 
 
     it('Fetches updated leaderboard', async () => {
         const response = await page.evaluate(async (BASE_URL) => {
-            const res = await fetch(`${BASE_URL}/api/leaderboard`, {  // ✅ FIXED ENDPOINT
+            const res = await fetch(`${BASE_URL}/api/leaderboard`, { 
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' }
             });
 
-            const text = await res.text();  // Read raw response
-            console.log("Leaderboard Response:", text);  // Log response for debugging
+            const text = await res.text(); 
+            console.log("Leaderboard Response:", text);  
             
             try {
                 return JSON.parse(text);
