@@ -219,31 +219,6 @@ For our automated testing, we use Jest as the primary test framework for unit, v
 
 We also use **Puppeteer** for system tests, allowing us to simulate real user interactions with our web application in a controlled browser environment.
 
-## How to Add a New Test to the Codebase
-
-### Choose a Test Type:
-- Unit Test: For testing individual functions or components in isolation.  
-- Validation Test: Ensures form validation and user input constraints work correctly.  
-- Integration Test: Tests interactions between different modules.  
-- System Test: Simulates end-to-end user workflows with Puppeteer.
-
-### Create a Test File in the Appropriate Folder:
-- Unit tests: `__tests__/unit/`  
-- Validation tests: `__tests__/validation/`  
-- Integration tests: `__tests__/integration/`  
-- System tests: `__tests__/system/`  
-
-### Write the Test Code: 
-- Follow existing coding conventions to maintain consistency.  
-- Import necessary dependencies (e.g., Puppeteer for system tests).  
-- Use meaningful assertions with `expect()` to validate outcomes.
-
-### Run Tests Locally: 
-- Execute `npm test` to ensure tests pass before committing changes.
-
-### Commit & Push: 
-- Once verified, push the changes, and GitHub Actions will automatically execute the test suite.
-
 ## Continuous Integration (CI)
 
 ### Service Used: GitHub Actions
