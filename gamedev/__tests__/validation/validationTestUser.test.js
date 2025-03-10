@@ -1,3 +1,4 @@
+// Keona Abad Validation Test User Test
 import request from 'supertest';
 import app from '../server'; 
 
@@ -27,6 +28,7 @@ describe('Validation Test: User Registration & Login', () => {
 
         expect(res.status).toBe(500);
         expect(res.body).toHaveProperty('error');
+
     });
 
     it('Logs in with correct credentials', async () => {
