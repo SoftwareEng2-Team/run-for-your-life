@@ -219,93 +219,131 @@ Unit testing: Each function will be tested as development goes on. The test will
 2) Enter random weights for different map areas and make sure they are properly reflected in the point calculations.
 3) Have multiple users at once claim territory to make sure the functions can handle multiple inputs at once.
 
-### Test-Automation Infrastructure
-Tools Used:
-Jest
-For our automated testing, we use Jest as the primary test framework for unit, validation, integration, and system tests. Jest is chosen due to its:
+# Test Plan Extension: Automation & CI
 
-Modern JavaScript support: Works well with ES modules (ESM).
-Fast execution: Provides an efficient and parallelized test runner.
-Built-in code coverage reporting: Ensures our tests provide sufficient coverage.
-Extensive ecosystem and community support: Widely used, with plenty of plugins and documentation.
-Seamless CI/CD integration: Works natively with GitHub Actions, our chosen CI/CD pipeline.
+## Test-Automation Infrastructure
 
-#### How to Add a New Test to the Codebase
-Choose a test type:
+### Tools Used: Jest
+For our automated testing, we use Jest as the primary test framework for unit, validation, integration, and system tests. We selected Jest because it offers:
 
-Unit Test – For testing individual functions or components.
-Validation Test – Ensures input constraints and form validation work as expected.
-Integration Test – Validates interaction between different components/modules.
-System Test – Tests the entire application in an end-to-end scenario.
-Create a test file in the appropriate folder:
+- Modern JavaScript Support: Works seamlessly with ES modules (ESM), which aligns with our project's structure.
+- Fast Execution & Parallel Testing: Jest optimizes test execution by running tests in parallel, reducing total test time.
+- Built-in Code Coverage Reporting: Allows us to track coverage and ensure we maintain 80%+ code coverage across all components.
+- Strong Community & Ecosystem: Jest is one of the most widely adopted testing frameworks, providing robust documentation and plugins.
+- CI/CD Compatibility: Jest integrates natively with GitHub Actions, ensuring that our tests run efficiently in our CI pipeline.
 
-Unit tests: __tests__/unit/
-Validation tests: __tests__/validation/
-Integration tests: __tests__/integration/
-System tests: __tests__/system/
+We also use **Puppeteer** for system tests, allowing us to simulate real user interactions with our web application in a controlled browser environment.
 
-Write the test code:
+## How to Add a New Test to the Codebase
 
-Follow the coding conventions in existing test files.
-Import dependencies as necessary (e.g., Puppeteer for system tests).
-Use expect() assertions for validation.
+### Choose a Test Type:
+- Unit Test: For testing individual functions or components in isolation.  
+- Validation Test: Ensures form validation and user input constraints work correctly.  
+- Integration Test: Tests interactions between different modules.  
+- System Test: Simulates end-to-end user workflows with Puppeteer.
 
-Run the test locally:
+### Create a Test File in the Appropriate Folder:
+- Unit tests: `__tests__/unit/`  
+- Validation tests: `__tests__/validation/`  
+- Integration tests: `__tests__/integration/`  
+- System tests: `__tests__/system/`  
 
-Execute tests with npm test to verify correctness before committing.
+### Write the Test Code: 
+- Follow existing coding conventions to maintain consistency.  
+- Import necessary dependencies (e.g., Puppeteer for system tests).  
+- Use meaningful assertions with `expect()` to validate outcomes.
 
-Commit and push the changes:
+### Run Tests Locally: 
+- Execute `npm test` to ensure tests pass before committing changes.
 
-Once verified, push the changes, and the CI pipeline will automatically detect and execute the new test.
+### Commit & Push: 
+- Once verified, push the changes, and GitHub Actions will automatically execute the test suite.
 
-#### Continuous Integration (CI)
+## Continuous Integration (CI)
 
-Service Used:
-GitHub Actions
-Our repository is linked to GitHub Actions, a CI/CD service that runs workflows for testing and deployment. The workflow file is located in .github/workflows/ci.yml.
+### Service Used: GitHub Actions
+Our project integrates with GitHub Actions, a powerful CI/CD tool that enables automated testing and deployment. The workflow file resides in `.github/workflows/ci.yml`.
 
-#### Justification for GitHub Actions
+### Why We Chose GitHub Actions
+
 Features and Benefits
+
 Seamless Integration: Built into GitHub, eliminating the need for external tools.
 Matrix Builds: Supports testing across multiple Node.js versions and environments.
-Cost: Free for public repositories and provides generous free-tier minutes for private projects.
-Community Support: Strong community and extensive documentation make troubleshooting easier.
+Cost: Free for public repositories and offers generous free-tier minutes for private projects.
+Community Support: Strong documentation, examples, and troubleshooting support.
 
-#### Pros and Cons Matrix for CI Services Considered
+By using GitHub Actions, we ensure our tests are executed efficiently and consistently on every push, pull request, or merge.
 
-CI Service
+## Pros and Cons Matrix for CI Services Considered
 
-GitHub Actions	
-Pros: Integrated with GitHub, free for public repos, supports matrix builds, strong community
-Cons: Complex workflows require careful management.
+We evaluated multiple CI/CD services before selecting GitHub Actions. Below is a comparative analysis of the services considered:
 
-Travis CI
-Pros: Simple configuration, widely adopted, supports many environments.
-Cons: Limited free-tier minutes, slower build times.
+CI Service Pros and Cons
 
-CircleCI
-Pros: Fast and scalable builds, configurable environments.	
-Cons: More complex pricing, not tightly integrated with GitHub.
+GitHub Actions: 
+Pros: Built into GitHub, no extra setup needed, Free for public repositories, Supports parallel/matrix builds.
+Cons: Workflows can become complex and require careful management.
 
-#### Tests Executed in a CI Build
+Travis CI: 
+Pros: Simple configuration, Well-documented and widely adopted.
+Cons: Limited free-tier minutes, Slower build times compared to competitors.
 
-During each CI build, the following tests are executed:
+CircleCI: 
+Pros: Fast and scalable, Allows highly customizable environments.
+Cons: More complex pricing model Not as tightly integrated with GitHub as GitHub Actions.
 
-Unit Tests – Located in __tests__/unit/
-Validation Tests – User input validation tests from __tests__/validation/
-Integration Tests – Ensures the interaction between components (__tests__/integration/)
-System Tests – Full application workflows tested using Puppeteer (__tests__/system/)
+Final Decision: We chose GitHub Actions because it provided the best balance of ease of use, integration, and cost-effectiveness for our project.
 
-#### Development Actions That Trigger a CI Build
+## Tests Executed in a CI Build
 
-The CI workflow is triggered by the following actions:
-Pushes to any branch: Any commit pushed to the repository automatically triggers a build.
+To ensure code quality and stability, our CI pipeline runs the following tests automatically:
 
-Pull Requests: Opening or updating a pull request triggers a CI build.
+Unit Tests – Tests isolated functions and components. (`__tests__/unit/`)  
+Validation Tests – Checks from validation logic. (`__tests__/validation/`)  
+Integration Tests – Verifies inter-module interactions. (`__tests__/integration/`)  
+System Tests – Performs end-to-end testing using Puppeteer. (`__tests__/system/`)  
 
-Merges to main branch: Final testing and validation occur before deployment.
+### Examples of Tests in Our Codebase
 
-These triggers are defined in ci.yml​ci, ensuring continuous validation of code changes.
+Profile to Bug Report Navigation Test (`integration.profile_bugreport.test.js`)  
+Bug Report System Test (`system.bugreport.test.js`)  
+Form Submission Test for Bug Reports (`bugreportpage.unit.test.js`)  
+Validation Handling Test (`bugreportpage.validation.test.js`)  
+Create Account Form Test (`createaccount.test.js`)  
+
+These tests ensure our system remains robust and bug-free across all updates.
+
+## Development Actions That Trigger a CI Build
+
+Our CI pipeline is automatically triggered by the following actions:
+
+Pushes to Any Branch:  
+- Any commit pushed to a branch triggers a CI build.  
+- Ensures that all committed changes are validated.
+
+Pull Requests (PRs):  
+- Opening or updating a PR to `main` triggers a full CI test suite run.  
+- Helps detect breaking changes before merging.
+
+Merges to `main`: 
+- A final CI build and test run ensure the stability of the main branch before deployment.
+
+These triggers are defined in `ci.yml`, ensuring every change undergoes automated validation.
+
+
+## Enhancements & Best Practices
+
+To further improve our CI/CD strategy, we implement:
+
+Test Coverage Goals – Target 80%+ code coverage to maintain quality.  
+Parallel Test Execution – Speed up CI builds using matrix testing across multiple Node.js versions.  
+Error Handling – If a test fails, the CI system immediately flags the issue and prevents faulty code from merging.  
+
+## Conclusion
+
+Our test automation and CI/CD pipeline ensure that every change is validated, code remains stable, and regressions are caught early. By leveraging Jest for testing and GitHub Actions for CI, we maintain an efficient, cost-effective, and scalable testing environment.
+
 
 ### Timeline with milestones:
 Week 3: Project Planning.
