@@ -1,0 +1,136 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(205, 204, 204);
+  text-align: center;
+  width: 100%;
+  overflow-x: hidden;
+  /* Prevent horizontal scrolling */
+  overflow-y: auto;
+  /* Allow vertical scrolling */
+  height: auto;
+  /* Allow body height to grow based on content */
+}
+
+h1 {
+  color: black;
+}
+
+.leaderboard {
+  width: 100%;
+  padding: 1%;
+  background: rgb(205, 204, 204);
+  color: white;
+}
+
+.leaderboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin-top: 20px;
+  padding-bottom: 50px;
+  /* Prevent content from being hidden behind footer */
+}
+
+.card {
+  width: 90%;
+  /* Adjust to fill most of the screen */
+  max-width: 600px;
+  background: white;
+  color: black;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  display: flex;
+  /* Use flexbox to position elements horizontally */
+  flex-direction: column;
+  /* Stack items vertically */
+  gap: 10px;
+  /* Add space between name, score, and rank */
+  font-size: 20px;
+}
+
+.card .top-row {
+  display: flex;
+  /* Position name and score on the same row */
+  justify-content: space-between;
+  /* Space them out */
+  align-items: center;
+  /* Center the text vertically */
+}
+
+.card .top-row p {
+  margin: 0;
+  /* Remove margin to avoid extra spacing */
+}
+
+.card .rank {
+  margin-top: 10px;
+  /* Add space between score and rank */
+}
+
+.rank {
+  font-style: italic;
+  font-weight: bold;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  height: 10%;
+  width: 100%;
+  background-color: gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav {
+  background: none;
+  border: none;
+  background-size: cover;
+  background-position: center;
+}
+
+#navbuttons {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 80%;
+  height: 100%;
+}
+
+/* Style for the first place */
+.first-place-div {
+  background-color: rgb(245, 226, 120);
+  /* Yellow for first place */
+  color: black;
+}
+
+/* Style for the second place */
+.second-place-div {
+  background-color: silver;
+  /* Silver for second place */
+  color: black;
+}
+
+/* Style for the third place */
+.third-place-div {
+  background-color: #d5a16d;
+  /* Bronze for third place */
+  color: black;
+}
+
+#rank_1 {
+  color: rgb(158, 136, 11)
+}
+
+#rank_2 {
+  color: rgb(76, 76, 76);
+}
+
+#rank_3 {
+  color: #9d5d1c;
+}
