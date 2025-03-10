@@ -25,4 +25,10 @@ describe('Profile Page Validation Test', () => {
     expect(totalDistanceEl).not.toBeNull();
     expect(totalClaimedEl).not.toBeNull();
   });
+   
+  //Connor Sun
+  it('should have no achievements in the achievements section', () => {
+    const achievementsSection = document.getElementById('achievements');
+    expect(achievementsSection.children.length).toBe(0);
+  });
 });
