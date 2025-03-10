@@ -35,9 +35,10 @@ Location tracking that maps the path the player runs. Involve friendly competiti
 
 ### Stretch goals:
 Security access for IP address.
-Expand the game map outside of the Corvallis OSU campus.
+Expand the game map outside of the Corvallis OSU campus (completed).
 Monetize the game to make money.
 Stop cheating (using a car/bike).
+Add new weekly achievements.
 
 ### Non-functional Requirements:
 Scalability: The app will be able to handle one to two concurrent players during its initial phase and will be able to handle more players long term.
@@ -57,14 +58,14 @@ Communicating with our team, we will address strengths and weaknesses in ourselv
 
 
 ### Technical approach: 
-Planning to use JavaScript/HTML for the app layout and general display features. Plan to use Python for location grabbing and more technical back-end features. May experiment with Flutter to aid in the development process. 
+Planning to use JavaScript/HTML for the app layout and general display features. Plan to use JavaScript for location grabbing and more technical back-end features. May experiment with Flutter to aid in the development process. 
 
 ### Risks: 
 ##### GPS location tracking:
 Likelihood: Low; Impact: High
-Evidence: Based on our team members' previous experience no one has done the location tracking, so it might be a challenge for us since if it not working then basically the whole game will crash down. Also, we have to think about the GPS signal issues, and permission restrictions. 
+Evidence: Based on our team members' previous experience no one has done the location tracking, so it might be a challenge for us since if it not working, then basically the whole game will crash down. Also, we have to think about the GPS signal issues, and permission restrictions. 
 Steps to reduce risk: We are using the Google Geolocation API, which combines GPS, Wifi, cell tower data, and IP address to increase the accuracy of tracking, and also reduce the location tracking issue. The geolocation helps us to improve the issue of accuracy, real-time speed, and reliability. 
-Detecting the problem: We're going to test by taking our device and moving it around on the OSU campus once we finish implementing it, to check if the location tracking is accurate and functions without lacking it. Also player have to allow permission for tracking on their device. 
+Detecting the problem: We're going to test by taking our device and moving it around on the OSU campus once we finish implementing it, to check if the location tracking is accurate and functions without lacking it. Also, player have to allow permission for tracking on their device. 
 Mitigation plan: If the Geolocation API fails, then we will recheck all the implementations we have done on the location tracking. I don't think we are going to re-implement a new location tracking since Geolocation API is one of the most accurate and easy to implement.
 
 ##### The speed limit for players to prevent cheating: 
@@ -93,41 +94,6 @@ Likelihood: Medium; Impact: High
 Evidence: When a small amount of users becomes a huge scale of users the server might crash due to not being able to handle multiple player logos at the same time. 
 Steps to reduce risk: We are using Oregon State University's engineering server as our server, which can be securand e, be able to handle multiple user scenarios. 
 Detecting the problem: it would be great to monitor OSU server resource usage. 
-Mitigation plan: If the server crashes down then the best way is to contact OSU IT support.
-
-##### GPS location tracking:
-Likelihood: Low; Impact: High
-Evidence: Based on our team members' previous experience no one has done the location tracking, so it might be a challenge for us, since if it does not work then basically the whole game will crash down. Also, we have to think about the GPS signal issues, and permission restrictions.
-Steps to reduce risk: We are using the Google Geolocation API, which combines GPS, Wifi, cell tower data, and IP address to increase the accuracy of tracking, and also reduce the location tracking issue. The geolocation helps us to improve the issue of accuracy, real-time speed, and reliability.
-Detecting the problem: We're going to test by taking our device and moving it around on the OSU campus once we finish implementing it, to check if the location tracking is accurate and functions without lacking it. Also, players have to allow permission for tracking on their devices.
-Mitigation plan: If the Geolocation API fails, then we will recheck all the implementations we did on the location tracking. I don't think we are going to re-implement a new location tracking since Geolocation API is one of the most accurate and easy to implement.
-
-##### The speed limit for players to prevent cheating:
-Likelihood: High; Impact: High
-Evidence: Not just our games face this kind of issue, some games use VPN, and other GPS apps to control the speed.
-Steps to reduce risk: Implement a speed limit function that detects once the plyer's speed exceeds the fast-walk speed limit or the program detects a jump from one location to another location.
-Detecting the problem: Do some automatic checks that ascertain the speed of movement against set physical benchmarks. 
-Mitigation plan: Modify and improve the logic of speed detection according to the behavioral patterns observed by the player.
-
-##### Real-time multiplayer interaction:
-Likelihood: Medium; Impact: High
-Evidence: The multiplayer synchronization issue happens a lot in different real-time games nowadays, something like lacking, desynchronization, can cause a major problem with how the player's in-game sensitivity.
-Steps to reduce risk: It can be solved by implementing server-side conflict or interactive solutions by dealing with claiming routes or territory.
-Detecting the problem: Keep track of two players who claim the same route at the same time, and see if the server-side deals with the problem.
-Mitigation plan: The server-side should be able to detect which user comes first, and be able to handle it without encountering any error.
-
-##### Database performance:
-Likelihood: Medium; Impact: High
-Evidence: Since this is a game thneedseed player login, and allows recording players' data, it is important to have a reliable database to store all players' information and game records.
-Steps to reduce risk: It can be solved by using MongoDB, it can fast reads/writes, flexible schema, and automatic indexing to improve MongoDB performance. This allows for rapid updates to the leaderboard and easy claiming of routes. MongoDB also ensures smooth real-time gameplay through its caching and scalability features.
-Detecting the problem: It can be detected by implementing functions such as monitoring, logging, and query optimization.
-Mitigation plan: If the database is not working or crashes, having a replica as a backup will be the best option.
-
-##### Server performance:
-Likelihood: Medium; Impact: High
-Evidence: When a small amount of users becomes a huge scale of users the server might crash due to not being able to handle multiple player logos at the same time.
-Steps to reduce risk: We are using Oregon State University's engineering server as our server, which can be secure, and be able to handle multiple user scenarios.
-Detecting the problem: it would be great to monitor OSU server resource usage.
 Mitigation plan: If the server crashes down then the best way is to contact OSU IT support.
 
 ### Team members and roles/responsibilities:
