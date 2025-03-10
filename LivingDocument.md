@@ -436,15 +436,6 @@ Data Communication
 - Uses Google Maps API to fetch and process real-time location data.
 - Ensures routes are valid before allowing a claim.
 
-### Coding guideline
-With our project, we are implementing our design to be accessible through a webpage. This way, it can be utilized on any device without installation. Additionally, all of the group members have experience with website development, making it a smart choice. We are using HTML to structure our web pages, CSS to style them, and JavaScript to handle the functionality of our project. 
-
-- For HTML, we will always declare the document type at the beginning (for example, <!DOCTYPE html>). We will use lowercase element names, as this is the industry standard, and we will open and close all elements on different lines.
-- For CSS, we will find a style for the webpage that we all agree upon. If someone disagrees with a stylistic choice, we will find an alternative that we can agree on. Comments should be used in CSS documents to show what different style blocks affect.
-- Finally, for JavsScript, we will declare variables that have meaningful names that give us insight into what they store. Comments will be used to explain what different code blocks do, making it easy for other group members to understand. Spacing around operators and general indentation of code will be implemented to increase readability.
-
-For all languages, using caution to periodically enter a new line if the current line gets too long will increase readability. Using underscores for naming variables will keep the code consistent and easy to read. 
-
 ### Communication tools and rules:
 Discord: https://discord.gg/fjCdaebj, respond within a day. 
 Text Message (Group Chat), respond within half a day (in reasonable hours).
