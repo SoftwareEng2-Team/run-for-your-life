@@ -370,10 +370,6 @@ async function removeRedundancies(claimed, tobeclaimed) { if (claimedTerritory) 
   //For each point in the already claimed area, that point if it's located inside of the new polygon
   let claimedlength = claimed.length;
   for(let i = 0; i < claimedlength; i++) {
-    //Need 3 points to make a polygon
-    if(claimedlength <= 3) {
-      break;
-    }
     if(google.maps.geometry.poly.containsLocation(claimed[i], incision)) {
       console.log("DEBUG: Point found inside of polygon");
       claimed.splice(i, 1);
