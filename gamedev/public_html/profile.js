@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       console.log("No distance traveled to update, skipping query");
     } else {
       const distance_traveled = localStorage.getItem('distance_traveled');
-      console.log("Distance to set: distance_traveled");
+      console.log("Distance to set: ", distance_traveled);
       // DB request to set the distance of the current user
       try {
         let response = await fetch(`${API_URL}/api/map/distance`, {
