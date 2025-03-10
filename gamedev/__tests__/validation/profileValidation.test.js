@@ -13,7 +13,7 @@ describe('Profile Form Validation Tests', () => {
     `;
 
     // Simulate profile.js script
-    import('../public_html/profile.js');
+    import('../../public_html/profile.js');
   });
 
   test('Shows error if username is empty', async () => {

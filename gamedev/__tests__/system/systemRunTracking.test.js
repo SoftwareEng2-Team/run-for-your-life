@@ -48,7 +48,7 @@ describe('System Test: User Registration, Run Submission & Leaderboard Update', 
 
     it('Submits a run for the user', async () => {
         const response = await page.evaluate(async (BASE_URL, userId) => {
-            const res = await fetch(`${BASE_URL}/api/runs`, {  // ✅ FIXED ENDPOINT
+            const res = await fetch(`${BASE_URL}/api/runs/run`, {  // ✅ FIXED ENDPOINT
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -59,36 +59,40 @@ describe('System Test: User Registration, Run Submission & Leaderboard Update', 
                     route_coords: [{ lat: 44.5646, lng: -123.2620 }]
                 })
             });
-    
+
             const text = await res.text();  // Read raw response
             console.log("Submit Run Response:", text);  // Log response for debugging
+            
             try {
                 return JSON.parse(text);
             } catch (e) {
+                console.error("JSON Parsing Error:", text);
                 throw new Error(`Invalid JSON response: ${text}`);
             }
         }, BASE_URL, userId);
-    
+
         expect(response).toHaveProperty('run_id');
     });
-    
+
     it('Fetches updated leaderboard', async () => {
         const response = await page.evaluate(async (BASE_URL) => {
-            const res = await fetch(`${BASE_URL}/api/leaderboards`, {  // ✅ FIXED ENDPOINT
-                method: 'GET',
+            const res = await fetch(`${BASE_URL}/api/leaderboard`, {  // ✅ FIXED ENDPOINT
+                method: 'POST',
                 headers: { 'Content-Type': 'application/json' }
             });
-    
+
             const text = await res.text();  // Read raw response
             console.log("Leaderboard Response:", text);  // Log response for debugging
+            
             try {
                 return JSON.parse(text);
             } catch (e) {
+                console.error("JSON Parsing Error:", text);
                 throw new Error(`Invalid JSON response: ${text}`);
             }
         }, BASE_URL);
-    
+
         expect(response).toBeInstanceOf(Array);
         expect(response.length).toBeGreaterThan(0);
-    });    
+    });
 });
