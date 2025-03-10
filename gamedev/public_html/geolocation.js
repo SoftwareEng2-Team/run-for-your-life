@@ -221,15 +221,15 @@ async function initMap() {
             if (!google.maps.geometry.poly.containsLocation(new google.maps.LatLng(pos), claimedTerritory)) {
               console.log("User is outside the territory.");
               //If this is the first point of the run, set an additional point that snaps to the perimeter
-              if(newrun) {
-                let perimeterPoint = findClosestPoint(userPosition, claimedTerritory);
-                if (perimeterPoint) {
-                  console.log("Closest point on perimeter:", perimeterPoint);
-                  playerPathPolyline.getPath().push(perimeterPoint);
-                  outsidePath.push(perimeterPoint);
-                }
-                newrun = false;
-              }
+                        // if(newrun) {
+                        //   let perimeterPoint = findClosestPoint(userPosition, claimedTerritory);
+                        //   if (perimeterPoint) {
+                        //     console.log("Closest point on perimeter:", perimeterPoint);
+                        //     playerPathPolyline.getPath().push(perimeterPoint);
+                        //     outsidePath.push(perimeterPoint);
+                        //   }
+                        //   newrun = false;
+                        // }
               //Record the current point
               outsidePath.push(pos);
               // Update the polyline path with the new position
@@ -240,7 +240,7 @@ async function initMap() {
                 console.log("User re-entered the territory.");
                 // Expand the territory to include the path
                 expandTerritory();
-                newrun = true;
+                        // newrun = true;
                 // Clear the outside path and reset the polyline
                 outsidePath = [];
                 playerPathPolyline.setPath([]);
