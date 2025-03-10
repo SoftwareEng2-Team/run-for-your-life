@@ -443,6 +443,27 @@ async function removeRedundancies(claimed, tobeclaimed, refactorfunc) { if (clai
   return claimed.concat(tobeclaimed);
 }}
 
+function detectCheats(pointa, pointb) {
+  let R = 6371
+
+  const toRad = (angle) => (angle * Math.PI) / 180;
+
+  const dLat = toRad(pointb[0] - pointa[0]);
+  const dLon = toRad(pointb[1] - pointa[1]);
+
+  const radLat1 = toRad(pointa[0]);
+  const radLat2 = toRad(pointb[0]);
+
+  // Haversine formula
+  const a = Math.sin(dLat / 2) ** 2 + 
+            Math.cos(radLat1) * Math.cos(radLat2) * 
+            Math.sin(dLon / 2) ** 2;
+
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+  return R * c; // Distance in km
+}
+
 // Error handling for geolocation
 async function handleLocationError(browserHasGeolocation, current_location_window, pos) {
   current_location_window.setPosition(pos);
