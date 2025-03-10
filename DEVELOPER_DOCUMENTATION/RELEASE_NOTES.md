@@ -9,4 +9,11 @@
   - npm start will run the game locally on port 3000. You can then access the project here: 'http://localhost:3000/'
   - NOTE: you must change the server.js file to run locally. This file is stored in the /gamedev/run_local directory, along with a README explaining the process.
   - WARNING: this server.js file is NOT connected to our database. When running locally, the game will not save progress/log you in correctly. Navigate to 'http://localhost:3000/map.html' to use the game with limited functionality.
-- Additionally, extensions on Visual Studio Code, such as 'Live Server' can also be used to host the webpages for the game locally. If desired, download the extensions, and press the "Go Live" button in the bottom right of the IDE. Follow the instructions to host the webpage. 
+
+## Assumption
+- Using Visual Studio Code or some Integrated Development Environment that the developer is comfortable in.
+- They need JavaScript, HTML, C++ and have some understanding of the Google Map API.
+- Additionally, extensions on Visual Studio Code, such as 'Live Server' can also be used to host the webpages for the game locally. If desired, download the extensions, and press the "Go Live" button in the bottom right of the IDE. Follow the instructions to host the webpage.
+
+## Issue Tracking
+If a bug or problem appears while a developer is working on our software they should navigate to REPORT_BUG.md inside the USER_DOCUMENTATION folder. They should check the KNOWN_BUGS.md first to see if it is a known issue that has a solution.
