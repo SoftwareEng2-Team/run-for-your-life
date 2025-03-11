@@ -53,7 +53,7 @@ Security and Privacy: The user will be able to view and manage their data. The a
 ### External Requirements:
 It can be expected that the app will encounter location errors, to combat this we will ensure that the location during gameplay is constantly updated and will let the user know when the internet connection is lost. 
 
-We will include a public URL on our GitHub that will allow potential users to download the app easily and will have instructions on how to start and play the game.
+We will include a public URL on our GitHub that will allow potential developers to download files for the app easily and will have instructions for users on how to start and play the game.
 
 Included on our GitHub we will have a clear walkthrough on the development of our game and our thought processes behind the app. 
 
@@ -366,7 +366,7 @@ The two major entities for our Software architecture would be; the players and t
     - The Google GeoLocation API will be used to retrieve and process location-based data.
 
 #### Data Storage and Organization:
-MySQL Schema (Relational Database)
+PostgreSQL Schema (Relational Database)
 Main Entities:
 - Users Table
     - user_id: Primary key (serial)
@@ -406,7 +406,7 @@ Frontend Hosting
     - Pros: More flexibility and fewer restrictions.
     - Cons: This may introduce additional costs and configuration overhead.
 Backend Technology
-- Chosen Approach: Use Node.js with MySQL for structured data storage.
+- Chosen Approach: Use Node.js with PostgreSQL for structured data storage.
     - Pros: Supports real-time interactions, efficient with relational data.
     - Cons: Requires structured queries and schema migrations.
 - Alternative: Use PHP with MySQL for backend services.
@@ -422,6 +422,7 @@ Data Communication
 
 #### Software Design: 
 ##### Front-End
+- Hosting Service: Render.com will handle front-end hosting.
 - UI Package: The map view displays the map and user movement. The leaderboard view renders the current leaderboard. The profile view displays user-specific metrics and information.
 - Networking package: Manages REST API requests and handles fetching user locations and game data.
 - Game Logic package: Handles displaying claimed land and processes user GPS movement.
