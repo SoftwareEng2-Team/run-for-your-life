@@ -11,12 +11,12 @@ Run For Your Life is a competitive running game that simulates territory acquisi
 *Using cellular data can make location tracking more accurate! Data rates may apply.*
 
 #### How To Navigate Our Game
-##### Leaderboard Page
-Located on the left, this button takes you to the leaderboard page where you'll see weekly rankings, top players, and key statistics. Use this page to compare your performance with others and see where you stand.
-##### Map Page
-Found in the center, this button directs you to the map page. Here you can start your run, explore new areas, and plan your route. This is your primary interface for navigating the game world and claiming territory.
-##### Profile Page
-The rightmost button leads to your profile page. This page displays your personal stats, achievements, and current ranking. It serves as your personal hub to track progress and review your performance.
+##### - Leaderboard Page -
+Located on the left, this button takes you to the leaderboard page where you'll see weekly rankings, top players, and key statistics. You can use this page to compare your performance with others and see where you stand.
+##### - Map Page -
+Found in the center, this button directs you to the map page. You can start your run, explore new areas, and plan your route here. This is your primary interface for navigating the game world and claiming territory.
+##### - Profile Page -
+The rightmost button leads to your profile page. This page displays your personal stats, achievements, and current ranking. It serves as your hub to track progress and review your performance.
 
 ### How To Play
 - Begin by exploring the map to familiarize yourself with the environment.
