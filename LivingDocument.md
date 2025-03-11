@@ -431,7 +431,7 @@ Data Communication
 - Game Logic: Computes areas enclosed by a completed run.
 - Database Handlers: Handles user data and stores running route data.
 
-#####Database
+##### Database
 - The backbone for storing and managing game data.
 - The schema includes key tables such as users, which store gameplay statistics, routes, which logs completed running circuits and territories, which track claimed land areas for each user.
 
@@ -456,3 +456,36 @@ Project link: https://run-for-your-life.onrender.com/
 #### Git Repo Link: 
 Organization: https://github.com/SoftwareEng2-Team 
 Repository: https://github.com/SoftwareEng2-Team/runio 
+
+---
+
+### Reflections 
+
+#### Evan Albert
+Lessons
+- Learned how to work with a larger group which involves planning, work distribution, and communication. A key takeaway is that communication when working with a team is essential and will lead to efficient teamwork in planning and developing projects.
+- Learned how to set up a CI pipeline and understand test cases and their importance. This involved setting up automated workflows that run tests, check code quality, and ensure that each new change integrates smoothly into the main branch. We gained experience configuring GitHub Actions to automatically execute test cases whenever new code was pushed or a pull request was made. Through this, we understood the importance of test-driven development and how automated testing can prevent regressions, reduce bugs, and improve code maintainability.
+- Learned how to develop and host a website/game. This project provided hands-on experience in building and deploying a fully functional web-based game. We learned how to integrate different components, including the frontend, backend, and database, to create a cohesive system.
+
+What worked exceptionally well and what would you have done differently?
+
+Our communication skills were top-notch allowing for scheduled times to meet in person or through Discord to develop our project. Having a positive environment, We were able to express our ideas and concerns freely and reminded each other what was due to help us prioritize our work. Something I wish we would have done differently was try to scale the size of our project more realistically as we planned to do a lot more implementation than what we had time for, resulting in some backtracking and time waste that could have been used to flesh out the main features more.
+
+#### James Nicholas
+
+
+
+#### Brian Munger
+
+
+
+#### Connor Sun
+
+
+
+#### Keona Abad
+
+
+
+#### Calvin Chen
+
