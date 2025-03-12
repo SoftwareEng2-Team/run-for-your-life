@@ -485,4 +485,11 @@ During the development of our game, I learned that a lot of planning is needed w
 
 
 #### Calvin Chen
+Lessons learned:
+- I learned how to work effectively in a large group and how to adjust my time when collaborating with multiple team members. This project required careful coordination of responsibilities, and I realized the importance of balancing individual contributions with overall team goals.
+- I gained experience troubleshooting various technical issues in both frontend and backend development. Even though I initially had a defined role, I contributed in multiple areas of development, including debugging, refining features, and assisting in problem-solving.
+- I learned that being adaptable is extremely important in a fast-paced project. Our original plan changed multiple times, and I had to shift focus between different aspects of the project depending on what needed attention at the time.
 
+What worked exceptionally well and what would you have done differently?
+
+Our team had great communication, which helped us stay on track despite the challenges of working with a large group. We used Discord and GitHub effectively to keep everyone aligned and address issues as they arose. We also made good use of external tools and learned a lot about them along the way, such as the Google Geolocation API and Render.com, to enhance our game’s functionality. If I could do something differently, I would have spent more time refining the initial project scope to make it more achievable within our timeline. We had ambitious goals, and while we accomplished a lot, some features had to be adjusted or removed due to time constraints. A more iterative approach from the start could have made development smoother.
