@@ -477,7 +477,17 @@ During the development of our game, I learned that a lot of planning is needed w
 
 
 #### Connor Sun
+I wish I had taken more initiative at the start of our project. I learned to not underestimate the amount of time it takes to create and implement a solution, especially when the work is divided amongst group members who have different ways of thinking and scheduling. The stress of creating the end deliverables really brought me closer to my teammates and helped fill in the many gaps in my knowledge. Together, we were able to deliver a full-stack product that functions pretty smoothly. 
 
+Version control was another huge lesson. I have used Github before for small things, but I've generally had pretty bad practices since it was never a large enough organization to care (2-3 people). This project has opened my eyes to the complications and conveniences of version control technologies and I see it as something invaluable. Furthermore, its use the the professional world means that the techniques I learned in this class are extremely relevant.
+
+A third notable thing I learned was simply how to design an application. The vision for Run For Your Life is extremely clear in my head, but explaining it through simple descriptions or even long-winded explanations will never capture what's in my mind's eye. Creating example screens on Figma or designing the basic interactions of our project architecture allows my thoughts to be consolidated into streamlined references that clearly define each section and even subsection of the project. I think it wasn't natural for me to do this because I haven't really had to explain UI elements to anyone other than simple art style.
+
+
+Our team really banded together and stayed on track. None of us have worked in a group anywhere near this size, so it was surprisingly how quickly we were able to establish lines of communication. This system was rigorous enough to handle the loss of our teammate Michael, who we are still worried about. Another thing that worked exceptionally well is how quickly we migrated to a hosting service. Render.com was a lifesaver, and our team honed in on using that as our platform once the viable solution was found. I also feel that everyone had good insights into how the project could be improved upon and left a distinct mark on the project's implementation.
+
+
+Echoing the statement in my first lesson, I wish I had takn more initiative. I have generally exceeded standards for projects in my time at OSU (not trying to brag, I just try my hardest to deliver my best work) and this is the first where I feel that I have completely failed my expectations. There are so many technologies I have little knowledge of which I need to learn to better deliver full-scale apps. If I were to do this again, I'd design and implement the project more iteratively in the sense that each addition should be a perfective pursuit (like the concept we learned in an early lecture). This would always ensure we have a minimum viable product and provide a stronger foundation for each iteration rather than implementing all features at once.
 
 
 #### Keona Abad
